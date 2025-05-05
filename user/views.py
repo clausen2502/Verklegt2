@@ -1,0 +1,8 @@
+
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse(f"Response from {request.path}")
+
+def get_user_by_id(request, id):
+    return HttpResponse(f"Response from {request.path} with id {id}")
