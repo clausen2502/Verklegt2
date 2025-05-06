@@ -24,7 +24,12 @@ def create_property(request):
             property_image = form.cleaned_data.get('property_image')
             image = PropertyPhoto(image=property_image, property=property)
             image.save()
-            return redirect('property-by-id', id=property.id)
+            return redirect(f'property-by-id', id=property.id)
+        else:
+            # form is invalid – re-render with errors
+            return render(request, 'property/create_property.html', {
+                'form': form
+            })
     else:
         return render(request, 'property/create_property.html', {
             'form': PropertyCreateForm()

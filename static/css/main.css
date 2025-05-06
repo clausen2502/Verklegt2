@@ -102,4 +102,28 @@ footer {
     background-color: #ccc;
     margin-bottom: 10px;
 }
+.property-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.property-card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.property-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 

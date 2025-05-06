@@ -3,7 +3,11 @@
 {% block content %}
 <div class="grid-3">
     {% for property in properties %}
-        {% include "property/single_property.html" with is_detail=False property=property %}
+        <a href="{% url 'property-detail' property.id %}" class="property-card-link">
+            <div class="property-card">
+                {% include "property/single_property.html" with property=property %}
+            </div>
+        </a>
     {% endfor %}
 </div>
 {% endblock %}
