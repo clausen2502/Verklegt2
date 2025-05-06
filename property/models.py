@@ -8,7 +8,10 @@ class Property(models.Model):
     type = models.CharField(max_length=100)
     price = models.FloatField()
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return f"{self.name} ({self.id})"
 
-class UserPhoto(models.Model):
+
+class PropertyPhoto(models.Model):
     image = models.CharField(max_length=4096)
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
