@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title>All Properties</title>
 </head>
 <body>
-
+  <h1>All Properties</h1>
+  <ul>
+    {% for property in properties %}
+      <li>
+        <a href="{% url 'property-by-id' property.id %}">{{ property.name }}</a> - {{ property.type }} - {{ property.price }}
+      </li>
+    {% endfor %}
+  </ul>
 </body>
 </html>

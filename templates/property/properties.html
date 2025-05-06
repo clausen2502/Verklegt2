@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div>
+    <a href="{% url 'create-property' %}" class="btn btn-primary">Create new property</a>
+    <div class="grid-3">
+        {% for property in properties %}
+            {% include "property/single_property.html" with is_detail=False property=property %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
