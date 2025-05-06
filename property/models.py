@@ -14,4 +14,4 @@ class Property(models.Model):
 
 class PropertyPhoto(models.Model):
     image = models.CharField(max_length=4096)
-    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='photos')

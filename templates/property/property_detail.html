@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Property Detail</title>
-</head>
-<body>
-  <h1>{{ property.name }}</h1>
-  <p><strong>Description:</strong> {{ property.description }}</p>
-  <p><strong>Type:</strong> {{ property.type }}</p>
-  <p><strong>Price:</strong> {{ property.price }}</p>
-  <p><strong>Seller ID:</strong> {{ property.seller.id }}</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "property/single_property.html" with is_detail=True property=property %}
+{% endblock %}
