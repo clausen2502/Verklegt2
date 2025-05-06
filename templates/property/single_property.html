@@ -1,16 +1,17 @@
-<div class="card text-center" style="width: 18rem;">
-    {% if is_detail == True %}
+<div class="card text-center card-fixed-width">
+    {% if is_detail %}
         {% for image in property.photos.all %}
-            <img src="{{ image.image }}" />
+            <img src="{{ image.image }}" class="property-image" alt="{{ property.name }}">
         {% endfor %}
     {% else %}
         {% with property.photos.first as photo %}
             {% if photo %}
-                <div class="image" style="background-image: url('{{ photo.image }}'); height: 150px; background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+                <img src="{{ photo.image }}" alt="{{ property.name }}" class="property-image">
             {% else %}
-                <div class="image" style="height: 150px; background-color: #ccc;"></div>
+                <div class="image-placeholder"></div>
             {% endif %}
         {% endwith %}
+
     {% endif %}
 
     <div class="card-body">

@@ -9,7 +9,7 @@ class PropertyCreateForm(ModelForm):
 
     class Meta:
         model = Property
-        exclude = ['id']
+        exclude = ['id', 'seller']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),

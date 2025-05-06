@@ -15,3 +15,9 @@ class Property(models.Model):
 class PropertyPhoto(models.Model):
     image = models.CharField(max_length=4096)
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='photos')
+
+class PropertyType(models.Model):
+    type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.type}"
