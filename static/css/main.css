@@ -127,3 +127,11 @@ footer {
     display: block;
 }
 
+
+.offer-card {
+    background: #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
