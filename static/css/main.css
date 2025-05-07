@@ -134,4 +134,11 @@ footer {
     margin-bottom: 20px;
     border-radius: 8px;
 }
+.finalize-box {
+  background-color: #e0e0e0;
+  padding: 30px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 8px;
+}
 

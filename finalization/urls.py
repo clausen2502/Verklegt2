@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import finalize_offer_view
 
 urlpatterns = [
-    path('<int:offer_id>/', views.finalize_offer_view, name='finalize-offer'),
+    path('<int:offer_id>/', finalize_offer_view, name='finalize-offer'),
 ]
