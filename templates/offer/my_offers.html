@@ -4,5 +4,18 @@
 
 {% block content %}
 <h1>My Purchase Offers</h1>
-<p>Þetta eru tilboðin þín!</p>
+
+{% for offer in offers %}
+  <a href="{% url 'finalize-offer' offer.id %}">
+    <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+      <h3>{{ offer.property.address }}</h3>
+      <p>Price: {{ offer.offer_price }} kr.</p>
+      <p>Status: {{ offer.status }}</p>
+    </div>
+  </a>
+{% empty %}
+  <p>You have no offers.</p>
+{% endfor %}
+
 {% endblock %}
+

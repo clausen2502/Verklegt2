@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Finalize Purchase Offer{% endblock %}
+
+{% block content %}
+<h1>Finalize Purchase Offer</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label>Street name:</label>
+        <input type="text" name="street_name" required>
+    </div>
+    <div>
+        <label>City:</label>
+        <input type="text" name="city" required>
+    </div>
+    <div>
+        <label>Postal Code:</label>
+        <input type="text" name="postal_code" required>
+    </div>
+    <div>
+        <label>Country:</label>
+        <input type="text" name="country" required>
+    </div>
+    <div>
+        <label>National ID:</label>
+        <input type="text" name="kennitala" required>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
