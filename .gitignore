@@ -14,8 +14,7 @@ env/
 .env/
 
 
-# Django migrations
-**/migrations/*.py
+# Ignore compiled Python files
 **/migrations/*.pyc
 !**/migrations/__init__.py
 
