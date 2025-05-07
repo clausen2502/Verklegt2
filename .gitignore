@@ -1,3 +1,6 @@
+# vs code
+.idea/
+
 # Django / Python
 *.pyc
 __pycache__/
