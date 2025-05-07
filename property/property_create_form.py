@@ -1,18 +1,25 @@
-from django.forms import ModelForm
 from django import forms
+from .models import Property
 
-from property.models import Property
-
-
-class PropertyCreateForm(ModelForm):
-    image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+class PropertyCreateForm(forms.ModelForm):
+    image = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
 
     class Meta:
         model = Property
-        exclude = ['id', 'seller']
+        exclude = ['id', 'seller', 'status']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'street_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'house_number': forms.NumberInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'postal_code': forms.NumberInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'rooms': forms.NumberInput(attrs={'class': 'form-control'}),
+            'square_meters': forms.NumberInput(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'type': forms.TextInput(attrs={'class': 'form-control'}),
+            'type': forms.Select(attrs={'class': 'form-control'}),
+            'custom_type': forms.TextInput(attrs={'class': 'form-control'}),
+            'listing_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
