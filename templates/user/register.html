@@ -1,12 +1,19 @@
-{% extends "base.html" %}
-
-{% block content %}
-<h1>Register now!</h1>
-
-<form method="post" action="{% url 'register' %}">
+<form method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" class="btn btn-primary" value="Register" />
-</form>
+    {{ form.as_p }}
 
-{% endblock %}
+    {% if form.errors %}
+        <ul>
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <button type="submit">Register</button>
+</form>

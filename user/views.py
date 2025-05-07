@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+
 
 def index(request):
     return render(request, 'user/user.html')
@@ -16,6 +18,9 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
+        else:
+            print(form.errors)  # <-- See why it failed
+
     else:
         return render(request, template_name='user/register.html', context={
             'form': UserCreationForm()
