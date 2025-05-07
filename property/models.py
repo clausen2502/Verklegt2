@@ -3,13 +3,21 @@ from user.models import User
 
 # Create your models here.
 class Property(models.Model):
-    name = models.CharField(max_length=100)
+    street_name = models.CharField(max_length=100)
+    house_number = models.IntegerField()
+    city = models.CharField(max_length=100)
+    postal_code = models.IntegerField()
     description = models.TextField()
+    rooms = models.IntegerField()
+    square_meters = models.IntegerField()
+    status = models.BooleanField()
     type = models.CharField(max_length=100)
     price = models.FloatField()
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    listing_date = models.DateField()
+
     def __str__(self):
-        return f"{self.name} ({self.id})"
+        return f"{self.street_name} ({self.id})"
 
 
 class PropertyPhoto(models.Model):
