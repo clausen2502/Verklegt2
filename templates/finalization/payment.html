@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Finalize Purchase Offer - Payment{% endblock %}
+
+{% block content %}
+<h1>Select Payment Method</h1>
+
+<div class="finalize-box">
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="offer_id" value="{{ offer_id }}">
+        <div class="form-group">
+            <label for="payment_method">Payment Method:</label>
+            <select name="payment_method" id="payment_method" required>
+                <option value="">Select payment option</option>
+                <option value="card">Credit Card</option>
+                <option value="bank">Bank Transfer</option>
+                <option value="mortgage">Mortgage</option>
+            </select>
+        </div>
+        <button type="submit">Continue</button>
+    </form>
+</div>
+{% endblock %}
