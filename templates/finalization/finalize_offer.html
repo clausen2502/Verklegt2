@@ -3,17 +3,33 @@
 {% block title %}Finalize Purchase Offer{% endblock %}
 
 {% block content %}
-<h1>Finalize Purchase Offer</h1>
+<h1 class="finalize-title">Finalize Purchase Offer</h1>
 
 <div class="finalize-box">
-  <form method="post">
-    {% csrf_token %}
-    <div><label>Street name:</label><input type="text" name="street_name" required></div>
-    <div><label>City:</label><input type="text" name="city" required></div>
-    <div><label>Postal Code:</label><input type="text" name="postal_code" required></div>
-    <div><label>Country:</label><input type="text" name="country" required></div>
-    <div><label>National ID:</label><input type="text" name="kennitala" required></div>
-    <button type="submit">Submit</button>
-  </form>
+    <h2>CONTACT INFORMATION</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="street_name">Street name:</label>
+            <input type="text" name="street_name" id="street_name" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" name="city" id="city" required>
+        </div>
+        <div class="form-group">
+            <label for="postal_code">Postal Code:</label>
+            <input type="text" name="postal_code" id="postal_code" required>
+        </div>
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" name="country" id="country" required>
+        </div>
+        <div class="form-group">
+            <label for="kennitala">National ID:</label>
+            <input type="text" name="kennitala" id="kennitala" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </div>
 {% endblock %}

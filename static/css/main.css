@@ -134,11 +134,59 @@ footer {
     margin-bottom: 20px;
     border-radius: 8px;
 }
+
+.finalize-title {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.75rem;
+}
+
 .finalize-box {
-  background-color: #e0e0e0;
-  padding: 30px;
-  max-width: 600px;
-  margin: 40px auto;
-  border-radius: 8px;
+    background-color: #e5e5e5;
+    padding: 1.5rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.finalize-box h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #888;
+    padding-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    font-weight: bold;
+    background-color: #cbd5e1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
 }
 
