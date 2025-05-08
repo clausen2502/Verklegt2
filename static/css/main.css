@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1989ea;
+    background-color: white;
     padding: 12px 30px;
 }
 
@@ -15,11 +15,6 @@
 
 .logo-container img {
     height: 40px;
-}
-
-.brand-text {
-    font-size: 14px;
-    line-height: 1.1;
 }
 
 .nav-links {
