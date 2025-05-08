@@ -266,11 +266,9 @@
     </section>
 </div>
 
-<script>
-function toggleLocationDropdown() {
-    const dropdown = document.getElementById('locationDropdown');
-    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-}
-</script>
+{% block scripts %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
 
 {% endblock %}
+
