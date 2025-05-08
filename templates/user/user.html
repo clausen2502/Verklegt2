@@ -19,7 +19,6 @@
 
                     <details>
                         <summary><strong>Reykjavík</strong></summary>
-                        <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 101 - Miðbær</label><br>
                         <label><input type="checkbox"> 102 - Vatnsmýri</label><br>
                         <label><input type="checkbox"> 103 - Kringlan/Hvassal</label><br>
@@ -39,7 +38,6 @@
 
                     <details>
                         <summary><strong>Kópavogur</strong></summary>
-                        <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 200 - Kópavogur</label><br>
                         <label><input type="checkbox"> 201 - Kópavogur</label><br>
                         <label><input type="checkbox"> 202 - Kópavogur</label><br>
@@ -49,7 +47,6 @@
 
                     <details>
                         <summary><strong>Garðabær</strong></summary>
-                        <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 210 - Garðabær</label><br>
                         <label><input type="checkbox"> 212 - Garðabær</label><br>
                         <label><input type="checkbox"> 225 - Garðabær</label><br>
@@ -57,7 +54,6 @@
 
                     <details>
                         <summary><strong>Hafnarfjörður</strong></summary>
-                        <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 220 - Hafnarfjörður</label><br>
                         <label><input type="checkbox"> 221 - Hafnarfjörður</label><br>
                         <label><input type="checkbox"> 222 - Hafnarfjörður</label><br>
@@ -65,7 +61,6 @@
 
                     <details>
                         <summary><strong>Mosfellsbær</strong></summary>
-                        <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 270 - Mosfellsbær</label><br>
                         <label><input type="checkbox"> 271 - Mosfellsbær</label><br>
                         <label><input type="checkbox"> 276 - Mosfellsbær</label><br>
@@ -73,7 +68,6 @@
 
                     <details>
                         <summary><strong>Seltjarnarnes</strong></summary>
-                        <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 170 - Seltjarnarnes</label><br>
                     </details>
 
@@ -201,22 +195,19 @@
                       <label><input type="checkbox" name="location" value="900"> 900 - Höfn</label><br>
                       <label><input type="checkbox" name="location" value="902"> 902 - Höfn</label><br>
                 </details>
-
-
-
-
             </div>
         </div>
     </section>
 </div>
 
         <div class="filter-group">
-            <label for="type-filter">Type</label>
+            <label for="typeDropdown">Type</label>
             <button class="filter-button" onclick="toggleTypeDropdown()">
                 <img src="{% static 'icons/type.png' %}" alt="Home icon">
                 Choose a type
             </button>
-            <div id="type-dropdown" class="type-dropdown" style="display: none;">
+
+            <div id="typeDropdown" class="dropdown-options">
                 <label><input type="checkbox" name="type" value="apartment"> Apartment</label><br>
                 <label><input type="checkbox" name="type" value="house"> House</label><br>
                 <label><input type="checkbox" name="type" value="studio"> Studio</label><br>
@@ -224,13 +215,45 @@
             </div>
         </div>
 
-        <div class="filter-group">
+
+    <div class="filter-group">
             <label>Size</label>
-            <button class="filter-button">
+            <button class="filter-button" onclick="toggleSizeDropdown()">
                 <img src="{% static 'icons/size.png' %}" alt="Size icon">
                 Choose a size
             </button>
+
+                <div id="sizeDropdown" class="size-dropdown">
+                    <label for="sizeFrom"><strong>From</strong></label>
+                    <select id="sizeFrom" name="size_from">
+                      <option value="">---</option>
+                      <option value="0">0 m²</option>
+                      <option value="40">40 m²</option>
+                      <option value="60">60 m²</option>
+                      <option value="70">70 m²</option>
+                      <option value="80">80 m²</option>
+                      <option value="90">90 m²</option>
+                      <option value="100">100 m²</option>
+                      <option value="115">115 m²</option>
+                      <option value="130">130 m²</option>
+                    </select>
+
+                    <label for="sizeTo"><strong>To</strong></label>
+                    <select id="sizeTo" name="size_to">
+                      <option value="">---</option>
+                      <option value="0">0 m²</option>
+                      <option value="40">40 m²</option>
+                      <option value="60">60 m²</option>
+                      <option value="70">70 m²</option>
+                      <option value="80">80 m²</option>
+                      <option value="90">90 m²</option>
+                      <option value="100">100 m²</option>
+                      <option value="115">115 m²</option>
+                      <option value="130">130 m²</option>
+                    </select>
+                </div>
         </div>
+
 
         <div class="filter-group">
             <label>Rooms</label>

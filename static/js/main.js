@@ -1,23 +1,26 @@
-
-/*Location Filter JavaScript  ---------------------------------------------------------------------------------------------------------------*/
+/* Location Filter JavaScript ---------------------------------------------------------------------- */
 function toggleLocationDropdown() {
-    const dropdown = document.getElementById('locationDropdown');
-    if (dropdown.style.display === 'none') {
-    dropdown.style.display = 'block';
+    toggleDropdown('locationDropdown');
+}
+
+/* Type Filter JavaScript -------------------------------------------------------------------------- */
+function toggleTypeDropdown() {
+    toggleDropdown('typeDropdown');
+}
+
+/* Size Filter JavaScript -------------------------------------------------------------------------- */
+function toggleSizeDropdown() {
+    toggleDropdown('sizeDropdown');
+}
+
+/* General Dropdown Toggle Function ---------------------------------------------------------------- */
+function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
     } else {
         dropdown.style.display = 'none';
     }
 }
-
-/*Type Filter JavaScript  ---------------------------------------------------------------------------------------------------------------*/
-function toggleTypeDropdown() {
-    const typeDropdown = document.getElementById('type-dropdown');
-    if (typeDropdown.style.display === 'none' || typeDropdown.style.display === '') {
-        typeDropdown.style.display = 'block';
-    } else {
-        typeDropdown.style.display = 'none';
-    }
-}
-
 
 

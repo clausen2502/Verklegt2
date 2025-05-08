@@ -64,13 +64,17 @@
 
 /*Filters CSS ---------------------------------------------------------------------------------------------------------------*/
 .location-dropdown,
-.type-dropdown {
-    display: none;   
+.type-dropdown,
+.size-dropdown {
+    display: none;
     margin-top: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #f5f5f5;
     border-radius: 4px;
+}
+#typeDropdown {
+  display: none;
 }
 /*Offer CSS ---------------------------------------------------------------------------------------------------------------*/
 
