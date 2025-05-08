@@ -1,29 +1,34 @@
 {% load static %}
 
 <header class="navbar">
-    <!-- Logo -->
-    <a href="{% url 'user-homepage' %}" class="logo-link">
-        <div class="logo-container">
-            <img src="{% static 'images/logo.png' %}" alt="Castle Logo" />
-            <div class="brand">
-                <strong>CASTLE</strong><br />
-                <span>APARTMENTS</span>
-            </div>
-        </div>
-    </a>
-
-
-
-    <!-- Center: Navigation Links -->
-    <nav class="nav-links">
-        <a href="{% url 'property-index' %}">Property Catalogue</a>
-        <a href="{% url 'create-property' %}">Create Listing</a>
-        <a href="{% url 'my-offers' %}">My Offers</a>
-    </nav>
-
-    <!-- Right: Login/Register -->
-    <div class="icons">
-        <a href="{% url 'login' %}" class="icon">Login</a>
-        <a href="{% url 'register' %}" class="icon">Register</a>
+  <!-- Logo -->
+  <a href="{% url 'user-homepage' %}" class="logo-link">
+    <div class="logo-container">
+      <img src="{% static 'images/logo.png' %}" alt="Castle Logo" />
+      <div class="brand-text">
+        <strong>CASTLE</strong><br />
+        <span>APARTMENTS</span>
+      </div>
     </div>
+  </a>
+
+  <!-- Main Navigation Links -->
+  <nav class="nav-links">
+    <a href="{% url 'property-index' %}">Property Catalogue</a>
+    <a href="{% url 'create-property' %}">Create Listing</a>
+    <a href="{% url 'my-offers' %}">My Offers</a>
+  </nav>
+
+  <!-- Profile Icon -->
+  <div class="nav-profile">
+    {% if user.is_authenticated %}
+      <a href="{% url 'profile' %}">
+        <img src="{% static 'icons/profile.png' %}" alt="Profile" class="profile-icon" />
+      </a>
+    {% else %}
+      <a href="{% url 'login' %}">
+        <img src="{% static 'icons/profile.png' %}" alt="Login" class="profile-icon" />
+      </a>
+    {% endif %}
+  </div>
 </header>

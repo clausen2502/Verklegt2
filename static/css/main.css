@@ -1,5 +1,46 @@
+/*Navigation CSS ---------------------------------------------------------------------------------------------------------------*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #add8e6;
+    padding: 12px 30px;
+}
 
-/*Offer CSS ------------------------------------------------------------------------------------------------------------*/
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    height: 40px;
+}
+
+.brand-text {
+    font-size: 14px;
+    line-height: 1.1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-profile img.profile-icon {
+    height: 28px;
+}
+
+
+/*Offer CSS ---------------------------------------------------------------------------------------------------------------*/
 
 .offer-card {
     background: #eee;
