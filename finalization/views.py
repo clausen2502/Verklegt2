@@ -23,6 +23,6 @@ def finalize_contact_view(request, offer_id):
 def finalize_payment_view(request, offer_id):
     if request.method == 'POST':
         payment_method = request.POST['payment_method']
-        # Hér gætirðu farið áfram í næsta skref, s.s. kortaupplýsingar o.s.frv.
-        return redirect('confirmation-page')  # eða næsta skref
+        return redirect('confirmation-page')
     return render(request, 'finalization/payment.html', {'offer_id': offer_id})
+
