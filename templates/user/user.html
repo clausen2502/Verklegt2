@@ -286,10 +286,11 @@
 
         <div class="filter-group">
             <label>Price</label>
-            <button class="filter-button">
+            <button class="filter-button" onclick="togglePriceDropdown()">
                 <img src="{% static 'icons/price.png' %}" alt="Price icon">
                 Choose a price
             </button>
+            
             <div id="priceDropdown" class="dropdown-options">
                 <label for="priceFrom"><strong>From</strong></label>
                 <select id="priceFrom" name="price_from">
