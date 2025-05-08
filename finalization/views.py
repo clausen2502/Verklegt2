@@ -7,7 +7,6 @@ def index(request):
 
 def finalize_contact_view(request, offer_id):
     if request.method == 'POST':
-        # Hér getur þú vistað í session ef þú vilt
         request.session['contact_info'] = {
             'offer_id': offer_id,
             'street_name': request.POST['street_name'],
@@ -21,8 +20,25 @@ def finalize_contact_view(request, offer_id):
 
 
 def finalize_payment_view(request, offer_id):
-    if request.method == 'POST':
-        payment_method = request.POST['payment_method']
-        return redirect('confirmation-page')
-    return render(request, 'finalization/payment.html', {'offer_id': offer_id})
+    if request.method == "POST":
+        method = request.POST.get("payment_method")
 
+        if method == "card":
+            return redirect("credit-card-form", offer_id=offer_id)
+        elif method == "bank":
+            return redirect("bank-transfer-form", offer_id=offer_id)
+        elif method == "mortgage":
+            return redirect("mortgage-form", offer_id=offer_id)
+        else:
+            # fallback eða error message
+            return redirect("payment")
+
+    return render(request, "finalization/payment.html", {"offer_id": offer_id})
+def credit_card_form(request, offer_id):
+    return render(request, "finalization/credit_card.html", {"offer_id": offer_id})
+
+def bank_transfer_form(request, offer_id):
+    return render(request, "finalization/bank_transfer.html", {"offer_id": offer_id})
+
+def mortgage_form(request, offer_id):
+    return render(request, "finalization/mortage.html", {"offer_id": offer_id})
