@@ -17,6 +17,11 @@ function toggleSizeDropdown() {
 function toggleRoomDropdown() {
     toggleDropdown('roomDropdown');
 }
+/* Price Filter JavaScript -------------------------------------------------------------------------- */
+function togglePriceDropdown() {
+    toggleDropdown('priceDropdown');
+}
+
 
 /* General Dropdown Toggle Function ---------------------------------------------------------------- */
 function toggleDropdown(id) {
