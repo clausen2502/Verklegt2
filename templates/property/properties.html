@@ -11,7 +11,7 @@
     <div class="featured-properties">
         {% for property in properties|slice:":2" %}
         <div class="property-card featured">
-            <img src="{{ property.image.url }}" alt="Image of {{ property.street_name }}">
+            <img src="{{ property.photos.first.image }}" alt="Image of {{ property.street_name }}">
             <div class="property-info">
                 <h3>{{ property.street_name }} {{ property.house_number }}</h3>
                 <p>{{ property.city }}, {{ property.postal_code }}</p>
