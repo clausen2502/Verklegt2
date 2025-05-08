@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    properties = Property.objects.all()
+    properties = Property.objects.prefetch_related('photos').all()
     return render(request, "property/properties.html", {
         "properties": properties,
         'property_count': properties.count()

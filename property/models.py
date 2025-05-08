@@ -19,7 +19,6 @@ class Property(models.Model):
     city = models.CharField(max_length=100)
     postal_code = models.IntegerField()
     description = models.TextField()
-    rooms = models.IntegerField()
     square_meters = models.IntegerField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='available')
     type = models.CharField(max_length=100, choices=PROPERTY_TYPE_CHOICES)
@@ -27,6 +26,8 @@ class Property(models.Model):
     price = models.FloatField()
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     listing_date = models.DateField()
+    bedrooms = models.IntegerField(default=1)
+    bathrooms = models.IntegerField(default=1)
 
     def get_type_display_name(self):
         if self.type == 'other' and self.custom_type:
