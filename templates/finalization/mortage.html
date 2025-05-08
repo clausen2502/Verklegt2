@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Mortgage Details{% endblock %}
+
+{% block content %}
+<h2>Mortgage Information</h2>
+
+<div class="finalize-box">
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="offer_id" value="{{ offer_id }}">
+
+        <div class="form-group">
+            <label for="mortgage_provider">Mortgage Provider:</label>
+            <input type="text" id="mortgage_provider" name="mortgage_provider" placeholder="e.g. Arion banki, Landsbankinn, Íslandsbanki" required>
+        </div>
+
+        <button type="submit">Continue</button>
+    </form>
+</div>
+{% endblock %}
+
+
