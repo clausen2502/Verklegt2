@@ -1,13 +1,39 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="grid-3">
-    {% for property in properties %}
-        <a href="{% url 'property-detail' property.id %}" class="property-card-link">
-            <div class="property-card">
-                {% include "property/single_property.html" with property=property %}
+<div class="property-catalogue-container">
+
+    <!-- Total Count -->
+    <h2 class="results-count">{{ property_count }} properties found</h2>
+
+    <!-- Large First Two -->
+    <div class="featured-properties">
+        {% for property in properties|slice:":2" %}
+        <div class="property-card featured">
+            <img src="{{ property.image.url }}" alt="Image of {{ property.street_name }}">
+            <div class="property-info">
+                <h3>{{ property.street_name }} {{ property.house_number }}</h3>
+                <p>{{ property.city }}, {{ property.postal_code }}</p>
+                <p>{{ property.price|floatformat:0 }} kr.</p>
             </div>
-        </a>
-    {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Smaller Remaining -->
+    <div class="property-grid">
+        {% for property in properties|slice:"2:" %}
+        <div class="property-card small">
+            <img src="{{ property.image.url }}" alt="Image of {{ property.street_name }}">
+            <div class="property-info">
+                <h4>{{ property.street_name }} {{ property.house_number }}</h4>
+                <p>{{ property.city }}</p>
+                <p>{{ property.price|floatformat:0 }} kr.</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
 </div>
 {% endblock %}
