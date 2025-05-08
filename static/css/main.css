@@ -76,6 +76,38 @@
 #typeDropdown {
   display: none;
 }
+
+.room-dropdown {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.room-options {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0 20px;
+}
+
+.room-button {
+    flex: 1;
+    padding: 10px 0;
+    border: 1px solid #cbd5e0;
+    background-color: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.room-button:hover,
+.room-button.selected {
+    background-color: #e2e8f0;
+}
+
 /*Offer CSS ---------------------------------------------------------------------------------------------------------------*/
 
 .offer-card {

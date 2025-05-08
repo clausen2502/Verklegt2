@@ -255,13 +255,34 @@
         </div>
 
 
-        <div class="filter-group">
-            <label>Rooms</label>
-            <button class="filter-button">
-                <img src="{% static 'icons/rooms.png' %}" alt="Rooms icon">
-                Choose total rooms
-            </button>
+    <div class="filter-group">
+        <label for="roomDropdown">Rooms</label>
+        <button class="filter-button" onclick="toggleRoomDropdown()">
+            <img src="{% static 'icons/rooms.png' %}" alt="Rooms icon">
+            Choose total rooms
+        </button>
+
+        <div id="roomDropdown" class="room-dropdown">
+            <label for="bedroomFilter">Bedrooms</label>
+            <div id="bedroomFilter" class="room-options">
+                <button type="button" class="room-button" value="1">1+</button>
+                <button type="button" class="room-button" value="2">2+</button>
+                <button type="button" class="room-button" value="3">3+</button>
+                <button type="button" class="room-button" value="4">4+</button>
+                <button type="button" class="room-button" value="5">5+</button>
+            </div>
+
+            <label for="bathroomFilter">Bathrooms</label>
+            <div id="bathroomFilter" class="room-options">
+                <button type="button" class="room-button" value="1">1+</button>
+                <button type="button" class="room-button" value="2">2+</button>
+                <button type="button" class="room-button" value="3">3+</button>
+                <button type="button" class="room-button" value="4">4+</button>
+                <button type="button" class="room-button" value="5">5+</button>
+            </div>
         </div>
+    </div>
+
 
         <div class="filter-group">
             <label>Price</label>
