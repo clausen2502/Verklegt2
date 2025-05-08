@@ -3,8 +3,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1989ea;
-    padding: 12px 30px;
+    background-color: white;
+    padding: 15px 30px;
+    flex-wrap: wrap;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo-container {
@@ -15,17 +21,16 @@
 
 .logo-container img {
     height: 40px;
-}
-
-.brand-text {
-    font-size: 14px;
-    line-height: 1.1;
+    object-fit: contain;
 }
 
 .nav-links {
     display: flex;
     gap: 40px;
     align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
 }
 
 .nav-links a {
@@ -33,12 +38,37 @@
     color: black;
     font-weight: bold;
     text-transform: uppercase;
+    font-size: 14px;
 }
 
-.nav-profile img.profile-icon {
-    height: 28px;
+.profile-icon {
+    display: flex;
+    align-items: center;
 }
 
+.icon-img {
+    height: 45px;
+    width: 45px;
+}
+
+/* Responsive design for navigation  */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .profile-icon {
+        align-self: flex-end;
+    }
+}
 
 /*Offer CSS ---------------------------------------------------------------------------------------------------------------*/
 
