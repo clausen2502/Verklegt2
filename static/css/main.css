@@ -1,54 +1,49 @@
 /*Navigation CSS ---------------------------------------------------------------------------------------------------------------*/
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 15px 30px;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: white;
+  height: 100px;
 }
 
-.logo-link {
-    text-decoration: none;
-    color: inherit;
+.logo-wrapper {
+  width: 150px; /* fixed width */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-container img {
-    height: 40px;
-    object-fit: contain;
+.logo-img {
+  height: 80px;
 }
 
 .nav-links {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    text-align: center;
+  flex: 1; /* center takes remaining space */
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
+  text-decoration: none;
+  color: #001B71;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .profile-icon {
-    display: flex;
-    align-items: center;
+  width: 150px; /* fixed width to match logo */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .icon-img {
-    height: 45px;
-    width: 45px;
+  height: 30px;
+  width: 30px;
 }
 
 /* Responsive design for navigation  */
@@ -60,9 +55,7 @@
     }
 
     .nav-links {
-        flex-direction: column;
-        width: 100%;
-        align-items: flex-start;
+        display: none;
     }
 
     .profile-icon {
