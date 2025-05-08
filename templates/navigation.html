@@ -1,12 +1,11 @@
 {% load static %}
 
 <header class="navbar">
-  <!-- Logo  -->
-  <a href="{% url 'user-homepage' %}" class="logo-link">
-    <div class="logo-container">
-      <img src="{% static 'images/logo.png' %}" alt="Castle Logo" class="logo-img" />
-    </div>
-  </a>
+  <div class="logo-wrapper">
+    <a href="{% url 'user-homepage' %}">
+      <img src="{% static 'images/logo2.png' %}" alt="Castle Logo" class="logo-img">
+    </a>
+  </div>
 
   <!-- Navigation links -->
   <nav class="nav-links">

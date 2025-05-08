@@ -17,6 +17,13 @@ def get_property_by_id(request, id):
         "property": property
     })
 
+def property_catalogue(request):
+    properties = Property.objects.all()
+    return render(request, 'property/property_catalogue.html', {
+        'properties': properties,
+        'property_count': properties.count()
+    })
+
 
 def create_property(request):
     if request.method == "POST":
