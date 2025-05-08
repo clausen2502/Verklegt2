@@ -19,7 +19,6 @@
 }
 
 .nav-links {
-  flex: 1; /* center takes remaining space */
   display: flex;
   justify-content: center;
   gap: 40px;
