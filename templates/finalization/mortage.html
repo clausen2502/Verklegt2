@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Mortgage Details{% endblock %}
+{% block title %}Mortgage Information{% endblock %}
 
 {% block content %}
-<h2>Mortgage Information</h2>
+<h1 class="finalize-title">Mortgage Details</h1>
 
 <div class="finalize-box">
     <form method="post">
@@ -11,13 +11,16 @@
         <input type="hidden" name="offer_id" value="{{ offer_id }}">
 
         <div class="form-group">
-            <label for="mortgage_provider">Mortgage Provider:</label>
-            <input type="text" id="mortgage_provider" name="mortgage_provider" placeholder="e.g. Arion banki, Landsbankinn, Íslandsbanki" required>
+            <label for="mortgage_provider">Choose Mortgage Provider:</label>
+            <select name="mortgage_provider" id="mortgage_provider" required>
+                <option value="">Select a bank</option>
+                <option value="Arion banki">Arion banki</option>
+                <option value="Landsbankinn">Landsbankinn</option>
+                <option value="Íslandsbanki">Íslandsbanki</option>
+            </select>
         </div>
 
         <button type="submit">Continue</button>
     </form>
 </div>
 {% endblock %}
-
-
