@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load humanize %}
+{% load formatting %}
 
 {% block content %}
 <div class="property-catalogue-container">
@@ -13,16 +13,31 @@
         {% for property in properties|slice:":2" %}
             <a href="{% url 'property-detail' property.id %}" class="property-card-link-featured">
                 <div class="property-card featured">
-                    <img src="{{ property.photos.first.image }}" alt="Image of {{ property.street_name }}">
+                    <div class="image-container">
+                        <img src="{{ property.photos.first.image }}" alt="Image of {{ property.street_name }}">
+
+                        {% if property.status == "available" %}
+                            <span class="status-box available">Available</span>
+                        {% elif property.status == "sold" %}
+                            <span class="status-box sold">Sold</span>
+                        {% endif %}
+                    </div>
+
                     <div class="property-info">
                         <h3>{{ property.street_name }} {{ property.house_number }}</h3>
                         <p>{{ property.city }}, {{ property.postal_code }}</p>
-                        <p>{{ property.price|floatformat:0 }} kr.</p>
+                    </div>
+
+                    <div class="property-details-icons">
+                        <p><img src="{% static 'icons/price.png' %}" alt="Price" class="icon"> {{ property.price|intdot }} kr.</p>
+                        <p><img src="{% static 'icons/rooms.png' %}" alt="Bedrooms" class="icon"> {{ property.bedrooms }} bedrooms</p>
+                        <p><img src="{% static 'icons/type.png' %}" alt="Bathrooms" class="icon"> {{ property.bathrooms }} bathrooms</p>
                     </div>
                 </div>
             </a>
         {% endfor %}
     </div>
+
 
     <!-- Smaller Remaining -->
     <div class="property-grid">
@@ -43,7 +58,7 @@
                         <p>{{ property.city }}</p>
                     </div>
                     <div class="property-details-icons">
-                        <p><img src="{% static 'icons/price.png' %}" alt="Price" class="icon"> {{ property.price|floatformat:0|intcomma|stringformat:"s"|cut:","|add:" kr." }}</p>
+                        <p><img src="{% static 'icons/price.png' %}" alt="Price" class="icon">{{ property.price|intdot }} kr.</p>
                         <p><img src="{% static 'icons/rooms.png' %}" alt="Bedrooms" class="icon"> {{ property.bedrooms }} bedrooms</p>
                         <p><img src="{% static 'icons/type.png' %}" alt="Bathrooms" class="icon"> {{ property.bathrooms }} bathrooms</p>
                     </div>

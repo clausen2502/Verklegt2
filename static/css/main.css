@@ -241,6 +241,7 @@ button {
     gap: 6px;
     margin: 0;
     padding-left: 8px;
+    margin-bottom: 5px;
 }
 
 .icon {
