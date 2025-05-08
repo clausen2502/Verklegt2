@@ -1,5 +1,68 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>Welcome to Castle Properties</h1>
+<div class="homepage-container">
+    <section class="filters">
+        <div class="filter-group">
+            <label>Location</label>
+            <button class="filter-button">
+                <img src="{% static 'icons/location.png' %}" alt="Location icon">
+                Choose a location
+            </button>
+        </div>
+
+        <div class="filter-group">
+            <label>Type</label>
+            <button class="filter-button">
+                <img src="{% static 'icons/home.png' %}" alt="Home icon">
+                Choose a type
+            </button>
+        </div>
+
+        <div class="filter-group">
+            <label>Size</label>
+            <button class="filter-button">
+                <img src="{% static 'icons/size.png' %}" alt="Size icon">
+                Choose a size
+            </button>
+        </div>
+
+        <div class="filter-group">
+            <label>Rooms</label>
+            <button class="filter-button">
+                <img src="{% static 'icons/rooms.png' %}" alt="Rooms icon">
+                Choose total rooms
+            </button>
+        </div>
+
+        <div class="filter-group">
+            <label>Price</label>
+            <button class="filter-button">
+                <img src="{% static 'icons/price.png' %}" alt="Price icon">
+                Choose a price
+            </button>
+        </div>
+
+        <div class="filter-group">
+            <label>Street name or text description</label>
+            <input type="text" placeholder="Write here...">
+        </div>
+
+        <button class="search-button">
+            <img src="{% static 'icons/search.png' %}" alt="Search icon">
+            SEARCH
+        </button>
+    </section>
+
+    <section class="brand-info">
+        <p>
+            Menntavegur 1<br>
+            Open Mon–Fri: 09–16<br>
+            +354 555-6677<br>
+            info@castleapartments.com
+        </p>
+        <img src="{% static 'images/logo.png' %}" alt="Castle Logo" class="brand-logo">
+    </section>
+</div>
 {% endblock %}

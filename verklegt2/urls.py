@@ -23,5 +23,4 @@ urlpatterns = [
     path('offers/', include('offer.urls')),
     path('finalize/', include('finalization.urls')),
     path('admin/', admin.site.urls),
-    path('user/', include('user.urls')),
 ]

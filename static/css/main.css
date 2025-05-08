@@ -229,3 +229,79 @@ button {
     align-items: center;
     gap: 10px;
 }
+.homepage-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 40px;
+}
+
+.filters {
+    flex: 1;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.filter-button {
+    width: 100%;
+    background-color: #cdd5dd;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.filter-button img {
+    width: 20px;
+    height: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.search-button {
+    margin-top: 10px;
+    background-color: #cdd5dd;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.search-button img {
+    width: 18px;
+    height: 18px;
+}
+
+.brand-info {
+    flex: 1;
+    background-color: #add8e6;
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.brand-logo {
+    margin-top: 20px;
+    width: 50px;
+}

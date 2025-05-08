@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -25,6 +25,6 @@ def register(request):
         return render(request, template_name='user/register.html', context={
             'form': UserCreationForm()
         })
-
+@login_required
 def profile(request):
     return render(request, 'user/profile.html')
