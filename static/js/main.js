@@ -13,6 +13,11 @@ function toggleSizeDropdown() {
     toggleDropdown('sizeDropdown');
 }
 
+/* Room Filter JavaScript -------------------------------------------------------------------------- */
+function toggleRoomDropdown() {
+    toggleDropdown('roomDropdown');
+}
+
 /* General Dropdown Toggle Function ---------------------------------------------------------------- */
 function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
