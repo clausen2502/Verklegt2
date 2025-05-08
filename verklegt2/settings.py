@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'property.apps.PropertyConfig',
     'finalization.apps.FinalizationConfig',
     'offer.apps.OfferConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
