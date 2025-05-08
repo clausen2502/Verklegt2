@@ -127,3 +127,53 @@ button {
     cursor: pointer;
     margin-top: 1rem;
 }
+
+/*Property CSS ---------------------------------------------------------------------------------------------------------------*/
+.property-catalogue-container {
+    padding: 20px;
+}
+
+.results-count {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e40af;
+    margin-bottom: 30px;
+}
+
+.featured-properties {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.property-card {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.property-card img {
+    width: 100%;
+    height: auto;
+}
+
+.property-info {
+    padding: 15px;
+}
+
+.property-card.featured {
+    flex: 1;
+}
+
+.property-card.small h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
