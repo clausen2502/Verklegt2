@@ -8,20 +8,13 @@ def index(request):
     properties = Property.objects.all()
     return render(request, "property/properties.html", {
         "properties": properties,
+        'property_count': properties.count()
     })
 
 def get_property_by_id(request, id):
     property = Property.objects.get(id=id)
-
     return render(request, "property/property_detail.html", {
         "property": property
-    })
-
-def property_catalogue(request):
-    properties = Property.objects.all()
-    return render(request, 'property/property_catalogue.html', {
-        'properties': properties,
-        'property_count': properties.count()
     })
 
 
