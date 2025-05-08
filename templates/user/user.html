@@ -6,15 +6,17 @@
     <section class="filters">
         <div class="filter-group">
             <label>Location</label>
-            <button class="filter-button">
+            <button class="filter-button" onclick="toggleLocationDropdown()">
+
                 <img src="{% static 'icons/location.png' %}" alt="Location icon">
                 Choose a location
             </button>
-            <div class="location-dropdown">
-                <details open>
+            <div id="locationDropdown" class="location-dropdown" style="display: none;">
+
+                <details>
                     <summary><strong>Höfuðborgarsvæðið</strong></summary>
 
-                    <details open>
+                    <details>
                         <summary><strong>Reykjavík</strong></summary>
                         <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 101 - Miðbær</label><br>
@@ -34,7 +36,7 @@
                         <label><input type="checkbox"> 162 - Kjalarnes</label><br>
                     </details>
 
-                    <details open>
+                    <details>
                         <summary><strong>Kópavogur</strong></summary>
                         <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 200 - Kópavogur</label><br>
@@ -44,7 +46,7 @@
                         <label><input type="checkbox"> 206 - Kópavogur</label><br>
                     </details>
 
-                    <details open>
+                    <details>
                         <summary><strong>Garðabær</strong></summary>
                         <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 210 - Garðabær</label><br>
@@ -52,7 +54,7 @@
                         <label><input type="checkbox"> 225 - Garðabær</label><br>
                     </details>
 
-                    <details open>
+                    <details>
                         <summary><strong>Hafnarfjörður</strong></summary>
                         <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 220 - Hafnarfjörður</label><br>
@@ -60,7 +62,7 @@
                         <label><input type="checkbox"> 222 - Hafnarfjörður</label><br>
                     </details>
 
-                    <details open>
+                    <details>
                         <summary><strong>Mosfellsbær</strong></summary>
                         <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 270 - Mosfellsbær</label><br>
@@ -68,14 +70,14 @@
                         <label><input type="checkbox"> 276 - Mosfellsbær</label><br>
                     </details>
 
-                    <details open>
+                    <details>
                         <summary><strong>Seltjarnarnes</strong></summary>
                         <label><input type="checkbox"> Velja allt</label><br>
                         <label><input type="checkbox"> 170 - Seltjarnarnes</label><br>
                     </details>
 
                 </details>
-                <details open>
+                <details>
                       <summary><strong>Suðurnes</strong></summary>
                       <label><input type="checkbox" name="location" value="230"> 230 - Keflavík</label><br>
                       <label><input type="checkbox" name="location" value="232"> 232 - Keflavík</label><br>
@@ -91,7 +93,7 @@
                       <label><input type="checkbox" name="location" value="190"> 190 - Vogar</label><br>
                       <label><input type="checkbox" name="location" value="191"> 191 - Vogar</label><br>
                 </details>
-                <details open>
+                <details>
                       <summary><strong>Norðurland</strong></summary>
                       <label><input type="checkbox" name="location" value="540"> 540 - Blönduós</label><br>
                       <label><input type="checkbox" name="location" value="541"> 541 - Blönduós</label><br>
@@ -126,7 +128,7 @@
                       <label><input type="checkbox" name="location" value="681"> 681 - Þórshöfn</label><br>
                       <label><input type="checkbox" name="location" value="685"> 685 - Bakkafjörður</label><br>
                 </details>
-                <details open>
+                <details>
                       <summary><strong>Vestfirðir</strong></summary>
                       <label><input type="checkbox" name="location" value="400"> 400 - Ísafjörður</label><br>
                       <label><input type="checkbox" name="location" value="401"> 401 - Ísafjörður</label><br>
@@ -143,7 +145,7 @@
                       <label><input type="checkbox" name="location" value="471"> 471 - Þingeyri</label><br>
                       <label><input type="checkbox" name="location" value="500"> 500 - Staður</label><br>
                 </details>
-                <details open>
+                <details>
                       <summary><strong>Vesturland</strong></summary>
                       <label><input type="checkbox" name="location" value="300"> 300 - Akranes</label><br>
                       <label><input type="checkbox" name="location" value="301"> 301 - Akranes</label><br>
@@ -161,7 +163,7 @@
                       <label><input type="checkbox" name="location" value="380"> 380 - Reykhólar</label><br>
                 </details>
 
-                <details open>
+                <details>
                       <summary><strong>Austurland</strong></summary>
                       <label><input type="checkbox" name="location" value="700"> 700 - Egilsstaðir</label><br>
                       <label><input type="checkbox" name="location" value="701"> 701 - Egilsstaðir</label><br>
@@ -177,7 +179,7 @@
                       <label><input type="checkbox" name="location" value="765"> 765 - Djúpivogur</label><br>
                 </details>
 
-                <details open>
+                <details>
                       <summary><strong>Suðurland</strong></summary>
                       <label><input type="checkbox" name="location" value="800"> 800 - Selfoss</label><br>
                       <label><input type="checkbox" name="location" value="801"> 801 - Selfoss</label><br>
@@ -262,4 +264,12 @@
         <img src="{% static 'images/logo.png' %}" alt="Castle Logo" class="brand-logo">
     </section>
 </div>
+
+<script>
+function toggleLocationDropdown() {
+    const dropdown = document.getElementById('locationDropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+}
+</script>
+
 {% endblock %}
