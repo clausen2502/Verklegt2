@@ -23,27 +23,49 @@
                         {% endif %}
                     </div>
 
+                    <!-- LAYER 1: Name -->
                     <div class="property-info">
                         <h3>{{ property.street_name }} {{ property.house_number }}</h3>
+                    </div>
+
+                    <!-- LAYER 2: City + Postal Code -->
+                    <div class="property-info">
                         <p>{{ property.city }}, {{ property.postal_code }}</p>
                     </div>
 
+                    <!-- LAYER 3: Price -->
+                    <div class="property-price">
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
+                            {{ property.price|intdot }} kr.
+                        </div>
+                    </div>
+
+                    <!-- LAYER 4: Icons -->
                     <div class="property-details-icons">
-                        <p><img src="{% static 'icons/price.png' %}" alt="Price" class="icon"> {{ property.price|intdot }} kr.</p>
-                        <p><img src="{% static 'icons/rooms.png' %}" alt="Bedrooms" class="icon"> {{ property.bedrooms }} bedrooms</p>
-                        <p><img src="{% static 'icons/type.png' %}" alt="Bathrooms" class="icon"> {{ property.bathrooms }} bathrooms</p>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
+                            {{ property.bedrooms }} bedrooms
+                        </div>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/type.png' %}" alt="Bathrooms" class="icon">
+                            {{ property.bathrooms }} bathrooms
+                        </div>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/size2.png' %}" alt="Size" class="icon">
+                            {{ property.square_meters }} m²
+                        </div>
                     </div>
                 </div>
             </a>
         {% endfor %}
     </div>
 
-
     <!-- Smaller Remaining -->
     <div class="property-grid">
         {% for property in properties|slice:"2:" %}
             <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
-               <div class="property-card small">
+                <div class="property-card small">
                     <div class="image-container">
                         <img src="{{ property.photos.first.image }}" alt="Image of {{ property.street_name }}">
 
@@ -53,14 +75,39 @@
                             <span class="status-box sold">Sold</span>
                         {% endif %}
                     </div>
+
+                    <!-- LAYER 1: Name -->
                     <div class="property-info">
                         <h4>{{ property.street_name }} {{ property.house_number }}</h4>
-                        <p>{{ property.city }}</p>
                     </div>
+
+                    <!-- LAYER 2: City + Postal Code -->
+                    <div class="property-info">
+                        <p>{{ property.city }}, {{ property.postal_code }}</p>
+                    </div>
+
+                    <!-- LAYER 3: Price -->
+                    <div class="property-price">
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
+                            {{ property.price|intdot }} kr.
+                        </div>
+                    </div>
+
+                    <!-- LAYER 4: Icons -->
                     <div class="property-details-icons">
-                        <p><img src="{% static 'icons/price.png' %}" alt="Price" class="icon">{{ property.price|intdot }} kr.</p>
-                        <p><img src="{% static 'icons/rooms.png' %}" alt="Bedrooms" class="icon"> {{ property.bedrooms }} bedrooms</p>
-                        <p><img src="{% static 'icons/type.png' %}" alt="Bathrooms" class="icon"> {{ property.bathrooms }} bathrooms</p>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
+                            {{ property.bedrooms }} bedrooms
+                        </div>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/type.png' %}" alt="Bathrooms" class="icon">
+                            {{ property.bathrooms }} bathrooms
+                        </div>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/size2.png' %}" alt="Size" class="icon">
+                            {{ property.square_meters }} m²
+                        </div>
                     </div>
                 </div>
             </a>

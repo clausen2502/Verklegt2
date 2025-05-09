@@ -172,6 +172,7 @@ button {
     object-fit: cover;
 }
 
+/* Grid layout for smaller property cards */
 .property-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -194,11 +195,19 @@ button {
 
 .property-info {
     padding: 10px;
+    padding-left: 15px;
 }
 
 .property-info h3,
 .property-info h4 {
     margin: 0;
+}
+
+.property-price {
+    padding: 0 16px;
+    padding-left: 15px;
+    margin-bottom: 8px;
+    text-align: left;
 }
 
 .property-card-link-small {
@@ -208,11 +217,13 @@ button {
 }
 
 .property-card-link-small:hover .property-card.small {
-    background-color: #dddddd;
+    background-color: #e4e4e4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
+    transform: translateY(-4px);
 }
+
 .property-card-link-featured {
     text-decoration: none;
     color: inherit;
@@ -221,36 +232,39 @@ button {
 }
 
 .property-card-link-featured:hover .property-card.featured {
-    background-color: #dddddd;
+    background-color: #e4e4e4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
-}
-.property-details-icons {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    transform: translateY(-4px);
 }
 
-.property-details-icons p {
+/* Icon + text layout */
+.property-details-icons {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 20px;
+    font-size: 0.9rem;
+}
+
+.icon-detail {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin: 0;
-    padding-left: 8px;
-    margin-bottom: 5px;
 }
 
 .icon {
-    width: 14px !important;
-    height: 14px !important;
-    object-fit: contain;
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px;
+    max-height: 16px;
     display: inline-block;
+    object-fit: contain;
     flex-shrink: 0;
-    margin-right: 4px;
 }
 
+/* Status tags */
 .status-box {
     position: absolute;
     padding: 2px 6px;
@@ -277,6 +291,7 @@ button {
 .image-container {
     position: relative;
 }
+
 
 /*Single Property CSS ---------------------------------------------------------------------------------------------------------------*/
 
@@ -516,14 +531,4 @@ button {
 }
 .mb-0 {
   margin-bottom: 0 !important;
-}
-
-/* Color palette */
-.bg-light-pink {
-  background-color: #ff69b4;
-}
-
-.bg-sky-blue {
-  background-color: #2f5fcf;
-  color: white;
 }
