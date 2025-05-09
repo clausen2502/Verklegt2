@@ -172,7 +172,6 @@ button {
     object-fit: cover;
 }
 
-/* Grid of all the properties that are not featured */
 .property-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -264,13 +263,13 @@ button {
 }
 
 .status-box.available {
-    background-color: #d4f8d4; /* light green */
-    color: #2e7d32; /* darker green for contrast */
+    background-color: #d4f8d4;
+    color: #2e7d32;
     border: 1px solid #a5d6a7;
 }
 
 .status-box.sold {
-    background-color: #fddede; /* light red */
+    background-color: #fddede;
     color: #c62828;
     border: 1px solid #ef9a9a;
 }
@@ -280,7 +279,6 @@ button {
 }
 
 /*Single Property CSS ---------------------------------------------------------------------------------------------------------------*/
-/* Single Property Page CSS -------------------------------------------------- */
 
 .single-property-container {
   max-width: 1200px;
@@ -288,7 +286,6 @@ button {
   padding: 20px;
 }
 
-/* Image Layout */
 .property-image-layout {
   display: flex;
   gap: 20px;
@@ -448,7 +445,6 @@ button {
   color: #444;
 }
 
-/* Gallery Modal */
 .gallery-modal-body {
   display: flex;
   flex-wrap: wrap;
@@ -463,3 +459,71 @@ button {
   border-radius: 6px;
 }
 
+/* Sellers profile CSS---------------------------------------------------------------------------------------------------------------*/
+
+/* Main container spacing */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.rounded {
+  border-radius: 10px;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Logo image */
+.rounded-circle {
+  border-radius: 50%;
+}
+
+/* Property card layout */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+}
+
+/* Profile-specific spacing */
+.mt-3 {
+  margin-top: 1rem !important;
+}
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+/* Color palette */
+.bg-light-pink {
+  background-color: #ff69b4;
+}
+
+.bg-sky-blue {
+  background-color: #2f5fcf;
+  color: white;
+}

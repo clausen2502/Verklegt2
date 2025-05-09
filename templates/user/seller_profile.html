@@ -1,0 +1,50 @@
+<!-- Seller Profile Page HTML -->
+{% extends 'base.html' %}
+{% load static formatting %}
+
+{% block content %}
+<div class="container py-5">
+  <!-- Seller Header -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-4 text-center">
+      <img src="{{ seller.cover_image }}" alt="Cover" class="img-fluid rounded shadow-sm">
+    </div>
+    <div class="col-md-8">
+      <div class="d-flex align-items-center gap-3 mb-2">
+        <h1 class="fw-bold mb-0">{{ seller.user.first_name }} {{ seller.user.last_name }}</h1>
+        <img src="{{ seller.logo }}" alt="Logo" style="width: 50px; height: 50px; object-fit: cover;">
+      </div>
+      <p class="text-muted fst-italic">{{ seller.get_seller_type_display }}</p>
+      <p class="mt-3">{{ seller.bio }}</p>
+      {% if seller.seller_type == 'agency' %}
+        <p class="mb-0">Address:</p>
+        <ul class="list-unstyled">
+          <li>{{ seller.street }}</li>
+          <li>{{ seller.city }}</li>
+          <li>{{ seller.postal_code }}</li>
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Properties by Seller -->
+  <h2 class="mb-4 border-bottom pb-2">Properties for Sale</h2>
+  <div class="row g-4">
+    {% for property in properties %}
+      <div class="col-md-4">
+        <a href="{% url 'property-detail' property.id %}" class="text-decoration-none">
+          <div class="card h-100">
+            <img src="{{ property.photos.first.image }}" class="card-img-top" alt="Property Thumbnail">
+            <div class="card-body">
+              <h5 class="card-title">{{ property.street_name }} {{ property.house_number }}</h5>
+              <p class="card-text text-muted">{{ property.city }}, {{ property.postal_code }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% empty %}
+      <p class="text-muted">No properties currently listed.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

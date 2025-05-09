@@ -3,13 +3,21 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from property.models import Property
+from user.models import SellerUser
 
 
-def index(request):
+def homepage(request):
     return render(request, 'user/user.html')
 
 def get_user_by_id(request, id):
-    return HttpResponse(f"Response from user ID {id}")
+    seller = SellerUser.objects.select_related('user').get(user__id=id)
+    properties = Property.objects.prefetch_related('photos').filter(seller=seller.user)
+
+    return render(request, 'user/seller_profile.html', {
+        'seller': seller,
+        'properties': properties
+    })
 
 # /user/register
 def register(request):
@@ -19,7 +27,7 @@ def register(request):
             form.save()
             return redirect('login')
         else:
-            print(form.errors)  # <-- See why it failed
+            print(form.errors)
 
     else:
         return render(request, template_name='user/register.html', context={
