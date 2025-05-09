@@ -1,9 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from property.models import Property
+from user.forms import UserProfileForm
 from user.models import SellerUser
 
 
@@ -36,3 +35,17 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'user/profile.html')
+
+@login_required
+def profile_view(request):
+    profile = request.user.userprofile  # via OneToOne
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=profile)
+
+    return render(request, 'profile.html', {'form': form, 'profile': profile})
