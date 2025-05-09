@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from property.models import Property, PropertyPhoto
 from property.property_create_form import PropertyCreateForm
 from django.contrib.auth.decorators import login_required
+from user.models import SellerUser
 
 
 def index(request):
@@ -12,7 +13,7 @@ def index(request):
     })
 
 def get_property_by_id(request, id):
-    property = Property.objects.get(id=id)
+    property = Property.objects.prefetch_related('photos').get(id=id)
     return render(request, "property/single_property.html", {
         "property": property
     })
@@ -22,8 +23,7 @@ def create_property(request):
         form = PropertyCreateForm(request.POST)
         if form.is_valid():
             property = form.save(commit=False)
-            property.seller = request.user  # Set seller from logged-in user
-            property.status = 'available'  # Force status to default value
+            property.seller = SellerUser.objects.get(user=request.user)
             property.save()
 
             property_image = form.cleaned_data.get('image')  # assuming image field name is 'image'

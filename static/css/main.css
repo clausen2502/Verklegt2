@@ -280,211 +280,186 @@ button {
 }
 
 /*Single Property CSS ---------------------------------------------------------------------------------------------------------------*/
-/* --- Layout containers --- */
+/* Single Property Page CSS -------------------------------------------------- */
 
 .single-property-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.image-layout {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+/* Image Layout */
+.property-image-layout {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
-.main-image-wrapper {
-    flex: 3;
+.property-main-image {
+  flex: 3;
 }
 
-.main-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
+.property-main-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.image-sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: flex-start;
+.property-sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.sidebar-images img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
+.property-sidebar-thumb img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.show-gallery-button {
-    background-color: #2f5fcf;
-    color: white;
-    text-align: center;
-    padding: 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.gallery-button {
+  background-color: #2f5fcf;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
 }
 
-.show-gallery-button img {
-    width: 24px;
-    margin-bottom: 8px;
+.gallery-button img {
+  width: 24px;
 }
 
-.extra-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
+/* Content Layout */
+.property-content-layout {
+  display: flex;
+  gap: 40px;
 }
 
-.gallery-thumb {
-    width: 200px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 6px;
+.property-left {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-/* --- Two-column layout --- */
-
-.property-two-column {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    margin-top: 40px;
+.property-info-box,
+.property-description-box,
+.seller-box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
-.property-main-left {
-    flex: 3;
+.property-details-icons {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
 }
 
-.property-description {
-    margin-top: 20px;
+.property-details-icons li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* --- Stats with icons --- */
-
-.property-stats-inline {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.property-details-icons img {
+  width: 20px;
+  height: 20px;
 }
 
-.property-stats-inline li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
+.seller-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.property-stats-inline img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
+.seller-box a {
+  display: flex;
+  align-items: center;
+  color: #2f5fcf;
+  text-decoration: underline;
+  margin-top: 10px;
 }
 
-/* --- Seller info --- */
-
-.seller-thumbnail {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 5px;
+.property-right {
+  flex: 1;
 }
 
-/* --- Purchase offer box --- */
-
-.property-action-box {
-    flex: 1;
-    min-width: 250px;
-    max-width: 100%;
-    border: 1px solid #ddd;
-    padding: 16px;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    align-self: flex-start;
-    text-align: center;
-}
-
-.property-action-box .status {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 15px;
+.purchase-box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
 }
 
 .status.available {
-    color: green;
+  color: green;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .status.sold {
-    color: red;
-}
-
-.property-action-box .purchase-offer button {
-    width: 100%;
-    padding: 10px 0;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .btn-primary {
-    background-color: #2f5fcf;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    font-weight: bold;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
+  background-color: #2f5fcf;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
 }
-
-.btn-primary:hover {
-    background-color: #1e4ac3;
-}
-
 
 .btn-disabled {
-    background-color: #ccc;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: not-allowed;
+  background-color: #ccc;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  cursor: not-allowed;
 }
 
 .offer-status {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #444;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
 }
 
-/* --- Responsive --- */
-
-@media (max-width: 900px) {
-    .property-two-column {
-        flex-direction: column;
-    }
-
-    .property-action-box {
-        width: 100%;
-        margin-top: 30px;
-    }
-
-    .property-stats-inline {
-        flex-direction: column;
-    }
+/* Gallery Modal */
+.gallery-modal-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-.hidden {
-    display: none;
+.gallery-modal-body img {
+  max-width: 400px;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
