@@ -13,10 +13,9 @@ def index(request):
 
 def get_property_by_id(request, id):
     property = Property.objects.get(id=id)
-    return render(request, "property/property_detail.html", {
+    return render(request, "property/single_property.html", {
         "property": property
     })
-
 
 def create_property(request):
     if request.method == "POST":

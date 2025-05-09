@@ -8,7 +8,7 @@
       <img src="{% static 'images/logo5.svg' %}" alt="Castle Logo" width="40" height="40" class="d-inline-block align-text-top">
     </a>
 
-    <!-- Centered Navigation Links -->
+    <!-- Navigation Links -->
     <div class="nav-center mx-auto">
       <ul class="navbar-nav d-flex flex-row gap-4 justify-content-center">
         <li class="nav-item">
@@ -23,7 +23,7 @@
       </ul>
     </div>
 
-    <!-- Profile Icon Right -->
+    <!-- Profile Icon -->
     <div class="nav-profile">
       {% if user.is_authenticated %}
         <a href="{% url 'profile' %}">

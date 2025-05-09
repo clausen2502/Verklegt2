@@ -1,23 +1,89 @@
-<div class="card text-center card-fixed-width">
-    {% if is_detail %}
-        {% for image in property.photos.all %}
-            <img src="{{ image.image }}" class="property-image" alt="{{ property.name }}">
-        {% endfor %}
-    {% else %}
-        {% with property.photos.first as photo %}
-            {% if photo %}
-                <img src="{{ photo.image }}" alt="{{ property.name }}" class="property-image">
-            {% else %}
-                <div class="image-placeholder"></div>
-            {% endif %}
-        {% endwith %}
+{% extends 'base.html' %}
+{% load static formatting %}
 
-    {% endif %}
+{% block content %}
+<div class="single-property-container">
 
-    <div class="card-body">
-        <h5 class="card-title">{{ property.name }}</h5>
-        <p class="lead">{{ property.price }} kr</p>
-        <p class="card-text">{{ property.description }}</p>
-        <p><strong>Seller:</strong> {{ property.seller.name }}</p>
+    <!-- Image Layout -->
+    <div class="image-layout">
+        <div class="main-image-wrapper">
+            <img src="{{ property.photos.first.image }}" alt="Main image" class="main-image">
+        </div>
+        <div class="image-sidebar">
+            {% with property.photos.all|slice:"1:3" as sidebar_photos %}
+                {% for photo in sidebar_photos %}
+                <div class="sidebar-images">
+                    <img src="{{ photo.image }}" alt="Sidebar image {{ forloop.counter }}">
+                </div>
+                {% endfor %}
+            {% endwith %}
+            <div class="show-gallery-button" id="showGalleryButton">
+                <img src="{% static 'icons/gallery-button-placeholder.svg' %}" alt="Show gallery">
+                <p>{{ property.photos.count }} More Photos</p>
+            </div>
+        </div>
     </div>
+
+    <div id="extra-gallery" class="extra-gallery hidden">
+        {% for photo in property.photos.all|slice:"3:" %}
+            <img src="{{ photo.image }}" alt="Property image" class="gallery-thumb">
+        {% endfor %}
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="property-two-column">
+
+        <!-- LEFT: Main content + icons -->
+        <div class="property-main-left">
+            <h1>{{ property.street_name }} {{ property.house_number }}</h1>
+            <p>{{ property.city }}, {{ property.postal_code }}</p>
+            <p>Type: {{ property.type|title }}</p>
+            <p>Listed on: {{ property.listing_date }}</p>
+            <p>Price: {{ property.price|intdot }} kr.</p>
+
+            <!-- Stats with icons -->
+            <ul class="property-stats-inline">
+                <li><img src="{% static 'icons/rooms.png' %}"> {{ property.bedrooms }} Bedrooms</li>
+                <li><img src="{% static 'icons/rooms.png' %}"> {{ property.bathrooms }} Bathrooms</li>
+                <li><img src="{% static 'icons/size.png' %}"> {{ property.square_meters }} m²</li>
+            </ul>
+
+            <div class="property-description">
+                <h2>Description</h2>
+                <p>{{ property.description }}</p>
+            </div>
+
+            <div class="seller-info">
+                <h2>Seller</h2>
+                <a href="/user/{{ property.seller.id }}/">
+                    <img src="{{ property.seller.cover_image }}" alt="{{ property.seller.name }}" class="seller-thumbnail">
+                    <p>{{ property.seller.name }}</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT: Status and purchase -->
+        <div class="property-action-box">
+            {% if property.status == "available" %}
+                <p class="status available">Status: Available</p>
+            {% else %}
+                <p class="status sold">Status: Sold</p>
+            {% endif %}
+
+            <div class="purchase-offer">
+                {% if property.status == "sold" %}
+                    <button disabled class="btn-disabled">Property Sold</button>
+                {% else %}
+                    {% if user_has_submitted_offer %}
+                        <button class="btn-primary">Resubmit a Purchase Offer</button>
+                        <p class="offer-status">Current offer status: {{ offer.status }}</p>
+                    {% else %}
+                        <button class="btn-primary">Submit a Purchase Offer</button>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
 </div>
+{% endblock %}
