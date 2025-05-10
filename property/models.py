@@ -38,8 +38,9 @@ class Property(models.Model):
         return f"{self.street_name} ({self.get_type_display_name()})"
 
 
+
 class PropertyPhoto(models.Model):
-    image = models.CharField(max_length=4096)
+    image = models.ImageField(upload_to='property_photos/')
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='photos')
 
     def __str__(self):

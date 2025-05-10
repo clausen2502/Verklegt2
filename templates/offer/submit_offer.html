@@ -6,15 +6,15 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="shadow rounded-4 p-5 bg-white">
-        <h2 class="fw-bold mb-4 text-center text-blue">Resubmit Offer</h2>
+        <h2 class="fw-bold mb-4 text-center text-blue">Submit Offer</h2>
 
         <p class="text-center mb-2">
-          You're resubmitting your offer for
+          You're making an offer for
           <strong>{{ property.street_name }}, {{ property.city }}</strong>.
         </p>
 
         <p class="text-center text-muted">
-            Your original offer was: <strong>{{ offer.amount|intdot }}</strong> kr.
+          Listing price: <strong>{{ property.price|intdot }}</strong> kr.
         </p>
 
         <form method="POST">
@@ -22,8 +22,8 @@
           {{ form.as_p }}
 
           <div class="text-center mt-4">
-            <button type="submit" class="btn btn-warning px-4 fw-semibold rounded-pill">
-              Resubmit Offer
+            <button type="submit" class="btn btn-success px-4 fw-semibold rounded-pill">
+              Submit Offer
             </button>
           </div>
         </form>

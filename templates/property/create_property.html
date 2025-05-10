@@ -1,9 +1,46 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <form method="post" action="{% url 'create-property' %}">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Create Property</button>
-    </form>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="bg-white shadow p-5 rounded-4">
+
+        <h2 class="fw-bold mb-4 text-center text-blue">Create New Property</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+
+          {% for field in form %}
+            <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+
+          <!-- 👇 Add this for multiple image uploads -->
+          <div class="mb-3">
+            <label for="property-images" class="form-label">Upload Property Images</label>
+            <input type="file" name="images" id="property-images" class="form-control" multiple>
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-4 fw-semibold rounded-pill">
+              Submit Property
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

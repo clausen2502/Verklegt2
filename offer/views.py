@@ -57,6 +57,7 @@ def resubmit_offer(request, offer_id):
     return render(request, 'offer/resubmit_offer.html', {
         'form': form,
         'property': property_obj,
+        'offer': offer,
         'resubmitting': True
     })
 

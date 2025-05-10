@@ -51,9 +51,8 @@
         <h2>Seller</h2>
         <a href="/user/{{ property.seller.selleruser.id }}/">
           <img src="{{ property.seller.selleruser.cover_image }}" alt="Seller Image" class="seller-img">
-          <span>{{ property.seller.first_name }} {{ property.seller.last_name }} </span>
+          <span>{{ property.seller.first_name }} {{ property.seller.last_name }}</span>
         </a>
-
       </div>
     </div>
 
@@ -65,18 +64,23 @@
           <p class="status sold">Status: Sold</p>
         {% endif %}
 
-        <div class="purchase-action">
-          {% if property.status == "sold" %}
-            <button disabled class="btn-disabled">Property Sold</button>
-          {% else %}
-            {% if user_has_submitted_offer %}
-              <button class="btn-primary">Resubmit a Purchase Offer</button>
-              <p class="offer-status">Current offer status: {{ offer.status }}</p>
-            {% else %}
-              <button class="btn-primary">Submit a Purchase Offer</button>
+        {% if user.is_authenticated %}
+          {% if user_offer %}
+            {% if user_offer.status == 'rejected' or user_offer.status == 'pending' %}
+              <a href="{% url 'resubmit-offer' user_offer.id %}" class="btn btn-warning mt-2">
+                Resubmit Offer
+              </a>
+            {% elif user_offer.status == 'accepted' or user_offer.status == 'contingent' %}
+              <a href="{% url 'finalize-offer' user_offer.id %}" class="btn btn-success mt-2">
+                Finalize Offer
+              </a>
             {% endif %}
+          {% else %}
+            <a href="{% url 'submit-offer' property.id %}" class="btn btn-primary mt-2">
+              Submit a Purchase Offer
+            </a>
           {% endif %}
-        </div>
+        {% endif %}
       </div>
     </div>
   </div>

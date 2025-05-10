@@ -2,9 +2,9 @@ from django import forms
 from .models import Property
 
 class PropertyCreateForm(forms.ModelForm):
-    image = forms.CharField(
+    image = forms.ImageField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.ClearableFileInput(attrs={'class': 'form-control'})
     )
 
     class Meta:

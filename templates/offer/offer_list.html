@@ -16,9 +16,9 @@
                   {{ offer.property.street_name }}, {{ offer.property.city }}
                 </a>
               </h5>
-
-              <p class="mb-1"><strong>Offer Date:</strong> {{ offer.offer_date|date:"Y-m-d" }}</p>
-              <p class="mb-1"><strong>Expires:</strong> {{ offer.expiration_date|date:"Y-m-d" }}</p>
+                <p class="mb-1"><strong>Property Price:</strong> {{ offer.property.price|intdot }} kr.</p>
+                <p class="mb-1"><strong>Offer Date:</strong> {{ offer.offer_date|date:"Y-m-d" }}</p>
+                <p class="mb-1"><strong>Expires:</strong> {{ offer.expiration_date|date:"Y-m-d" }}</p>
 
               <p class="mb-1">
                 <strong>Status:</strong>
@@ -31,8 +31,8 @@
                 </span>
               </p>
 
-              <p class="mb-1 fst-italic"><strong>Seller:</strong> {{ offer.property.seller.get_full_name }}</p>
-              <p class="mb-1"><strong>Price:</strong> {{ offer.property.price|intdot }} kr.</p>
+                <p class="mb-1 fst-italic"><strong>Seller:</strong> {{ offer.property.seller.get_full_name }}</p>
+                <p class="mb-1"><strong>Your Offer Amount:</strong> {{ offer.amount|intdot }} kr.</p>
 
               <div class="text-center">
                 <a href="{% url 'property-detail' offer.property.id %}" class="btn btn-outline-primary btn-sm mt-2 rounded-pill">
