@@ -25,7 +25,7 @@ class Property(models.Model):
     custom_type = models.CharField(max_length=100, blank=True)  #Shown only if type == 'other'
     price = models.FloatField()
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    listing_date = models.DateField()
+    listing_date = models.DateField(auto_now_add=True)
     bedrooms = models.IntegerField(default=1)
     bathrooms = models.IntegerField(default=1)
 

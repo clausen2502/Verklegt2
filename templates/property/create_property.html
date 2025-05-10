@@ -14,7 +14,7 @@
           {{ form.non_field_errors }}
 
           {% for field in form %}
-            <div class="mb-3">
+            <div class="mb-3"{% if field.name == "custom_type" %} id="custom-type-wrapper"{% endif %}>
               <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
               {{ field }}
               {% if field.help_text %}
@@ -26,7 +26,7 @@
             </div>
           {% endfor %}
 
-          <!-- 👇 Add this for multiple image uploads -->
+          <!-- Upload multiple property images -->
           <div class="mb-3">
             <label for="property-images" class="form-label">Upload Property Images</label>
             <input type="file" name="images" id="property-images" class="form-control" multiple>

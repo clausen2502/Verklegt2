@@ -2,11 +2,6 @@ from django import forms
 from .models import Property
 
 class PropertyCreateForm(forms.ModelForm):
-    image = forms.ImageField(
-        required=True,
-        widget=forms.ClearableFileInput(attrs={'class': 'form-control'})
-    )
-
     class Meta:
         model = Property
         exclude = ['id', 'seller', 'status']
@@ -21,5 +16,5 @@ class PropertyCreateForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
             'type': forms.Select(attrs={'class': 'form-control'}),
             'custom_type': forms.TextInput(attrs={'class': 'form-control'}),
-            'listing_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
+

@@ -48,7 +48,7 @@ function toggleGallerySection() {
     }
 }
 
-/* DOMContent Loaded Handler ----------------------------------------------------------------------- */
+/* Show Gallery  ----------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', function () {
     const galleryButton = document.getElementById('showGalleryButton');
     if (galleryButton) {
@@ -56,4 +56,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+/* Show Custom Type  ----------------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', function () {
+  const typeField = document.querySelector('#id_type');
+  const customTypeWrapper = document.querySelector('#custom-type-wrapper');
+
+  if (!typeField || !customTypeWrapper) return;
+
+  function toggleCustomType() {
+    if (typeField.value === 'other') {
+      customTypeWrapper.style.display = 'block';
+    } else {
+      customTypeWrapper.style.display = 'none';
+    }
+  }
+
+  toggleCustomType();
+  typeField.addEventListener('change', toggleCustomType);
+});
 
