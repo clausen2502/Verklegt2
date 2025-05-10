@@ -1,37 +1,44 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends "base.html" %}
+{% load humanize %}
+
 
 {% block content %}
-<div class="container mt-5">
-  <h2 class="mb-4 text-center text-pink fw-bold">Your Purchase Offers</h2>
+<div class="container my-5">
+  <h2 class="fw-bold mb-4 text-center text-primary">Your Purchase Offers</h2>
 
   {% if offers %}
     <div class="row g-4">
       {% for offer in offers %}
         <div class="col-md-6 col-lg-4">
-          <div class="card offer-card h-100 shadow-sm">
+          <div class="card h-100 shadow-sm">
             <div class="card-body">
-              <h5 class="card-title text-primary fw-bold">
-                {{ offer.property.street_name }}, {{ offer.property.city }}
+              <h5 class="card-title">
+                <a href="{% url 'property-detail' offer.property.id %}" class="text-decoration-none text-dark">
+                  {{ offer.property.street_name }}, {{ offer.property.city }}
+                </a>
               </h5>
-              <p class="mb-1"><strong>Amount:</strong> {{ offer.amount }} kr.</p>
+
+              <p class="mb-1"><strong>Offer Date:</strong> {{ offer.offer_date|date:"Y-m-d" }}</p>
+              <p class="mb-1"><strong>Expires:</strong> {{ offer.expiration_date|date:"Y-m-d" }}</p>
+
               <p class="mb-1">
                 <strong>Status:</strong>
                 <span class="badge
-                  {% if offer.status == 'accepted' %} bg-success
-                  {% elif offer.status == 'declined' %} bg-danger
-                  {% elif offer.status == 'contingent' %} bg-warning text-dark
-                  {% else %} bg-secondary
+                  {% if offer.status == 'pending' %}bg-warning text-dark
+                  {% elif offer.status == 'rejected' %}bg-danger
+                  {% elif offer.status == 'accepted' or offer.status == 'contingent' %}bg-success
                   {% endif %}">
-                  {{ offer.get_status_display }}
+                  {{ offer.status|title }}
                 </span>
               </p>
-              <p class="mb-1"><strong>Expires:</strong> {{ offer.expiration_date }}</p>
-              <p class="mb-2"><strong>Submitted:</strong> {{ offer.offer_date|date:"Y-m-d H:i" }}</p>
-              {% if offer.message %}
-                <div class="alert alert-info p-2">
-                  <strong>Message:</strong> {{ offer.message }}
-                </div>
+
+              <p class="mb-1"><strong>Seller:</strong> {{ offer.property.seller.user.get_full_name }}</p>
+              <p class="mb-1"><strong>Price:</strong> {{ offer.amount|intcomma }} kr.</p>
+
+              {% if offer.status == 'accepted' or offer.status == 'contingent' %}
+                <a href="{% url 'finalize-offer' offer.id %}" class="btn btn-primary btn-sm mt-2">
+                  Finalize Offer
+                </a>
               {% endif %}
             </div>
           </div>
@@ -39,9 +46,7 @@
       {% endfor %}
     </div>
   {% else %}
-    <div class="alert alert-warning text-center">
-      <strong>No offers found.</strong> Make your first offer today!
-    </div>
+    <p class="text-muted text-center mt-4">You haven't submitted any purchase offers yet.</p>
   {% endif %}
 </div>
 {% endblock %}
