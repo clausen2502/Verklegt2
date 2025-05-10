@@ -7,8 +7,9 @@
         <div class="row g-0">
             <!-- Left Profile Summary -->
             <div class="col-md-4 d-flex flex-column justify-content-center align-items-center bg-success text-white p-4">
-                <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+                <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="profile-image mb-3">
                 <h4 class="fw-bold">{{ user.username }}</h4>
+                <h5 class="fw-semibold">{{ user.first_name }} {{ user.last_name }}</h5>
                 {% if seller.seller_type == "seller" %}
                     <p class="mb-0">Seller</p>
                 {% else %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'finalization.apps.FinalizationConfig',
     'offer.apps.OfferConfig',
     'django.contrib.humanize',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

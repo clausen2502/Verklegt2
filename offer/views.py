@@ -1,10 +1,12 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from .models import PurchaseOffer
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 
-def index(request):
-    return HttpResponse(f"Response from {request.path}")
+def offer_list(request):
+    if not request.user.is_authenticated:
+        return render(request, 'offer/offer_guest.html')
 
-def my_offers_view(request):
-    return render(request, 'offer/my_offers.html')
+    # your real offer logic goes here
+    return render(request, 'offer/offer_list.html', {
+        # context for logged-in users
+    })
