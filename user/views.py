@@ -1,12 +1,11 @@
 from django.contrib.auth import logout
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from property.models import Property
-from user.forms import UserProfileForm, UserForm
-from user.models import SellerUser
 from django.contrib import messages
-
+from property.models import Property
+from user.forms import UserProfileForm, CustomUserCreationForm, UserEditForm
+from user.models import SellerUser
+from django.contrib.auth.models import User
 
 def homepage(request):
     return render(request, 'user/user.html')
@@ -22,17 +21,17 @@ def get_user_by_id(request, id):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Registration was successful! You can now log in.")
             return redirect('login')
         else:
             print(form.errors)
-
     else:
-        return render(request, template_name='user/register.html', context={
-            'form': UserCreationForm()
-        })
+        form = CustomUserCreationForm()
+
+    return render(request, 'user/register.html', {'form': form})
 
 @login_required
 def profile_display(request):
@@ -45,7 +44,7 @@ def profile_edit(request):
     profile = user.userprofile
 
     if request.method == "POST":
-        user_form = UserForm(request.POST, instance=user)
+        user_form = UserEditForm(request.POST, instance=user)
         profile_form = UserProfileForm(request.POST, request.FILES, instance=profile)
 
         if user_form.is_valid() and profile_form.is_valid():
@@ -54,7 +53,7 @@ def profile_edit(request):
             messages.success(request, "Profile updated successfully!")
             return redirect('profile_edit')
     else:
-        user_form = UserForm(instance=user)
+        user_form = UserEditForm(instance=user)
         profile_form = UserProfileForm(instance=profile)
 
     return render(request, 'user/profile_edit.html', {

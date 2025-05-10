@@ -3,9 +3,8 @@
 
 {% block content %}
 <div class="container my-5">
-    <div class="card shadow rounded-4 overflow-hidden">
+    <div class="shadow rounded-4 overflow-hidden">
         <div class="row g-0 align-items-stretch">
-            <!-- Green profile summary -->
             <div class="col-md-4 d-flex flex-column justify-content-center align-items-center custom-bg text-white p-4">
                 <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="profile-image mb-3">
                 <h4 class="fw-bold mb-1">{{ user.username }}</h4>
@@ -17,7 +16,6 @@
                 {% endif %}
             </div>
 
-            <!-- Profile info as display text -->
             <div class="col-md-8 d-flex">
                 <div class="p-4 w-100 d-flex flex-column justify-content-center">
 

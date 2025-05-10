@@ -16,6 +16,7 @@ class PurchaseOffer(models.Model):
     message = models.TextField(blank=True)
     offer_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=OFFER_STATUS_CHOICES, default='pending')
+    expiration_date = models.DateField()
 
     def __str__(self):
         return f"Offer of ${self.amount} by {self.buyer.username} for {self.property}"

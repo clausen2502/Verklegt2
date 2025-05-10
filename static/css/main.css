@@ -122,6 +122,21 @@
   border-left: 5px solid #3b6ed5;
 }
 
+.text-pink {
+  color: #e91e63;
+}
+
+.offer-card {
+  background-color: #fce4ec;
+  border: none;
+  border-radius: 0.75rem;
+}
+
+.offer-card .card-body {
+  padding: 1.5rem;
+}
+
+
 /*Finalize CSS ------------------------------------------------------------------------------------------------------------*/
 
 .finalize-title {
