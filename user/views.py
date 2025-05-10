@@ -2,8 +2,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from property.models import Property
-from user.forms import UserProfileForm
+from user.forms import UserProfileForm, UserForm
 from user.models import SellerUser
+from django.contrib import messages
 
 
 def homepage(request):
@@ -18,7 +19,6 @@ def get_user_by_id(request, id):
         'properties': properties
     })
 
-# /user/register
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -32,20 +32,32 @@ def register(request):
         return render(request, template_name='user/register.html', context={
             'form': UserCreationForm()
         })
-@login_required
-def profile(request):
-    return render(request, 'user/profile.html')
 
 @login_required
-def profile_view(request):
-    profile = request.user.userprofile  # via OneToOne
+def profile_display(request):
+    profile = request.user.userprofile
+    return render(request, 'user/profile_display.html', {'profile': profile, 'user': request.user})
 
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
+@login_required
+def profile_edit(request):
+    user = request.user
+    profile = user.userprofile
+
+    if request.method == "POST":
+        user_form = UserForm(request.POST, instance=user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Profile updated successfully!")
+            return redirect('profile_edit')
     else:
-        form = UserProfileForm(instance=profile)
+        user_form = UserForm(instance=user)
+        profile_form = UserProfileForm(instance=profile)
 
-    return render(request, 'profile.html', {'form': form, 'profile': profile})
+    return render(request, 'user/profile_edit.html', {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'profile': profile,
+    })
