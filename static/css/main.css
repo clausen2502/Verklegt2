@@ -1,3 +1,11 @@
+/* Global layout --------------------------------------------------------------------------------------*/
+
+body{
+  background-color: #0091ab;
+  background-image: url("https://www.transparenttextures.com/patterns/candyhole.png");
+  background-repeat: repeat;
+  background-size: auto;
+}
 /*Navigation CSS ---------------------------------------------------------------------------------------------------------------*/
 
 .nav-container {
@@ -134,6 +142,54 @@
 
 .offer-card .card-body {
   padding: 1.5rem;
+}
+
+/* Custom Offer Buttons ------------------------------------------------------------------ */
+
+.offer-btn {
+  min-width: 150px;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+.inline-form {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.offer-btn-blue {
+  background-color: #2f5fcf;
+}
+
+.offer-btn-blue:hover {
+  background-color: #234abb;
+}
+
+.offer-btn-yellow {
+  background-color: #f9c74f;
+  color: #000;
+}
+
+.offer-btn-yellow:hover {
+  background-color: #e0b03f;
+}
+
+.offer-btn-red {
+  background-color: #e63946;
+}
+
+.offer-btn-red:hover {
+  background-color: #c62835;
 }
 
 
@@ -599,4 +655,23 @@ button {
 
 .custom-bg {
     background-color: #F06292;
+}
+.profile-content {
+  background-color: white;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 2rem;
+}
+
+/* User Login CSS---------------------------------------------------------------------------------------------------------------*/
+
+.login-box-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-box {
+  background-color: white;
+  border: 4px solid white;
+  border-radius: 1rem;
 }

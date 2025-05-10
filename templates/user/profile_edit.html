@@ -5,7 +5,7 @@
 <div class="container my-5">
     <div class="shadow rounded-4 overflow-hidden">
         <div class="row g-0">
-            <!-- Left Profile Summary -->
+
             <div class="col-md-4 d-flex flex-column justify-content-center align-items-center custom-bg text-white p-4">
                 <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="profile-image mb-3">
                 <h4 class="fw-bold">{{ user.username }}</h4>
@@ -17,9 +17,9 @@
                 {% endif %}
             </div>
 
-            <!-- Right Form Section -->
+
             <div class="col-md-8">
-                <div class="p-4">
+                <div class="profile-content p-4">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
@@ -61,15 +61,4 @@
         </div>
     </div>
 </div>
-
-{% if messages %}
-  <div class="d-flex justify-content-center mt-4">
-    {% for message in messages %}
-      <div class="alert alert-success alert-dismissible fade show position-relative w-100" style="max-width: 600px;" role="alert">
-        <strong>Success:</strong> {{ message }}
-        <button type="button" class="btn-close position-absolute top-0 end-0 p-3" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
 {% endblock %}

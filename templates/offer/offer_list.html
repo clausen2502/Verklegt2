@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% load humanize %}
+{% load formatting %}
 
 
 {% block content %}
 <div class="container my-5">
-  <h2 class="fw-bold mb-4 text-center text-primary">Your Purchase Offers</h2>
+  <h2 class="fw-bold mb-4 text-center">Your Purchase Offers</h2>
 
   {% if offers %}
     <div class="row g-4">
@@ -31,15 +31,33 @@
                   {{ offer.status|title }}
                 </span>
               </p>
-
-              <p class="mb-1"><strong>Seller:</strong> {{ offer.property.seller.user.get_full_name }}</p>
-              <p class="mb-1"><strong>Price:</strong> {{ offer.amount|intcomma }} kr.</p>
-
-              {% if offer.status == 'accepted' or offer.status == 'contingent' %}
-                <a href="{% url 'finalize-offer' offer.id %}" class="btn btn-primary btn-sm mt-2">
-                  Finalize Offer
+                <p class="mb-1"><strong>Seller:</strong> {{ offer.property.seller.get_full_name }}</p>
+                <p class="mb-1"><strong>Price:</strong> {{ offer.property.price|intdot }} kr.</p>
+                <div class = text-center>
+                <a href="{% url 'property-detail' offer.property.id %}" class="btn btn-outline-primary btn-sm mt-2 rounded-pill">View Property
                 </a>
-              {% endif %}
+                </div>
+
+                {% if offer.status == 'accepted' or offer.status == 'contingent' %}
+                  <div class="text-center mt-2">
+                    <a href="{% url 'finalize-offer' offer.id %}" class="offer-btn offer-btn-blue">
+                      Finalize Offer
+                    </a>
+                  </div>
+                {% elif offer.status == 'rejected' %}
+                  <div class="text-center mt-2">
+                    <form method="POST" action="{% url 'delete-offer' offer.id %}" class="inline-form">
+                      {% csrf_token %}
+                      <button type="submit" class="offer-btn offer-btn-blue">Delete Offer</button>
+                    </form>
+                  </div>
+                {% elif offer.status == 'pending' %}
+                  <div class="text-center mt-2">
+                    <a href="{% url 'resubmit-offer' offer.id %}" class="offer-btn offer-btn-blue">
+                      Resubmit Offer
+                    </a>
+                  </div>
+                {% endif %}
             </div>
           </div>
         </div>

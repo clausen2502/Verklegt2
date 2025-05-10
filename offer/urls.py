@@ -2,7 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.offer_list, name='offer-list'),  # offers/
-    path('submit/<int:property_id>/', views.submit_offer, name='submit-offer'),  # offers/submit/4/
-    path('my-offers/', views.offer_list, name='my-offers'),  # NEW: offers/my-offers/
+    path('', views.offer_list, name='offer-list'),
+    path('submit/<int:property_id>/', views.submit_offer, name='submit-offer'),
+    path('my-offers/', views.offer_list, name='my-offers'),
+    path('offers/<int:offer_id>/resubmit/', views.resubmit_offer, name='resubmit-offer'),
+    path('offers/<int:offer_id>/delete/', views.delete_offer, name='delete-offer'),
+
 ]
