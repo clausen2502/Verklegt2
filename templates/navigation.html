@@ -21,12 +21,14 @@
     </div>
     <div class="nav-profile">
       {% if user.is_authenticated %}
-        <a href="{% url 'profile' %}">
+        <a href="{% url 'profile' %}" class="nav-profile-link">
+          <span class="semi-bold m-0">{{ user.username }}</span>
           <img src="{% static 'icons/user-icon.jpeg' %}" alt="Profile" width="35" height="35" class="rounded-circle">
         </a>
       {% else %}
-        <a href="{% url 'login' %}">
-          <img src="{% static 'icons/user-icon.jpeg' %}" alt="Login" width="35" height="35" class="rounded-circle">
+        <a href="{% url 'login' %}" class="nav-profile-link">
+            <span class="semi-bold m-0">Login</span>
+            <img src="{% static 'icons/user-icon.jpeg' %}" alt="Login" width="35" height="35" class="rounded-circle">
         </a>
       {% endif %}
     </div>
