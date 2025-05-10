@@ -9,11 +9,9 @@ class SellerUser(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     seller_type = models.CharField(max_length=20, choices=SELLER_TYPE_CHOICES)
-    logo = models.CharField(max_length=4096, blank=True, null=True)
-    cover_image = models.CharField(max_length=4096, blank=True, null=True)
+    logo = models.ImageField(upload_to='seller_logos/', blank=True, null=True)
+    cover_image = models.ImageField(upload_to='seller_covers/', blank=True, null=True)
     bio = models.TextField(blank=True)
-
-    # Only shown if seller_type == 'agency'
     street = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
     postal_code = models.CharField(max_length=10, blank=True)

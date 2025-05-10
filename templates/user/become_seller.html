@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="bg-white shadow p-5 rounded-4">
+        <h2 class="fw-bold mb-4 text-center text-blue">Become a Seller</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label">Seller Type</label>
+            <select name="seller_type" class="form-control" required>
+              <option value="individual">Individual</option>
+              <option value="agency">Real Estate Agency</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Logo (Upload Image)</label>
+            <input type="file" name="logo" class="form-control" accept="image/*">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Cover Image (Upload Image)</label>
+            <input type="file" name="cover_image" class="form-control" accept="image/*">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Bio</label>
+            <textarea name="bio" class="form-control" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Street</label>
+            <input type="text" name="street" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">City</label>
+            <input type="text" name="city" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Postal Code</label>
+            <input type="text" name="postal_code" class="form-control">
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success px-4 fw-semibold rounded-pill">
+              Register as Seller
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

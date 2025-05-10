@@ -1,14 +1,22 @@
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+
 from property.models import Property
 from user.forms import UserProfileForm, CustomUserCreationForm, UserEditForm
 from user.models import SellerUser
-from django.contrib.auth.models import User
+
+
+def is_seller(user: User) -> bool:
+    return SellerUser.objects.filter(user=user).exists()
+
 
 def homepage(request):
     return render(request, 'user/user.html')
+
 
 def get_user_by_id(request, id):
     seller = SellerUser.objects.select_related('user').get(user__id=id)
@@ -18,6 +26,7 @@ def get_user_by_id(request, id):
         'seller': seller,
         'properties': properties
     })
+
 
 def register(request):
     if request.method == 'POST':
@@ -33,10 +42,12 @@ def register(request):
 
     return render(request, 'user/register.html', {'form': form})
 
+
 @login_required
 def profile_display(request):
     profile = request.user.userprofile
     return render(request, 'user/profile_display.html', {'profile': profile, 'user': request.user})
+
 
 @login_required
 def profile_edit(request):
@@ -62,6 +73,39 @@ def profile_edit(request):
         'profile': profile,
     })
 
+
 def logout_view(request):
     logout(request)
     return redirect('user-homepage')
+
+
+@login_required
+def become_seller(request):
+    if is_seller(request.user):
+        messages.info(request, "You are already registered as a seller.")
+        return redirect("profile")
+
+    if request.method == "POST":
+        seller_type = request.POST.get("seller_type")
+        logo = request.FILES.get("logo")
+        cover_image = request.FILES.get("cover_image")
+        bio = request.POST.get("bio")
+        street = request.POST.get("street")
+        city = request.POST.get("city")
+        postal_code = request.POST.get("postal_code")
+
+        SellerUser.objects.create(
+            user=request.user,
+            seller_type=seller_type,
+            logo=logo,
+            cover_image=cover_image,
+            bio=bio,
+            street=street,
+            city=city,
+            postal_code=postal_code
+        )
+
+        messages.success(request, "You are now registered as a seller!")
+        return redirect("create-property")
+
+    return render(request, "user/become_seller.html")

@@ -1,6 +1,6 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
+from user import views as user_views, views
 from django.urls import path
-from . import views
 
 urlpatterns = [
     # http://localhost:8000 (root)
@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('profile/', views.profile_display, name='profile'),
     path('profile/edit/', views.profile_edit, name='profile_edit'),
+    path("become-seller/", user_views.become_seller, name="become-seller"),
 ]
