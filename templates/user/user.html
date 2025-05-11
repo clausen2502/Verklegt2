@@ -3,10 +3,10 @@
 
 {% block content %}
 <div class="container my-5 p-4 rounded shadow bg-white border">
-  <form method="GET" action="">
+  <form method="GET" action="{% url 'property-index' %}">
     <div class="row g-4">
 
-      <!-- Top row: Location + Type -->
+      <!-- Location -->
       <div class="col-md-6">
         <label class="form-label fw-bold">Location</label>
         <div class="dropdown">
@@ -15,126 +15,160 @@
           </button>
           <div id="locationDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="location" value="101" id="location-101" {% if '101' in request.GET.location %}checked{% endif %}>
+              <input class="form-check-input" type="checkbox" name="location" value="101" id="location-101">
               <label class="form-check-label" for="location-101">101 - Miðbær</label>
             </div>
-            <!-- Add more location checkboxes here -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="location" value="270" id="location-270">
+              <label class="form-check-label" for="location-270">270 - Mosfellsbær</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="location" value="220" id="location-220">
+              <label class="form-check-label" for="location-220">220 - Hafnarfjörður</label>
+            </div>
           </div>
         </div>
       </div>
 
-        <div class="col-md-6">
-          <label class="form-label fw-bold">Type</label>
-          <div class="dropdown">
-            <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#typeDropdown">
-              <img src="{% static 'icons/type.png' %}" alt="Type icon" class="filter-icon"> Choose a type
-            </button>
-            <div id="typeDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
-              {% for type in type_choices %}
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="type" value="{{ type }}" id="type-{{ type }}"
-                         {% if type in selected_types %}checked{% endif %}>
-                  <label class="form-check-label" for="type-{{ type }}">{{ type|title }}</label>
-                </div>
-              {% endfor %}
+      <!-- Type -->
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Type</label>
+        <div class="dropdown">
+          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#typeDropdown">
+            <img src="{% static 'icons/type.png' %}" alt="Type icon" class="filter-icon"> Choose a type
+          </button>
+          <div id="typeDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="type" value="house" id="type-house">
+              <label class="form-check-label" for="type-house">House</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="type" value="apartment" id="type-apartment">
+              <label class="form-check-label" for="type-apartment">Apartment</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="type" value="studio" id="type-studio">
+              <label class="form-check-label" for="type-studio">Studio</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="type" value="other" id="type-other">
+              <label class="form-check-label" for="type-other">Other</label>
             </div>
           </div>
         </div>
+      </div>
 
-      <!-- Second row: Size, Bedrooms, Bathrooms, Price -->
+      <!-- Size -->
       <div class="col-md-3">
         <label class="form-label fw-bold">Size (m²)</label>
-        <div class="dropdown">
-          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#sizeDropdown">
-            <img src="{% static 'icons/size.png' %}" alt="Size icon" class="filter-icon"> Choose a size
-          </button>
-          <div id="sizeDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
-            <div class="d-flex gap-2">
-              <select name="size_from" class="form-select">
-                <option value="">From</option>
-                {% for size in size_choices %}
-                  <option value="{{ size }}" {% if request.GET.size_from == size %}selected{% endif %}>{{ size }} m²</option>
-                {% endfor %}
-              </select>
-              <select name="size_to" class="form-select">
-                <option value="">To</option>
-                {% for size in size_choices %}
-                  <option value="{{ size }}" {% if request.GET.size_to == size %}selected{% endif %}>{{ size }} m²</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
+        <div class="d-flex gap-2">
+          <select name="size_from" class="form-select">
+            <option value="">From</option>
+            <option value="0">0</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="250">250</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+            <option value="600">600</option>
+            <option value="700">700</option>
+            <option value="800">800</option>
+            <option value="900">900</option>
+            <option value="1000">1000</option>
+          </select>
+          <select name="size_to" class="form-select">
+            <option value="">To</option>
+            <option value="0">0</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="250">250</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+            <option value="600">600</option>
+            <option value="700">700</option>
+            <option value="800">800</option>
+            <option value="900">900</option>
+            <option value="1000">1000</option>
+          </select>
         </div>
       </div>
 
+      <!-- Bedrooms -->
       <div class="col-md-3">
         <label class="form-label fw-bold">Bedrooms</label>
-        <div class="dropdown">
-          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#bedroomDropdown">
-            <img src="{% static 'icons/rooms.png' %}" alt="Room icon" class="filter-icon"> Choose bedrooms
-          </button>
-          <div id="bedroomDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
-            <div class="d-flex flex-wrap gap-2">
-              {% for val in room_choices %}
-                <input type="radio" class="btn-check" name="bedrooms" value="{{ val }}" id="bed-{{ val }}" {% if request.GET.bedrooms == val %}checked{% endif %}>
-                <label class="btn btn-outline-secondary" for="bed-{{ val }}">{{ val }}+</label>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
+        <select name="bedrooms" class="form-select">
+          <option value="">Any</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+          <option value="5">5+</option>
+          <option value="6">6+</option>
+        </select>
       </div>
 
+      <!-- Bathrooms -->
       <div class="col-md-3">
         <label class="form-label fw-bold">Bathrooms</label>
-        <div class="dropdown">
-          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#bathroomDropdown">
-            <img src="{% static 'icons/rooms.png' %}" alt="Bathroom icon" class="filter-icon"> Choose bathrooms
-          </button>
-          <div id="bathroomDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
-            <div class="d-flex flex-wrap gap-2">
-              {% for val in room_choices %}
-                <input type="radio" class="btn-check" name="bathrooms" value="{{ val }}" id="bath-{{ val }}" {% if request.GET.bathrooms == val %}checked{% endif %}>
-                <label class="btn btn-outline-secondary" for="bath-{{ val }}">{{ val }}+</label>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
+        <select name="bathrooms" class="form-select">
+          <option value="">Any</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+        </select>
       </div>
 
+      <!-- Price -->
       <div class="col-md-3">
         <label class="form-label fw-bold">Price (ISK)</label>
-        <div class="dropdown">
-          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#priceDropdown">
-            <img src="{% static 'icons/price.png' %}" alt="Price icon" class="filter-icon"> Choose a price range
-          </button>
-          <div id="priceDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
-            <div class="d-flex gap-2">
-              <select name="price_from" class="form-select">
-                <option value="">From</option>
-                {% for val in price_choices %}
-                  <option value="{{ val }}" {% if request.GET.price_from == val %}selected{% endif %}>{{ val|intdot }} kr.</option>
-                {% endfor %}
-              </select>
-              <select name="price_to" class="form-select">
-                <option value="">To</option>
-                {% for val in price_choices %}
-                  <option value="{{ val }}" {% if request.GET.price_to == val %}selected{% endif %}>{{ val|intdot }} kr.</option>
-                {% endfor %}
-              </select>
-            </div>
-          </div>
+        <div class="d-flex gap-2">
+          <select name="price_from" class="form-select">
+            <option value="">From</option>
+            <option value="1000000">1M</option>
+            <option value="5000000">5M</option>
+            <option value="10000000">10M</option>
+            <option value="20000000">20M</option>
+            <option value="30000000">30M</option>
+            <option value="50000000">50M</option>
+            <option value="75000000">75M</option>
+            <option value="100000000">100M</option>
+            <option value="150000000">150M</option>
+          </select>
+          <select name="price_to" class="form-select">
+            <option value="">To</option>
+            <option value="1000000">1M</option>
+            <option value="5000000">5M</option>
+            <option value="10000000">10M</option>
+            <option value="20000000">20M</option>
+            <option value="30000000">30M</option>
+            <option value="50000000">50M</option>
+            <option value="75000000">75M</option>
+            <option value="100000000">100M</option>
+            <option value="150000000">150M</option>
+            <option value="200000000">200M</option>
+            <option value="300000000">300M</option>
+            <option value="400000000">400M</option>
+            <option value="500000000">500M</option>
+          </select>
         </div>
       </div>
 
-      <!-- Bottom: Text search and submit -->
+      <!-- Street name -->
       <div class="col-md-12">
         <label class="form-label fw-bold">Street name</label>
-        <div class="d-flex gap-2 align-items-stretch">
-          <input type="text" name="q" class="form-control" placeholder="write here ..." value="{{ request.GET.q }}">
-          <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 px-4">
-            <img src="{% static 'icons/search-icon.png' %}" alt="Search" class="filter-icon"> Search
-          </button>
-        </div>
+        <input type="text" name="q" class="form-control" placeholder="e.g. Laugavegur">
+      </div>
+
+      <!-- Submit -->
+      <div class="col-md-12 text-end">
+        <button type="submit" class="btn btn-primary px-4">Search</button>
       </div>
 
     </div>

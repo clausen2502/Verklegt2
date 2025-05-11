@@ -8,13 +8,50 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
+def test_page(request):
+    return render(request, 'property/test.html')
 
 
 def index(request):
     properties = Property.objects.prefetch_related('photos').all()
+
+    locations = request.GET.getlist("location")
+    bathrooms = request.GET.get("bathrooms")
+    bedrooms = request.GET.get("bedrooms")
+    size_from = request.GET.get("size_from")
+    size_to = request.GET.get("size_to")
+    price_from = request.GET.get("price_from")
+    price_to = request.GET.get("price_to")
+    types = request.GET.get("type")
+    query = request.GET.get("q")
+
+    if query:
+        properties = properties.filter(Q(street_name__icontains=query))
+    if bathrooms:
+        properties = properties.filter(bathrooms__gte=bathrooms)
+    if locations:
+        properties = properties.filter(postal_code__in=locations)
+    if size_from:
+        properties = properties.filter(square_meters__gte=size_from)
+    if size_to:
+        properties = properties.filter(square_meters__lte=size_to)
+    if price_from:
+        properties = properties.filter(price__gte=price_from)
+    if price_to:
+        properties = properties.filter(price__lte=price_to)
+
     return render(request, "property/properties.html", {
-        "properties": properties,
-        'property_count': properties.count()
+        'properties': properties,
+        'property_count': properties.count(),
+        'bathroom_filter': bathrooms,
+        'locations': locations,
+        'search_query': query,
+        'types': types,
+        'bedrooms': bedrooms,
+        'price_from': price_from,
+        'price_to': price_to,
+        'size_from': size_from,
+        'size_to': size_to,
     })
 
 def get_property_by_id(request, id):

@@ -1,0 +1,127 @@
+<form method="get" action="{% url 'property-index' %}">
+  <label for="bathrooms">Minimum Bathrooms:</label>
+  <select name="bathrooms" id="bathrooms" class="form-select">
+    <option value="">Any</option>
+    <option value="1">1+</option>
+    <option value="2">2+</option>
+    <option value="3">3+</option>
+    <option value="4">4+</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
+
+<form method="get" action="{% url 'property-index' %}">
+  <label>Choose locations:</label><br>
+  <input type="checkbox" name="location" value="101"> Reykjavik 101<br>
+  <input type="checkbox" name="location" value="270"> Mosfellsbær 270<br>
+  <input type="checkbox" name="location" value="220"> Hafnarfjörður 220<br>
+
+  <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
+
+<form method="get" action="{% url 'property-index' %}">
+  <label for="q">Street name:</label>
+  <input type="text" name="q" id="q" class="form-control" placeholder="e.g. Laugavegur">
+
+  <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
+
+<form method="get" action="{% url 'property-index' %}">
+  <label for="bedrooms">Minimum Bedrooms:</label>
+  <select name="bedrooms" id="bedrooms" class="form-select">
+    <option value="">Any</option>
+    <option value="1">1+</option>
+    <option value="2">2+</option>
+    <option value="3">3+</option>
+    <option value="4">4+</option>
+    <option value="5">5+</option>
+    <option value="6">6+</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
+
+<form method="get" action="{% url 'property-index' %}">
+  <label for="price_from">Price Range:</label>
+  <select name="price_from" class="form-select">
+    <option value="">From</option>
+    <option value="1000000">1M</option>
+    <option value="5000000">5M</option>
+    <option value="10000000">10M</option>
+    <option value="20000000">20M</option>
+    <option value="30000000">30M</option>
+    <option value="50000000">50M</option>
+    <option value="75000000">75M</option>
+    <option value="100000000">100M</option>
+    <option value="150000000">150M</option>
+  </select>
+  <select name="price_to" class="form-select mt-1">
+    <option value="">To</option>
+    <option value="1000000">1M</option>
+    <option value="5000000">5M</option>
+    <option value="10000000">10M</option>
+    <option value="20000000">20M</option>
+    <option value="30000000">30M</option>
+    <option value="50000000">50M</option>
+    <option value="75000000">75M</option>
+    <option value="100000000">100M</option>
+    <option value="150000000">150M</option>
+    <option value="200000000">200M</option>
+    <option value="300000000">300M</option>
+    <option value="400000000">400M</option>
+    <option value="500000000">500M</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
+
+<form method="get" action="{% url 'property-index' %}">
+  <label for="size_from">Size Range (m²):</label>
+  <select name="size_from" class="form-select">
+    <option value="">From</option>
+    <option value="0">0</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+    <option value="150">150</option>
+    <option value="200">200</option>
+    <option value="250">250</option>
+    <option value="300">300</option>
+    <option value="400">400</option>
+    <option value="500">500</option>
+    <option value="600">600</option>
+    <option value="700">700</option>
+    <option value="800">800</option>
+    <option value="900">900</option>
+    <option value="1000">1000</option>
+  </select>
+  <select name="size_to" class="form-select mt-1">
+    <option value="">To</option>
+    <option value="0">0</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+    <option value="150">150</option>
+    <option value="200">200</option>
+    <option value="250">250</option>
+    <option value="300">300</option>
+    <option value="400">400</option>
+    <option value="500">500</option>
+    <option value="600">600</option>
+    <option value="700">700</option>
+    <option value="800">800</option>
+    <option value="900">900</option>
+    <option value="1000">1000</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
+
+<form method="get" action="{% url 'property-index' %}">
+  <label>Type:</label><br>
+  <input type="checkbox" name="type" value="house"> House<br>
+  <input type="checkbox" name="type" value="apartment"> Apartment<br>
+  <input type="checkbox" name="type" value="studio"> Studio<br>
+  <input type="checkbox" name="type" value="other"> Other<br>
+
+  <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
