@@ -19,7 +19,7 @@ def index(request):
     size_to = request.GET.get("size_to")
     price_from = request.GET.get("price_from")
     price_to = request.GET.get("price_to")
-    types = request.GET.getlist("type")
+    types = request.GET.get.list("type")
     locations = request.GET.getlist("location")
     bedrooms = request.GET.get("bedrooms")
     bathrooms = request.GET.get("bathrooms")
@@ -53,25 +53,19 @@ def index(request):
     if bathrooms:
         properties = properties.filter(bathrooms__gte=bathrooms)
 
-    # Choice sets for form rendering
-    type_choices = [
-        ("apartment", "Apartment"),
-        ("house", "House"),
-        ("studio", "Studio"),
-        ("other", "Other"),
-    ]
-    size_choices = ["0", "40", "60", "70", "80", "90", "100", "115", "130"]
+    type_choices = ["apartment", "house", "studio", "other"]
+    size_choices = ["0", "40", "60", "70", "80", "90", "100", "150", "200", "300", "500"]
     room_choices = ["1", "2", "3", "4", "5"]
     price_choices = [
         "1000000", "5000000", "10000000", "15000000", "20000000",
         "25000000", "30000000", "40000000", "50000000", "60000000",
-        "75000000", "100000000", "150000000"
+        "75000000", "100000000", "150000000", "200000000",
     ]
 
     return render(request, "user/user.html", {
         "properties": properties,
         "property_count": properties.count(),
-        "type_choices": type_choices,
+        "selected_types": types,
         "size_choices": size_choices,
         "room_choices": room_choices,
         "price_choices": price_choices,

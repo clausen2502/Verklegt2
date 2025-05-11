@@ -2,112 +2,141 @@
 {% load static formatting %}
 
 {% block content %}
-<div class="container my-5">
-  <div class="text-center mb-5">
-    <h2 class="fw-bold text-blue">Search Filters</h2>
-  </div>
-
+<div class="container my-5 p-4 rounded shadow bg-white border">
   <form method="GET" action="">
     <div class="row g-4">
-      <!-- Location Filter -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Location</label>
-        <button type="button" class="btn btn-light w-100 d-flex align-items-center justify-content-start gap-2" data-bs-toggle="collapse" data-bs-target="#locationDropdown">
-          <img src="{% static 'icons/location.png' %}" alt="Location icon"> Choose a location
-        </button>
-        <div id="locationDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="location" value="101" id="location-101" {% if '101' in request.GET.location %}checked{% endif %}>
-            <label class="form-check-label" for="location-101">101 - Miðbær</label>
-          </div>
-          <!-- Add more locations here -->
-        </div>
-      </div>
 
-      <!-- Type Filter -->
+      <!-- Top row: Location + Type -->
       <div class="col-md-6">
-        <label class="form-label fw-semibold">Type</label>
-        <div class="bg-white p-3 rounded shadow-sm">
-          {% for value, label in type_choices %}
+        <label class="form-label fw-bold">Location</label>
+        <div class="dropdown">
+          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#locationDropdown">
+            <img src="{% static 'icons/location.png' %}" alt="Location icon" class="filter-icon"> Choose a location
+          </button>
+          <div id="locationDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="type" value="{{ value }}" id="type-{{ value }}" {% if value in request.GET.type %}checked{% endif %}>
-              <label class="form-check-label" for="type-{{ value }}">{{ label }}</label>
+              <input class="form-check-input" type="checkbox" name="location" value="101" id="location-101" {% if '101' in request.GET.location %}checked{% endif %}>
+              <label class="form-check-label" for="location-101">101 - Miðbær</label>
             </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <!-- Size Filter -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Size (m²)</label>
-        <div class="d-flex gap-2">
-          <select name="size_from" class="form-select">
-            <option value="">From</option>
-            {% for size in size_choices %}
-              <option value="{{ size }}" {% if request.GET.size_from == size %}selected{% endif %}>{{ size }} m²</option>
-            {% endfor %}
-          </select>
-          <select name="size_to" class="form-select">
-            <option value="">To</option>
-            {% for size in size_choices %}
-              <option value="{{ size }}" {% if request.GET.size_to == size %}selected{% endif %}>{{ size }} m²</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-
-      <!-- Rooms Filter -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Rooms</label>
-        <div class="bg-white p-3 rounded shadow-sm">
-          <label class="form-label">Bedrooms</label>
-          <div class="d-flex gap-2 flex-wrap">
-            {% for val in room_choices %}
-              <input type="radio" class="btn-check" name="bedrooms" value="{{ val }}" id="bedrooms-{{ val }}" {% if request.GET.bedrooms == val %}checked{% endif %}>
-              <label class="btn btn-outline-primary" for="bedrooms-{{ val }}">{{ val }}+</label>
-            {% endfor %}
+            <!-- Add more location checkboxes here -->
           </div>
-          <label class="form-label mt-3">Bathrooms</label>
-          <div class="d-flex gap-2 flex-wrap">
-            {% for val in room_choices %}
-              <input type="radio" class="btn-check" name="bathrooms" value="{{ val }}" id="bathrooms-{{ val }}" {% if request.GET.bathrooms == val %}checked{% endif %}>
-              <label class="btn btn-outline-primary" for="bathrooms-{{ val }}">{{ val }}+</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label fw-bold">Type</label>
+        <div class="dropdown">
+          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#typeDropdown">
+            <img src="{% static 'icons/type.png' %}" alt="Type icon" class="filter-icon"> Choose a type
+          </button>
+          <div id="typeDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
+            {% for type in type_choices %}
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="type" value="{{ type }}" id="type-{{ type }}"
+                       {% if type in request.GET.getlist("type") %}checked{% endif %}>
+                <label class="form-check-label" for="type-{{ type }}">{{ type|title }}</label>
+              </div>
             {% endfor %}
           </div>
         </div>
       </div>
 
-      <!-- Price Filter -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Price (ISK)</label>
-        <div class="d-flex gap-2">
-          <select name="price_from" class="form-select">
-            <option value="">From</option>
-            {% for val in price_choices %}
-              <option value="{{ val }}" {% if request.GET.price_from == val %}selected{% endif %}>{{ val|intdot }} ISK</option>
-            {% endfor %}
-          </select>
-          <select name="price_to" class="form-select">
-            <option value="">To</option>
-            {% for val in price_choices %}
-              <option value="{{ val }}" {% if request.GET.price_to == val %}selected{% endif %}>{{ val|intdot }} ISK</option>
-            {% endfor %}
-          </select>
+      <!-- Second row: Size, Bedrooms, Bathrooms, Price -->
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Size (m²)</label>
+        <div class="dropdown">
+          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#sizeDropdown">
+            <img src="{% static 'icons/size.png' %}" alt="Size icon" class="filter-icon"> Choose a size
+          </button>
+          <div id="sizeDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
+            <div class="d-flex gap-2">
+              <select name="size_from" class="form-select">
+                <option value="">From</option>
+                {% for size in size_choices %}
+                  <option value="{{ size }}" {% if request.GET.size_from == size %}selected{% endif %}>{{ size }} m²</option>
+                {% endfor %}
+              </select>
+              <select name="size_to" class="form-select">
+                <option value="">To</option>
+                {% for size in size_choices %}
+                  <option value="{{ size }}" {% if request.GET.size_to == size %}selected{% endif %}>{{ size }} m²</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Text Query -->
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Street name or text description</label>
-        <input type="text" name="q" class="form-control" placeholder="Write here..." value="{{ request.GET.q }}">
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Bedrooms</label>
+        <div class="dropdown">
+          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#bedroomDropdown">
+            <img src="{% static 'icons/rooms.png' %}" alt="Room icon" class="filter-icon"> Choose bedrooms
+          </button>
+          <div id="bedroomDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
+            <div class="d-flex flex-wrap gap-2">
+              {% for val in room_choices %}
+                <input type="radio" class="btn-check" name="bedrooms" value="{{ val }}" id="bed-{{ val }}" {% if request.GET.bedrooms == val %}checked{% endif %}>
+                <label class="btn btn-outline-secondary" for="bed-{{ val }}">{{ val }}+</label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Submit -->
-      <div class="col-12 text-center">
-        <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill fw-semibold">
-          <img src="{% static 'icons/search.png' %}" alt="Search icon" class="me-2"> SEARCH
-        </button>
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Bathrooms</label>
+        <div class="dropdown">
+          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#bathroomDropdown">
+            <img src="{% static 'icons/rooms.png' %}" alt="Bathroom icon" class="filter-icon"> Choose bathrooms
+          </button>
+          <div id="bathroomDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
+            <div class="d-flex flex-wrap gap-2">
+              {% for val in room_choices %}
+                <input type="radio" class="btn-check" name="bathrooms" value="{{ val }}" id="bath-{{ val }}" {% if request.GET.bathrooms == val %}checked{% endif %}>
+                <label class="btn btn-outline-secondary" for="bath-{{ val }}">{{ val }}+</label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Price (ISK)</label>
+        <div class="dropdown">
+          <button class="btn btn-light w-100 d-flex align-items-center gap-3 border rounded-2 py-2" type="button" data-bs-toggle="collapse" data-bs-target="#priceDropdown">
+            <img src="{% static 'icons/price.png' %}" alt="Price icon" class="filter-icon"> Choose a price range
+          </button>
+          <div id="priceDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
+            <div class="d-flex gap-2">
+              <select name="price_from" class="form-select">
+                <option value="">From</option>
+                {% for val in price_choices %}
+                  <option value="{{ val }}" {% if request.GET.price_from == val %}selected{% endif %}>{{ val|intdot }} kr.</option>
+                {% endfor %}
+              </select>
+              <select name="price_to" class="form-select">
+                <option value="">To</option>
+                {% for val in price_choices %}
+                  <option value="{{ val }}" {% if request.GET.price_to == val %}selected{% endif %}>{{ val|intdot }} kr.</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom: Text search and submit -->
+      <div class="col-md-12">
+        <label class="form-label fw-bold">Street name</label>
+        <div class="d-flex gap-2 align-items-stretch">
+          <input type="text" name="q" class="form-control" placeholder="write here ..." value="{{ request.GET.q }}">
+          <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 px-4">
+            <img src="{% static 'icons/search-icon.png' %}" alt="Search" class="filter-icon"> Search
+          </button>
+        </div>
+      </div>
+
     </div>
   </form>
 </div>

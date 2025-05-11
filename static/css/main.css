@@ -74,13 +74,13 @@ body{
 }
 
 .nav-profile-link:hover {
-  background-color: #f1f3f6; /* soft grey background */
+  background-color: #f1f3f6;
   color: #4a5fa5 !important;
-  box-shadow: 0 0 0 1px #e0e0e0; /* subtle border to show box */
+  box-shadow: 0 0 0 1px #e0e0e0;
 }
 
 
-/*Filters CSS ---------------------------------------------------------------------------------------------------------------*/
+/* Filters CSS ---------------------------------------------------------------------------------------------------------------*/
 .location-dropdown,
 .type-dropdown,
 .size-dropdown,
@@ -126,6 +126,13 @@ body{
 .room-button.selected {
     background-color: #e2e8f0;
 }
+
+/* new filters CSS */
+.filter-icon {
+  width: 20px;
+  height: 20px;
+}
+
 
 /*Offer CSS ---------------------------------------------------------------------------------------------------------------*/
 
@@ -594,7 +601,6 @@ button {
 #custom-type-wrapper {
   display: none;
 }
-
 
 /* Sellers profile CSS---------------------------------------------------------------------------------------------------------------*/
 
