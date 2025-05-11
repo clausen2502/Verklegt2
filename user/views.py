@@ -109,3 +109,17 @@ def become_seller(request):
         return redirect("create-property")
 
     return render(request, "user/become_seller.html")
+
+
+def get_seller_by_id(request, id):
+    try:
+        seller = SellerUser.objects.select_related('user').get(id=id)
+    except SellerUser.DoesNotExist:
+        return redirect('user-homepage')
+
+    properties = Property.objects.prefetch_related('photos').filter(seller=seller.user)
+
+    return render(request, 'user/seller_profile.html', {
+        'seller': seller,
+        'properties': properties
+    })

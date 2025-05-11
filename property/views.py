@@ -37,7 +37,7 @@ def is_seller(user: User) -> bool:
 @login_required
 def create_property(request):
     if not is_seller(request.user):
-        return render(request, "user/become_seller_gate.html")  # <-- your "Become a Seller" page
+        return render(request, "user/become_seller_gate.html")
     if request.method == "POST":
         form = PropertyCreateForm(request.POST, request.FILES)
         if form.is_valid():
@@ -46,18 +46,14 @@ def create_property(request):
             except SellerUser.DoesNotExist:
                 messages.error(request, "You must be registered as a seller to list a property.")
                 return redirect("property/create_property")
-
             property = form.save(commit=False)
-            property.seller = seller
+            property.seller = seller.user
             property.save()
-
             for image in request.FILES.getlist('images'):
                 PropertyPhoto.objects.create(image=image, property=property)
-
-            return redirect('property-by-id', id=property.id)
+            return redirect('property-detail', id=property.id)
     else:
         form = PropertyCreateForm()
-
     return render(request, 'property/create_property.html', {
         'form': form,
         'user_is_seller': is_seller(request.user)

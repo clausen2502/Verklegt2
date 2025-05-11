@@ -7,14 +7,14 @@
   <!-- Image Layout -->
   <div class="property-image-layout">
     <div class="property-main-image">
-      <img src="{{ property.photos.first.image }}" alt="Main image">
+      <img src="{{ property.photos.first.image.url }}" alt="Main image">
     </div>
 
     <div class="property-sidebar">
       {% with property.photos.all|slice:"1:3" as sidebar_photos %}
         {% for photo in sidebar_photos %}
         <div class="property-sidebar-thumb">
-          <img src="{{ photo.image }}" alt="Sidebar image {{ forloop.counter }}">
+          <img src="{{ photo.image.url }}" alt="Sidebar image {{ forloop.counter }}">
         </div>
         {% endfor %}
       {% endwith %}
@@ -31,7 +31,7 @@
       <div class="property-info-box">
         <h1>{{ property.street_name }} {{ property.house_number }}</h1>
         <p>{{ property.city }}, {{ property.postal_code }}</p>
-        <p>Type: {{ property.type|title }}</p>
+        <p>Type: {{ property.get_type_display_name |title }}</p>
         <p>Listed on: {{ property.listing_date }}</p>
         <p>Price: {{ property.price|intdot }} kr.</p>
 
@@ -49,8 +49,8 @@
 
       <div class="seller-box">
         <h2>Seller</h2>
-        <a href="/user/{{ property.seller.selleruser.id }}/">
-          <img src="{{ property.seller.selleruser.cover_image }}" alt="Seller Image" class="seller-img">
+        <a href="{% url 'seller-profile' property.seller.selleruser.id %}">
+          <img src="{{ property.seller.selleruser.cover_image.url }}" alt="Seller Image" class="seller-img">
           <span>{{ property.seller.first_name }} {{ property.seller.last_name }}</span>
         </a>
       </div>
@@ -96,7 +96,7 @@
         <div class="modal-body">
           <div class="gallery-modal-body">
             {% for photo in property.photos.all %}
-              <img src="{{ photo.image }}" alt="Gallery image">
+              <img src="{{ photo.image.url }}" alt="Gallery image">
             {% endfor %}
           </div>
         </div>

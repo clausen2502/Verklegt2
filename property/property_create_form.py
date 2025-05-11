@@ -4,7 +4,7 @@ from .models import Property
 class PropertyCreateForm(forms.ModelForm):
     class Meta:
         model = Property
-        exclude = ['id', 'seller', 'status']
+        exclude = ['seller', 'status']
         widgets = {
             'street_name': forms.TextInput(attrs={'class': 'form-control'}),
             'house_number': forms.NumberInput(attrs={'class': 'form-control'}),

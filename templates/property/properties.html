@@ -14,7 +14,7 @@
             <a href="{% url 'property-detail' property.id %}" class="property-card-link-featured">
                 <div class="property-card featured">
                     <div class="image-container">
-                        <img src="{{ property.photos.first.image }}" alt="Image of {{ property.street_name }}">
+                        <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
 
                         {% if property.status == "available" %}
                             <span class="status-box available">Available</span>
@@ -67,7 +67,7 @@
             <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
                 <div class="property-card small">
                     <div class="image-container">
-                        <img src="{{ property.photos.first.image }}" alt="Image of {{ property.street_name }}">
+                        <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
 
                         {% if property.status == "available" %}
                             <span class="status-box available">Available</span>
