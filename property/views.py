@@ -22,7 +22,7 @@ def index(request):
     size_to = request.GET.get("size_to")
     price_from = request.GET.get("price_from")
     price_to = request.GET.get("price_to")
-    types = request.GET.get("type")
+    types = request.GET.getlist("type")
     query = request.GET.get("q")
 
     if query:
@@ -31,6 +31,8 @@ def index(request):
         properties = properties.filter(bathrooms__gte=bathrooms)
     if locations:
         properties = properties.filter(postal_code__in=locations)
+    if types:
+        properties = properties.filter(type__in=types)
     if size_from:
         properties = properties.filter(square_meters__gte=size_from)
     if size_to:
