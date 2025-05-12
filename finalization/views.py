@@ -34,11 +34,53 @@ def finalize_payment_view(request, offer_id):
             return redirect("payment")
 
     return render(request, "finalization/payment.html", {"offer_id": offer_id})
+
 def credit_card_form(request, offer_id):
+    if request.method == 'POST':
+        request.session['payment_data'] = {
+            'method': 'card',
+            'cardholder_name': request.POST.get('cardholder_name'),
+            'card_number': request.POST.get('card_number'),
+            'expiry_date': request.POST.get('expiry_date'),
+            'cvc': request.POST.get('cvc'),
+        }
+        return redirect('review-page', offer_id=offer_id)
     return render(request, "finalization/credit_card.html", {"offer_id": offer_id})
 
 def bank_transfer_form(request, offer_id):
+    if request.method == 'POST':
+        request.session['payment_data'] = {
+            'method': 'bank',
+            'recipient_name': request.POST.get('recipient_name'),
+            'account_number': request.POST.get('account_number'),
+            'kennitala': request.POST.get('kennitala'),
+            'bank_number': request.POST.get('bank_number'),
+            'payment_info': request.POST.get('payment_info'),
+            'amount': request.POST.get('amount'),
+            'currency': request.POST.get('currency'),
+            'transfer_date': request.POST.get('transfer_date'),
+        }
+        return redirect('review-page', offer_id=offer_id)
     return render(request, "finalization/bank_transfer.html", {"offer_id": offer_id})
 
 def mortgage_form(request, offer_id):
+    if request.method == 'POST':
+        request.session['payment_data'] = {
+            'method': 'mortgage',
+            'provider': request.POST.get('provider')
+        }
+        return redirect('review-page', offer_id=offer_id)
     return render(request, "finalization/mortage.html", {"offer_id": offer_id})
+
+
+def review_view(request, offer_id):
+    contact_info = request.session.get('contact_info', {})
+    payment_info = request.session.get('payment_data', {})
+
+    return render(request, 'finalization/review.html', {
+        'offer_id': offer_id,
+        'contact_info': contact_info,
+        'payment_info': payment_info
+    })
+
+

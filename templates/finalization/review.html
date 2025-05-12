@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Review and Confirm{% endblock %}
+
+{% block content %}
+<h1>Review Your Information</h1>
+
+<div class="progress-bar">
+  <div class="step">Contact</div>
+  <div class="step">Payment</div>
+  <div class="step active">Review</div>
+</div>
+
+<div class="finalize-box">
+    <h2>Contact Information</h2>
+    <ul>
+        <li><strong>Street:</strong> {{ contact_info.street_name }}</li>
+        <li><strong>City:</strong> {{ contact_info.city }}</li>
+        <li><strong>Postal Code:</strong> {{ contact_info.postal_code }}</li>
+        <li><strong>Country:</strong> {{ contact_info.country }}</li>
+        <li><strong>National ID:</strong> {{ contact_info.kennitala }}</li>
+    </ul>
+
+    <h2>Payment Information</h2>
+    {% if payment_info.method == "mortgage" %}
+        <ul>
+            <li><strong>Mortgage Provider:</strong> 
+                {{ payment_info.custom_provider|default:payment_info.mortgage_provider }}
+            </li>
+        </ul>
+    {% elif payment_info.method == "bank" %}
+        <ul>
+            <li><strong>Recipient Name:</strong> {{ payment_info.recipient_name }}</li>
+            <li><strong>Account Number:</strong> {{ payment_info.account_number }}</li>
+            <li><strong>Amount:</strong> {{ payment_info.amount }}</li>
+            <!-- Bættu við fleiri reitum eftir þörfum -->
+        </ul>
+    {% elif payment_info.method == "card" %}
+        <ul>
+            <li><strong>Cardholder Name:</strong> {{ payment_info.cardholder_name }}</li>
+            <li><strong>Card Number:</strong> **** **** **** {{ payment_info.card_number|slice:"-4:" }}</li>
+            <li><strong>Expiry:</strong> {{ payment_info.expiry }}</li>
+        </ul>
+    {% endif %}
+
+
+</div>
+{% endblock %}
