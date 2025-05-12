@@ -17,7 +17,7 @@
           Listing price: <strong>{{ property.price|intdot }}</strong> kr.
         </p>
 
-        <form method="POST">
+        <form method="POST" action="{% url 'submit-offer' property.id %}">
           {% csrf_token %}
           {{ form.as_p }}
 
