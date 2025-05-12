@@ -14,18 +14,606 @@
             <img src="{% static 'icons/location.png' %}" alt="Location icon" class="filter-icon"> Choose a location
           </button>
           <div id="locationDropdown" class="collapse mt-2 bg-white p-3 rounded shadow-sm">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="location" value="101" id="location-101">
-              <label class="form-check-label" for="location-101">101 - Miðbær</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="location" value="270" id="location-270">
-              <label class="form-check-label" for="location-270">270 - Mosfellsbær</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="location" value="220" id="location-220">
-              <label class="form-check-label" for="location-220">220 - Hafnarfjörður</label>
-            </div>
+            <details>
+              <summary class="fw-bold">Höfuðborgarsvæðið</summary>
+              <!-- Reykjavík -->
+              <details class="ms-2 mt-2">
+                <summary class="fw-semibold">Reykjavík</summary>
+
+                <div class="form-check ms-3 mt-1">
+                  <input class="form-check-input" type="checkbox" name="location" value="101" id="loc-101">
+                  <label class="form-check-label" for="loc-101">101 - Miðbær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="102" id="loc-102">
+                  <label class="form-check-label" for="loc-102">102 - Vatnsmýri</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="103" id="loc-103">
+                  <label class="form-check-label" for="loc-103">103 - Kringlan/Hvassal</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="104" id="loc-104">
+                  <label class="form-check-label" for="loc-104">104 - Vogar</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="105" id="loc-105">
+                  <label class="form-check-label" for="loc-105">105 - Austurbær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="107" id="loc-107">
+                  <label class="form-check-label" for="loc-107">107 - Vesturbær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="108" id="loc-108">
+                  <label class="form-check-label" for="loc-108">108 - Austurbær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="109" id="loc-109">
+                  <label class="form-check-label" for="loc-109">109 - Neðra Breiðholt</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="110" id="loc-110">
+                  <label class="form-check-label" for="loc-110">110 - Árbær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="111" id="loc-111">
+                  <label class="form-check-label" for="loc-111">111 - Efra Breiðholt</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="112" id="loc-112">
+                  <label class="form-check-label" for="loc-112">112 - Grafarvogur</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="113" id="loc-113">
+                  <label class="form-check-label" for="loc-113">113 - Grafarholt</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="116" id="loc-116">
+                  <label class="form-check-label" for="loc-116">116 - Kjalarnes</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="161" id="loc-161">
+                  <label class="form-check-label" for="loc-161">161 - Reykjavík</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="162" id="loc-162">
+                  <label class="form-check-label" for="loc-162">162 - Kjalarnes</label>
+                </div>
+              </details>
+
+              <!-- Kópavogur -->
+              <details class="ms-2 mt-3">
+                <summary class="fw-semibold">Kópavogur</summary>
+                <div class="form-check ms-3 mt-1">
+                  <input class="form-check-input" type="checkbox" name="location" value="200" id="loc-200">
+                  <label class="form-check-label" for="loc-200">200 - Kópavogur</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="201" id="loc-201">
+                  <label class="form-check-label" for="loc-201">201 - Kópavogur</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="202" id="loc-202">
+                  <label class="form-check-label" for="loc-202">202 - Kópavogur</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="203" id="loc-203">
+                  <label class="form-check-label" for="loc-203">203 - Kópavogur</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="206" id="loc-206">
+                  <label class="form-check-label" for="loc-206">206 - Kópavogur</label>
+                </div>
+              </details>
+
+              <!-- Garðabær -->
+              <details class="ms-2 mt-3">
+                <summary class="fw-semibold">Garðabær</summary>
+                <div class="form-check ms-3 mt-1">
+                  <input class="form-check-input" type="checkbox" name="location" value="210" id="loc-210">
+                  <label class="form-check-label" for="loc-210">210 - Garðabær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="212" id="loc-212">
+                  <label class="form-check-label" for="loc-212">212 - Garðabær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="225" id="loc-225">
+                  <label class="form-check-label" for="loc-225">225 - Garðabær</label>
+                </div>
+              </details>
+
+              <!-- Hafnarfjörður -->
+              <details class="ms-2 mt-3">
+                <summary class="fw-semibold">Hafnarfjörður</summary>
+                <div class="form-check ms-3 mt-1">
+                  <input class="form-check-input" type="checkbox" name="location" value="220" id="loc-220">
+                  <label class="form-check-label" for="loc-220">220 - Hafnarfjörður</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="221" id="loc-221">
+                  <label class="form-check-label" for="loc-221">221 - Hafnarfjörður</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="222" id="loc-222">
+                  <label class="form-check-label" for="loc-222">222 - Hafnarfjörður</label>
+                </div>
+              </details>
+
+              <!-- Mosfellsbær -->
+              <details class="ms-2 mt-3">
+                <summary class="fw-semibold">Mosfellsbær</summary>
+                <div class="form-check ms-3 mt-1">
+                  <input class="form-check-input" type="checkbox" name="location" value="270" id="loc-270">
+                  <label class="form-check-label" for="loc-270">270 - Mosfellsbær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="271" id="loc-271">
+                  <label class="form-check-label" for="loc-271">271 - Mosfellsbær</label>
+                </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input" type="checkbox" name="location" value="276" id="loc-276">
+                  <label class="form-check-label" for="loc-276">276 - Mosfellsbær</label>
+                </div>
+              </details>
+
+              <!-- Seltjarnarnes -->
+              <details class="ms-2 mt-3">
+                <summary class="fw-semibold">Seltjarnarnes</summary>
+                <div class="form-check ms-3 mt-1">
+                  <input class="form-check-input" type="checkbox" name="location" value="170" id="loc-170">
+                  <label class="form-check-label" for="loc-170">170 - Seltjarnarnes</label>
+                </div>
+              </details>
+            </details>
+
+            <details class="mt-3">
+              <summary class="fw-bold">Suðurnes</summary>
+
+              <div class="form-check ms-3 mt-1">
+                <input class="form-check-input" type="checkbox" name="location" value="230" id="loc-230">
+                <label class="form-check-label" for="loc-230">230 - Keflavík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="232" id="loc-232">
+                <label class="form-check-label" for="loc-232">232 - Keflavík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="233" id="loc-233">
+                <label class="form-check-label" for="loc-233">233 - Hafnir</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="262" id="loc-262">
+                <label class="form-check-label" for="loc-262">262 - Reykjanesbær</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="240" id="loc-240">
+                <label class="form-check-label" for="loc-240">240 - Grindavík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="241" id="loc-241">
+                <label class="form-check-label" for="loc-241">241 - Grindavík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="245" id="loc-245">
+                <label class="form-check-label" for="loc-245">245 - Suðurnesjabær</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="246" id="loc-246">
+                <label class="form-check-label" for="loc-246">246 - Suðurnesjabær</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="250" id="loc-250">
+                <label class="form-check-label" for="loc-250">250 - Suðurnesjabær</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="251" id="loc-251">
+                <label class="form-check-label" for="loc-251">251 - Suðurnesjabær</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="260" id="loc-260">
+                <label class="form-check-label" for="loc-260">260 - Njarðvík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="190" id="loc-190">
+                <label class="form-check-label" for="loc-190">190 - Vogar</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="191" id="loc-191">
+                <label class="form-check-label" for="loc-191">191 - Vogar</label>
+              </div>
+            </details>
+
+<!-- Norðurland -->
+          <details class="mt-3">
+              <summary class="fw-bold">Norðurland</summary>
+
+              <div class="form-check ms-3 mt-1">
+                <input class="form-check-input" type="checkbox" name="location" value="540" id="loc-540">
+                <label class="form-check-label" for="loc-540">540 - Blönduós</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="541" id="loc-541">
+                <label class="form-check-label" for="loc-541">541 - Blönduós</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="545" id="loc-545">
+                <label class="form-check-label" for="loc-545">545 - Skagaströnd</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="550" id="loc-550">
+                <label class="form-check-label" for="loc-550">550 - Sauðárkrókur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="551" id="loc-551">
+                <label class="form-check-label" for="loc-551">551 - Sauðárkrókur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="560" id="loc-560">
+                <label class="form-check-label" for="loc-560">560 - Varmahlíð</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="565" id="loc-565">
+                <label class="form-check-label" for="loc-565">565 - Hofsós</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="570" id="loc-570">
+                <label class="form-check-label" for="loc-570">570 - Fljót</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="580" id="loc-580">
+                <label class="form-check-label" for="loc-580">580 - Siglufjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="600" id="loc-600">
+                <label class="form-check-label" for="loc-600">600 - Akureyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="601" id="loc-601">
+                <label class="form-check-label" for="loc-601">601 - Akureyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="602" id="loc-602">
+                <label class="form-check-label" for="loc-602">602 - Akureyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="603" id="loc-603">
+                <label class="form-check-label" for="loc-603">603 - Akureyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="604" id="loc-604">
+                <label class="form-check-label" for="loc-604">604 - Akureyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="605" id="loc-605">
+                <label class="form-check-label" for="loc-605">605 - Akureyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="610" id="loc-610">
+                <label class="form-check-label" for="loc-610">610 - Grenivík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="611" id="loc-611">
+                <label class="form-check-label" for="loc-611">611 - Grímsey</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="620" id="loc-620">
+                <label class="form-check-label" for="loc-620">620 - Dalvík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="621" id="loc-621">
+                <label class="form-check-label" for="loc-621">621 - Dalvík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="625" id="loc-625">
+                <label class="form-check-label" for="loc-625">625 - Ólafsfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="630" id="loc-630">
+                <label class="form-check-label" for="loc-630">630 - Hrísey</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="640" id="loc-640">
+                <label class="form-check-label" for="loc-640">640 - Húsavík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="641" id="loc-641">
+                <label class="form-check-label" for="loc-641">641 - Húsavík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="645" id="loc-645">
+                <label class="form-check-label" for="loc-645">645 - Grenjaðarstaður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="650" id="loc-650">
+                <label class="form-check-label" for="loc-650">650 - Laugar</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="660" id="loc-660">
+                <label class="form-check-label" for="loc-660">660 - Mývatnssveit</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="670" id="loc-670">
+                <label class="form-check-label" for="loc-670">670 - Kópasker</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="671" id="loc-671">
+                <label class="form-check-label" for="loc-671">671 - Kópasker</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="675" id="loc-675">
+                <label class="form-check-label" for="loc-675">675 - Raufarhöfn</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="680" id="loc-680">
+                <label class="form-check-label" for="loc-680">680 - Þórshöfn</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="681" id="loc-681">
+                <label class="form-check-label" for="loc-681">681 - Þórshöfn</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="685" id="loc-685">
+                <label class="form-check-label" for="loc-685">685 - Bakkafjörður</label>
+              </div>
+            </details>
+          <details class="mt-3">
+              <summary class="fw-bold">Vestfirðir</summary>
+
+              <div class="form-check ms-3 mt-1">
+                <input class="form-check-input" type="checkbox" name="location" value="400" id="loc-400">
+                <label class="form-check-label" for="loc-400">400 - Ísafjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="401" id="loc-401">
+                <label class="form-check-label" for="loc-401">401 - Ísafjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="410" id="loc-410">
+                <label class="form-check-label" for="loc-410">410 - Hnífsdalur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="415" id="loc-415">
+                <label class="form-check-label" for="loc-415">415 - Bolungarvík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="420" id="loc-420">
+                <label class="form-check-label" for="loc-420">420 - Súðavík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="425" id="loc-425">
+                <label class="form-check-label" for="loc-425">425 - Flateyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="430" id="loc-430">
+                <label class="form-check-label" for="loc-430">430 - Suðureyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="450" id="loc-450">
+                <label class="form-check-label" for="loc-450">450 - Patreksfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="451" id="loc-451">
+                <label class="form-check-label" for="loc-451">451 - Patreksfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="460" id="loc-460">
+                <label class="form-check-label" for="loc-460">460 - Tálknafjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="465" id="loc-465">
+                <label class="form-check-label" for="loc-465">465 - Bíldudalur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="470" id="loc-470">
+                <label class="form-check-label" for="loc-470">470 - Þingeyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="471" id="loc-471">
+                <label class="form-check-label" for="loc-471">471 - Þingeyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="500" id="loc-500">
+                <label class="form-check-label" for="loc-500">500 - Staður</label>
+              </div>
+            </details>
+          <details class="mt-3">
+              <summary class="fw-bold">Vesturland</summary>
+
+              <div class="form-check ms-3 mt-1">
+                <input class="form-check-input" type="checkbox" name="location" value="300" id="loc-300">
+                <label class="form-check-label" for="loc-300">300 - Akranes</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="301" id="loc-301">
+                <label class="form-check-label" for="loc-301">301 - Akranes</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="310" id="loc-310">
+                <label class="form-check-label" for="loc-310">310 - Borgarnes</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="311" id="loc-311">
+                <label class="form-check-label" for="loc-311">311 - Borgarnes</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="320" id="loc-320">
+                <label class="form-check-label" for="loc-320">320 - Reykholt</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="340" id="loc-340">
+                <label class="form-check-label" for="loc-340">340 - Stykkishólmur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="345" id="loc-345">
+                <label class="form-check-label" for="loc-345">345 - Hellissandur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="350" id="loc-350">
+                <label class="form-check-label" for="loc-350">350 - Grundarfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="355" id="loc-355">
+                <label class="form-check-label" for="loc-355">355 - Ólafsvík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="356" id="loc-356">
+                <label class="form-check-label" for="loc-356">356 - Snæfellsbær</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="360" id="loc-360">
+                <label class="form-check-label" for="loc-360">360 - Hellnar</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="370" id="loc-370">
+                <label class="form-check-label" for="loc-370">370 - Búðardalur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="371" id="loc-371">
+                <label class="form-check-label" for="loc-371">371 - Búðardalur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="380" id="loc-380">
+                <label class="form-check-label" for="loc-380">380 - Reykhólar</label>
+              </div>
+            </details>
+
+          <details class="mt-3">
+              <summary class="fw-bold">Austurland</summary>
+            
+              <div class="form-check ms-3 mt-1">
+                <input class="form-check-input" type="checkbox" name="location" value="700" id="loc-700">
+                <label class="form-check-label" for="loc-700">700 - Egilsstaðir</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="701" id="loc-701">
+                <label class="form-check-label" for="loc-701">701 - Egilsstaðir</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="710" id="loc-710">
+                <label class="form-check-label" for="loc-710">710 - Seyðisfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="715" id="loc-715">
+                <label class="form-check-label" for="loc-715">715 - Mjóifjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="720" id="loc-720">
+                <label class="form-check-label" for="loc-720">720 - Borgarfjörður eystri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="730" id="loc-730">
+                <label class="form-check-label" for="loc-730">730 - Reyðarfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="735" id="loc-735">
+                <label class="form-check-label" for="loc-735">735 - Eskifjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="740" id="loc-740">
+                <label class="form-check-label" for="loc-740">740 - Neskaupstaður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="750" id="loc-750">
+                <label class="form-check-label" for="loc-750">750 - Fáskrúðsfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="755" id="loc-755">
+                <label class="form-check-label" for="loc-755">755 - Stöðvarfjörður</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="760" id="loc-760">
+                <label class="form-check-label" for="loc-760">760 - Breiðdalsvík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="765" id="loc-765">
+                <label class="form-check-label" for="loc-765">765 - Djúpivogur</label>
+              </div>
+            </details>
+
+
+
+
+
+          <details class="mt-3">
+              <summary class="fw-bold">Suðurland</summary>
+
+              <div class="form-check ms-3 mt-1">
+                <input class="form-check-input" type="checkbox" name="location" value="800" id="loc-800">
+                <label class="form-check-label" for="loc-800">800 - Selfoss</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="801" id="loc-801">
+                <label class="form-check-label" for="loc-801">801 - Selfoss</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="802" id="loc-802">
+                <label class="form-check-label" for="loc-802">802 - Selfoss</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="810" id="loc-810">
+                <label class="form-check-label" for="loc-810">810 - Hveragerði</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="815" id="loc-815">
+                <label class="form-check-label" for="loc-815">815 - Þorlákshöfn</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="820" id="loc-820">
+                <label class="form-check-label" for="loc-820">820 - Eyrarbakki</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="825" id="loc-825">
+                <label class="form-check-label" for="loc-825">825 - Stokkseyri</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="840" id="loc-840">
+                <label class="form-check-label" for="loc-840">840 - Laugarvatn</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="845" id="loc-845">
+                <label class="form-check-label" for="loc-845">845 - Flúðir</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="850" id="loc-850">
+                <label class="form-check-label" for="loc-850">850 - Hella</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="851" id="loc-851">
+                <label class="form-check-label" for="loc-851">851 - Hella</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="860" id="loc-860">
+                <label class="form-check-label" for="loc-860">860 - Hvolsvöllur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="861" id="loc-861">
+                <label class="form-check-label" for="loc-861">861 - Hvolsvöllur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="870" id="loc-870">
+                <label class="form-check-label" for="loc-870">870 - Vík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="871" id="loc-871">
+                <label class="form-check-label" for="loc-871">871 - Vík</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="880" id="loc-880">
+                <label class="form-check-label" for="loc-880">880 - Kirkjubæjarklaustur</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="900" id="loc-900">
+                <label class="form-check-label" for="loc-900">900 - Höfn</label>
+              </div>
+              <div class="form-check ms-3">
+                <input class="form-check-input" type="checkbox" name="location" value="902" id="loc-902">
+                <label class="form-check-label" for="loc-902">902 - Höfn</label>
+              </div>
+            </details>
+
+
           </div>
         </div>
       </div>
