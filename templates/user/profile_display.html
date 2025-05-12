@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="container my-5">
     <div class="shadow rounded-4 overflow-hidden">
@@ -10,36 +9,29 @@
                 <h4 class="fw-bold mb-1">{{ user.username }}</h4>
                 <h class="fw-semibold">{{ user.first_name }} {{ user.last_name }}</h>
                 {% if user.selleruser %}
-                    <p class="mb-0">Seller</p>
+                <p class="mb-0">Seller</p>
                 {% else %}
-                    <p class="mb-0">Buyer</p>
+                <p class="mb-0">Buyer</p>
                 {% endif %}
             </div>
-
             <div class="col-md-8 d-flex">
                 <div class="p-4 profile-content w-100 d-flex flex-column justify-content-center">
-
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Username</label>
                         <div class="form-control bg-light">{{ user.username }}</div>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label fw-semibold">First Name</label>
                         <div class="form-control bg-light">{{ user.first_name|default:"Not provided" }}</div>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Last Name</label>
                         <div class="form-control bg-light">{{ user.last_name|default:"Not provided" }}</div>
                     </div>
-
                     <div class="d-flex justify-content-between">
                         <a href="{% url 'logout' %}" class="btn btn-outline-danger px-4 py-2 rounded-pill fw-semibold">Logout</a>
                         <a href="{% url 'profile_edit' %}" class="btn btn-primary px-4 py-2 rounded-pill fw-semibold ms-5">Edit Profile</a>
                     </div>
-                </div>
-
                 </div>
             </div>
         </div>
