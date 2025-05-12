@@ -7,5 +7,5 @@ urlpatterns = [
     path('my-offers/', views.offer_list, name='my-offers'),
     path('offers/<int:offer_id>/resubmit/', views.resubmit_offer, name='resubmit-offer'),
     path('offers/<int:offer_id>/delete/', views.delete_offer, name='delete-offer'),
-
+    path('received/', views.received_offers, name='received_offers'),
 ]

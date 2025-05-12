@@ -108,3 +108,9 @@ def create_property(request):
         'form': form,
         'user_is_seller': is_seller(request.user)
     })
+
+@login_required
+def my_properties(request):
+    """Display properties owned by the logged-in seller."""
+    properties = Property.objects.filter(seller=request.user)
+    return render(request, 'property/my_properties.html', {'properties': properties})

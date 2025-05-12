@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center fw-bold">My Properties</h2>
+
+    {% if properties %}
+        <div class="row g-4">
+            {% for property in properties %}
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if property.photos.first %}
+                            <img src="{{ property.photos.first.image.url }}" class="card-img-top" alt="Image of {{ property.street_name }}">
+                        {% else %}
+                            <img src="{% static 'images/default-property.jpg' %}" class="card-img-top" alt="No image available">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ property.street_name }} {{ property.house_number }}</h5>
+                            <p class="card-text">{{ property.city }}, {{ property.postal_code }}</p>
+                            <p class="fw-bold">{{ property.price|floatformat:0 }} kr.</p>
+                            <p>Status: <span class="badge bg-secondary">{{ property.get_status_display }}</span></p>
+                            <a href="{% url 'property-detail' property.id %}" class="btn btn-primary btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            You have no properties listed yet.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

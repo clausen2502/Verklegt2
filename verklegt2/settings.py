@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'offer.apps.OfferConfig',
     'django.contrib.humanize',
     'widget_tweaks',
+    'manager'
 ]
 
 MIDDLEWARE = [

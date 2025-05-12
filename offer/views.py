@@ -68,3 +68,9 @@ def delete_offer(request, offer_id):
     offer.delete()
     messages.success(request, "Offer deleted successfully.")
     return redirect('offer-list')
+
+@login_required
+def received_offers(request):
+    """Display all offers received for properties owned by the logged-in seller."""
+    offers = PurchaseOffer.objects.filter(property__seller=request.user)
+    return render(request, 'offer/offers_received.html', {'offers': offers})

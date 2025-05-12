@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center fw-bold">Offers Received</h2>
+
+    {% if offers %}
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Property</th>
+                        <th>Offer Amount</th>
+                        <th>Status</th>
+                        <th>Date Submitted</th>
+                        <th>Expiration Date</th>
+                        <th>View Property</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for offer in offers %}
+                        <tr>
+                            <td>{{ offer.property.street_name }} {{ offer.property.house_number }}</td>
+                            <td>{{ offer.amount }} kr.</td>
+                            <td>{{ offer.status }}</td>
+                            <td>{{ offer.date_submitted }}</td>
+                            <td>{{ offer.expiration_date }}</td>
+                            <td>
+                                <a href="{% url 'property-detail' offer.property.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            You have not received any offers yet.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
