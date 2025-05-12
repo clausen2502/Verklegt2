@@ -27,6 +27,8 @@ def index(request):
 
     if query:
         properties = properties.filter(Q(street_name__icontains=query))
+    if bedrooms:
+        properties = properties.filter(bedrooms__gte=bedrooms)
     if bathrooms:
         properties = properties.filter(bathrooms__gte=bathrooms)
     if locations:
