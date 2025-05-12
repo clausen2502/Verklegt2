@@ -11,4 +11,6 @@ urlpatterns = [
     path('profile/', views.profile_display, name='profile'),
     path('profile/edit/', views.profile_edit, name='profile_edit'),
     path("become-seller/", user_views.become_seller, name="become-seller"),
+    path('my-properties.html/', views.my_properties, name='my-properties.html'),
+    path('offers-received/', views.offers_received, name='offers-received'),
 ]

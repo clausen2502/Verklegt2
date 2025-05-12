@@ -45,7 +45,10 @@ def register(request):
 @login_required
 def profile_display(request):
     profile = request.user.userprofile
-    return render(request, 'user/profile_display.html', {'profile': profile, 'user': request.user})
+    return render(request, 'user/profile_display.html', {
+        'profile': profile,
+        'user': request.user,
+    })
 
 
 @login_required
