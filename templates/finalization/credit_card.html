@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     {% include 'finalization/stepper.html' %}
-<h2>Credit Card Info</h2>
+<h1 class="finalize-title">Credit card info</h1>
 <form method="post">
     {% csrf_token %}
     <input type="hidden" name="offer_id" value="{{ offer_id }}">
