@@ -96,7 +96,7 @@ def create_property(request):
             for image in request.FILES.getlist('images'):
                 PropertyPhoto.objects.create(image=image, property=property)
 
-            return redirect('property-by-id', id=property.id)
+            return redirect('property-detail', id=property.id)
     else:
         form = PropertyCreateForm()
 
