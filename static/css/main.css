@@ -260,6 +260,88 @@ button {
     cursor: pointer;
     margin-top: 1rem;
 }
+.confirm-form {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.confirm-btn {
+  padding: 12px 28px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background-color: #0056b3;
+}
+.stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+.step {
+  padding: 8px 12px;
+  font-weight: bold;
+  color: #999;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.step.active {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.stepper-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.confirmation-container {
+  text-align: center;
+  padding: 40px;
+  max-width: 700px;
+  margin: auto;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.confirmation-details {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.confirmation-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.confirmation-details li {
+  margin-bottom: 10px;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
 
 /*Property CSS ---------------------------------------------------------------------------------------------------------------*/
 .property-catalogue-container {

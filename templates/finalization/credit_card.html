@@ -1,7 +1,6 @@
-<!-- credit_card.html -->
 {% extends "base.html" %}
-
 {% block content %}
+    {% include 'finalization/stepper.html' %}
 <h2>Credit Card Info</h2>
 <form method="post">
     {% csrf_token %}

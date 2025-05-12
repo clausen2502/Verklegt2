@@ -3,12 +3,7 @@
 {% block title %}Finalize Purchase Offer - Payment{% endblock %}
 
 {% block content %}
-<div class="progress-bar">
-  <div class="step">Contact</div>
-  <div class="step active">Payment</div>
-  <div class="step">Review</div>
-</div>
-<h1>Select Payment Method</h1>
+    {% include 'finalization/stepper.html' %}
 
 <div class="finalize-box">
     <form method="post">

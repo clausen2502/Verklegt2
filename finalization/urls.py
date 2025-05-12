@@ -8,6 +8,8 @@ urlpatterns = [
     path("finalize/<int:offer_id>/payment/bank/", views.bank_transfer_form, name="bank-transfer-form"),
     path("finalize/<int:offer_id>/payment/mortgage/", views.mortgage_form, name="mortgage-form"),
     path('finalize/<int:offer_id>/review/', views.review_view, name='review-page'),
+    path('finalize/<int:offer_id>/confirmation/', views.confirmation_view, name='confirmation-page'),
+
 
 ]
 

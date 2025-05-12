@@ -1,6 +1,28 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h2>Payment Completed</h2>
-    <p>Your payment details have been received for offer #{{ offer_id }}.</p>
+  {% include "finalization/stepper.html" %}
+
+  <div class="confirmation-container">
+    <h2> Offer Submitted Successfully!</h2>
+    <p>Thank you for your purchase offer. We’ve received your information and will follow up shortly.</p>
+
+    <div class="confirmation-details">
+      <h3>Contact Information</h3>
+      <ul>
+        <li><strong>Street:</strong> {{ contact_info.street_name }}</li>
+        <li><strong>City:</strong> {{ contact_info.city }}</li>
+        <li><strong>Postal Code:</strong> {{ contact_info.postal_code }}</li>
+        <li><strong>Country:</strong> {{ contact_info.country }}</li>
+        <li><strong>National ID:</strong> {{ contact_info.kennitala }}</li>
+      </ul>
+
+      <h3>Payment Method</h3>
+      <p><strong>Method:</strong> {{ payment_info.method|capfirst }}</p>
+    </div>
+
+    <a href="{% url 'user-homepage' %}" class="btn-back">← Back to Homepage</a>
+  </div>
 {% endblock %}
+
 

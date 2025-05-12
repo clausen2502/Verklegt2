@@ -3,14 +3,7 @@
 {% block title %}Review and Confirm{% endblock %}
 
 {% block content %}
-<h1>Review Your Information</h1>
-
-<div class="progress-bar">
-  <div class="step">Contact</div>
-  <div class="step">Payment</div>
-  <div class="step active">Review</div>
-</div>
-
+    {% include 'finalization/stepper.html' %}
 <div class="finalize-box">
     <h2>Contact Information</h2>
     <ul>
@@ -21,11 +14,12 @@
         <li><strong>National ID:</strong> {{ contact_info.kennitala }}</li>
     </ul>
 
+
     <h2>Payment Information</h2>
     {% if payment_info.method == "mortgage" %}
         <ul>
             <li><strong>Mortgage Provider:</strong> 
-                {{ payment_info.custom_provider|default:payment_info.mortgage_provider }}
+                {{ payment_info.provider }}
             </li>
         </ul>
     {% elif payment_info.method == "bank" %}
@@ -33,7 +27,7 @@
             <li><strong>Recipient Name:</strong> {{ payment_info.recipient_name }}</li>
             <li><strong>Account Number:</strong> {{ payment_info.account_number }}</li>
             <li><strong>Amount:</strong> {{ payment_info.amount }}</li>
-            <!-- Bættu við fleiri reitum eftir þörfum -->
+
         </ul>
     {% elif payment_info.method == "card" %}
         <ul>
@@ -43,6 +37,10 @@
         </ul>
     {% endif %}
 
+<form method="post" action="{% url 'confirmation-page' offer_id=offer_id %}" class="confirm-form">
+    {% csrf_token %}
+    <button type="submit" class="confirm-btn">Confirm</button>
+</form>
 
 </div>
 {% endblock %}

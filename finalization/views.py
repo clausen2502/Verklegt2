@@ -16,7 +16,10 @@ def finalize_contact_view(request, offer_id):
             'kennitala': request.POST['kennitala']
         }
         return redirect('finalize-payment', offer_id=offer_id)
-    return render(request, 'finalization/contact_info.html', {'offer_id': offer_id})
+    return render(request, 'finalization/contact_info.html', {
+        'offer_id': offer_id,
+        'current_step': 'contact'
+    })
 
 
 def finalize_payment_view(request, offer_id):
@@ -33,7 +36,10 @@ def finalize_payment_view(request, offer_id):
             # fallback eða error message
             return redirect("payment")
 
-    return render(request, "finalization/payment.html", {"offer_id": offer_id})
+    return render(request, "finalization/payment.html", {
+        "offer_id": offer_id,
+        'current_step': 'payment'
+    })
 
 def credit_card_form(request, offer_id):
     if request.method == 'POST':
@@ -41,11 +47,14 @@ def credit_card_form(request, offer_id):
             'method': 'card',
             'cardholder_name': request.POST.get('cardholder_name'),
             'card_number': request.POST.get('card_number'),
-            'expiry_date': request.POST.get('expiry_date'),
+            'expiry': request.POST.get('expiry_date'),
             'cvc': request.POST.get('cvc'),
         }
         return redirect('review-page', offer_id=offer_id)
-    return render(request, "finalization/credit_card.html", {"offer_id": offer_id})
+    return render(request, "finalization/credit_card.html", {
+        "offer_id": offer_id,
+        "current_step": "payment"
+    })
 
 def bank_transfer_form(request, offer_id):
     if request.method == 'POST':
@@ -61,16 +70,22 @@ def bank_transfer_form(request, offer_id):
             'transfer_date': request.POST.get('transfer_date'),
         }
         return redirect('review-page', offer_id=offer_id)
-    return render(request, "finalization/bank_transfer.html", {"offer_id": offer_id})
+    return render(request, "finalization/bank_transfer.html", {
+        "offer_id": offer_id,
+        "current_step": "payment"
+    })
 
 def mortgage_form(request, offer_id):
     if request.method == 'POST':
         request.session['payment_data'] = {
             'method': 'mortgage',
-            'provider': request.POST.get('provider')
+            'provider': request.POST.get('mortgage_provider')
         }
         return redirect('review-page', offer_id=offer_id)
-    return render(request, "finalization/mortage.html", {"offer_id": offer_id})
+    return render(request, "finalization/mortage.html", {
+        "offer_id": offer_id,
+        "current_step": "payment"
+    })
 
 
 def review_view(request, offer_id):
@@ -80,7 +95,18 @@ def review_view(request, offer_id):
     return render(request, 'finalization/review.html', {
         'offer_id': offer_id,
         'contact_info': contact_info,
-        'payment_info': payment_info
+        'payment_info': payment_info,
+        'current_step': 'review'
     })
 
 
+def confirmation_view(request, offer_id):
+    contact_info = request.session.get('contact_info', {})
+    payment_info = request.session.get('payment_data', {})
+
+    return render(request, 'finalization/confirmation.html', {
+        'offer_id': offer_id,
+        'contact_info': contact_info,
+        'payment_info': payment_info,
+        'current_step': 'confirmation'
+    })
