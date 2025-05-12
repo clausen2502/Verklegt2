@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-
 from property.models import Property
 from user.forms import UserProfileForm, CustomUserCreationForm, UserEditForm
 from user.models import SellerUser
@@ -86,6 +85,7 @@ def become_seller(request):
         return redirect("profile")
 
     if request.method == "POST":
+        print("🟢 POST triggered")
         seller_type = request.POST.get("seller_type")
         logo = request.FILES.get("logo")
         cover_image = request.FILES.get("cover_image")

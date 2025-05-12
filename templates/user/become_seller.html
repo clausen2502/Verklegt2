@@ -8,7 +8,7 @@
       <div class="bg-white shadow p-5 rounded-4">
         <h2 class="fw-bold mb-4 text-center text-blue">Become a Seller</h2>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'become-seller' %}">
           {% csrf_token %}
 
           <div class="mb-3">

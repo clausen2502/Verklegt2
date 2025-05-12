@@ -23,21 +23,21 @@ def submit_offer(request, property_id):
     property_obj = get_object_or_404(Property, id=property_id)
 
     if request.method == "POST":
-        offer_price = request.POST.get("offer_price")
-        expiration_date = request.POST.get("expiration_date")
-        message = request.POST.get("message", "")
+        form = PurchaseOfferForm(request.POST)
+        if form.is_valid():
+            offer = form.save(commit=False)
+            offer.buyer = request.user
+            offer.property = property_obj
+            offer.save()
+            return redirect("offer-confirmation")
+    else:
+        form = PurchaseOfferForm()
 
-        PurchaseOffer.objects.create(
-            buyer=request.user,
-            property=property_obj,
-            amount=offer_price,
-            expiration_date=expiration_date,
-            message=message
-        )
+    return render(request, "offer/submit_offer.html", {
+        "property": property_obj,
+        "form": form
+    })
 
-        return redirect("offer-confirmation")
-
-    return render(request, "offer/submit_offer.html", {"property": property_obj})
 
 def resubmit_offer(request, offer_id):
     offer = get_object_or_404(PurchaseOffer, id=offer_id, buyer=request.user)
@@ -47,10 +47,10 @@ def resubmit_offer(request, offer_id):
         form = PurchaseOfferForm(request.POST, instance=offer)
         if form.is_valid():
             updated_offer = form.save(commit=False)
-            updated_offer.status = 'pending'  # reset status
+            updated_offer.status = 'pending'
             updated_offer.save()
             messages.success(request, 'Your offer has been resubmitted!')
-            return redirect('offer-list')
+            return redirect('property-by-id', id=property_obj.id)
     else:
         form = PurchaseOfferForm(instance=offer)
 

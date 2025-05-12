@@ -62,6 +62,7 @@ def get_property_by_id(request, id):
         user_offer = (
             PurchaseOffer.objects
             .filter(property=property, buyer=request.user)
+            .first()
         )
 
     return render(request, "property/single_property.html", {
@@ -72,10 +73,13 @@ def get_property_by_id(request, id):
 def is_seller(user: User) -> bool:
     return SellerUser.objects.filter(user=user).exists()
 
-@login_required
 def create_property(request):
+    if not request.user.is_authenticated:
+        return redirect('/offers/my-offers/')
+
     if not is_seller(request.user):
-        return render(request, "user/become_seller_gate.html")  # <-- your "Become a Seller" page
+        return render(request, "user/become_seller.html")
+
     if request.method == "POST":
         form = PropertyCreateForm(request.POST, request.FILES)
         if form.is_valid():
