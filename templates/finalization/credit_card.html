@@ -1,15 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-    {% include 'finalization/stepper.html' %}
-<h1 class="finalize-title">Credit card info</h1>
-<form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="offer_id" value="{{ offer_id }}">
-    <input type="text" name="cardholder_name" placeholder="Cardholder Name" required>
-    <input type="text" name="card_number" placeholder="Card Number" required>
-    <input type="text" name="expiry_date" placeholder="Expiry Date (MM/YY)" required>
-    <input type="text" name="cvc" placeholder="CVC" required>
-    <button type="submit">Continue</button>
-</form>
+  {% include 'finalization/stepper.html' %}
+
+  <main>
+    <h1 class="finalize-title">Credit Card Information</h1>
+
+    <section class="finalize-box">
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="offer_id" value="{{ offer_id }}">
+
+        <fieldset>
+          <legend>Card Details</legend>
+
+          <div class="form-group">
+            <label for="cardholder_name">Cardholder Name:</label>
+            <input type="text" id="cardholder_name" name="cardholder_name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="card_number">Card Number:</label>
+            <input type="text" id="card_number" name="card_number" required>
+          </div>
+
+          <div class="form-group">
+            <label for="expiry_date">Expiry Date (MM/YY):</label>
+            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" pattern="\d{2}/\d{2}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cvc">CVC:</label>
+            <input type="text" id="cvc" name="cvc" required>
+          </div>
+        </fieldset>
+
+        <button type="submit">Continue</button>
+      </form>
+    </section>
+  </main>
 {% endblock %}
+
 

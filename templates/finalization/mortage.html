@@ -2,25 +2,32 @@
 {% block title %}Mortgage Information{% endblock %}
 
 {% block content %}
-    {% include 'finalization/stepper.html' %}
-<h1 class="finalize-title">Mortgage Details</h1>
+  {% include 'finalization/stepper.html' %}
 
-<div class="finalize-box">
-    <form method="post">
+  <main>
+    <h1 class="finalize-title">Mortgage Details</h1>
+
+    <section class="finalize-box">
+      <form method="post">
         {% csrf_token %}
         <input type="hidden" name="offer_id" value="{{ offer_id }}">
 
-        <div class="form-group">
+        <fieldset>
+          <legend>Provider</legend>
+
+          <div class="form-group">
             <label for="mortgage_provider">Choose Mortgage Provider:</label>
             <select name="mortgage_provider" id="mortgage_provider" required>
-                <option value="">Select a bank</option>
-                <option value="Arion banki">Arion banki</option>
-                <option value="Landsbankinn">Landsbankinn</option>
-                <option value="Íslandsbanki">Íslandsbanki</option>
+              <option value="">Select a bank</option>
+              <option value="Arion banki">Arion banki</option>
+              <option value="Landsbankinn">Landsbankinn</option>
+              <option value="Íslandsbanki">Íslandsbanki</option>
             </select>
-        </div>
+          </div>
+        </fieldset>
 
         <button type="submit">Continue</button>
-    </form>
-</div>
+      </form>
+    </section>
+  </main>
 {% endblock %}

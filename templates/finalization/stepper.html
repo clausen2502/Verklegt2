@@ -1,8 +1,17 @@
-<div class="stepper-wrapper">
-  <div class="stepper">
-    <div class="step{% if current_step == 'contact' %} active{% endif %}">Contact Information</div>
-    <div class="step{% if current_step == 'payment' %} active{% endif %}">Payment</div>
-    <div class="step{% if current_step == 'review' %} active{% endif %}">Review</div>
-    <div class="step{% if current_step == 'confirmation' %} active{% endif %}">Confirmation</div>
-  </div>
-</div>
+<nav class="stepper-wrapper" aria-label="Progress">
+  <ol class="stepper">
+    <li class="step{% if current_step == 'contact' %} active{% endif %}" {% if current_step == 'contact' %}aria-current="step"{% endif %}>
+      Contact Information
+    </li>
+    <li class="step{% if current_step == 'payment' %} active{% endif %}" {% if current_step == 'payment' %}aria-current="step"{% endif %}>
+      Payment
+    </li>
+    <li class="step{% if current_step == 'review' %} active{% endif %}" {% if current_step == 'review' %}aria-current="step"{% endif %}>
+      Review
+    </li>
+    <li class="step{% if current_step == 'confirmation' %} active{% endif %}" {% if current_step == 'confirmation' %}aria-current="step"{% endif %}>
+      Confirmation
+    </li>
+  </ol>
+</nav>
+
