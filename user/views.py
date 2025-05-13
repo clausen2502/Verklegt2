@@ -12,6 +12,8 @@ from user.models import SellerUser
 def is_seller(user: User) -> bool:
     return SellerUser.objects.filter(user=user).exists()
 
+def is_manager(user: User) -> bool:
+    return hasattr(user, 'manager')
 
 def homepage(request):
     return render(request, 'user/user.html')
@@ -83,12 +85,15 @@ def logout_view(request):
 
 @login_required
 def become_seller(request):
+    if is_manager(request.user):
+        messages.error(request, "Admins cannot become sellers.")
+        return redirect("profile")
+
     if is_seller(request.user):
         messages.info(request, "You are already registered as a seller.")
         return redirect("profile")
 
     if request.method == "POST":
-        print("🟢 POST triggered")
         seller_type = request.POST.get("seller_type")
         logo = request.FILES.get("logo")
         cover_image = request.FILES.get("cover_image")
@@ -112,6 +117,7 @@ def become_seller(request):
         return redirect("create-property")
 
     return render(request, "user/become_seller.html")
+
 
 
 def get_seller_by_id(request, id):

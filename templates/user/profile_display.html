@@ -10,6 +10,8 @@
                 <h class="fw-semibold">{{ user.first_name }} {{ user.last_name }}</h>
                 {% if user.selleruser %}
                 <p class="mb-0">Seller</p>
+                {% elif user.manager %}
+                <p class="mb-0">Manager</p>
                 {% else %}
                 <p class="mb-0">Buyer</p>
                 {% endif %}

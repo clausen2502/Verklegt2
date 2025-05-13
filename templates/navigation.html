@@ -26,6 +26,12 @@
             <a class="nav-link fw-bold text-uppercase nav-blue" href="{% url 'received_offers' %}">Offers Received</a>
           </li>
         {% endif %}
+
+        {% if user.is_authenticated and user.manager %}
+          <li class="nav-item">
+            <a class="nav-link fw-bold text-uppercase text-danger" href="{% url 'admin-dashboard' %}">Admin Dashboard</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
     <div class="nav-profile">
