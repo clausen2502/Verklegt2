@@ -74,3 +74,35 @@ def received_offers(request):
     """Display all offers received for properties owned by the logged-in seller."""
     offers = PurchaseOffer.objects.filter(property__seller=request.user)
     return render(request, 'offer/offers_received.html', {'offers': offers})
+
+
+
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import PurchaseOffer, Property
+@login_required
+def update_offer_status(request, offer_id, new_status):
+    offer = get_object_or_404(PurchaseOffer, id=offer_id)
+
+    if offer.property.seller != request.user:
+        messages.error(request, "You are not authorized to manage this offer.")
+        return redirect("received_offers")
+
+    valid_statuses = ['accepted', 'rejected', 'contingent']
+    if new_status not in valid_statuses:
+        messages.error(request, "Invalid status.")
+        return redirect("received_offers")
+
+    offer.status = new_status
+
+    # If contingent, save the seller's contingent message
+    if new_status == 'contingent':
+        contingent_message = request.POST.get('contingent_message', '').strip()
+        offer.contingent_message = contingent_message
+
+    offer.save()
+
+    messages.success(request, f"Offer has been marked as {new_status.capitalize()}.")
+    return redirect("received_offers")
+

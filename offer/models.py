@@ -14,6 +14,7 @@ class PurchaseOffer(models.Model):
     buyer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     message = models.TextField(blank=True)
+    contingent_message = models.TextField(blank=True)
     offer_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=OFFER_STATUS_CHOICES, default='pending')
     expiration_date = models.DateField()

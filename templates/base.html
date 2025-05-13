@@ -48,5 +48,14 @@
         <!-- Bootstrap JS Bundle -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{% static 'js/main.js' %}"></script>
+
+         <!-- Gallery Photos JS -->
+        <script id="gallery-photos" type="application/json">
+          [
+            {% for photo in property.photos.all %}
+              {"image": "{{ photo.image.url }}"}{% if not forloop.last %},{% endif %}
+            {% endfor %}
+          ]
+        </script>
     </body>
 </html>

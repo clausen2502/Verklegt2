@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
+
 from offer.models import PurchaseOffer
 from property.models import Property, PropertyPhoto
 from property.property_create_form import PropertyCreateForm
@@ -114,3 +116,41 @@ def my_properties(request):
     """Display properties owned by the logged-in seller."""
     properties = Property.objects.filter(seller=request.user)
     return render(request, 'property/my_properties.html', {'properties': properties})
+
+@login_required
+def edit_property(request, id):
+    """Allow the seller to edit their property."""
+    property = Property.objects.filter(id=id, seller=request.user).first()
+
+    if not property:
+        messages.error(request, "Property not found or you don't have permission to edit it.")
+        return redirect('property-index')
+
+    if request.method == 'POST':
+        form = PropertyCreateForm(request.POST, request.FILES, instance=property)
+        if form.is_valid():
+            property = form.save(commit=False)
+            property.save()
+
+            for image in request.FILES.getlist('images'):
+                PropertyPhoto.objects.create(image=image, property=property)
+
+            messages.success(request, "Property updated!")
+            return redirect('property-detail', id=property.id)
+    else:
+        form = PropertyCreateForm(instance=property)
+
+    return render(request, 'property/edit_property.html', {
+        'form': form,
+        'property': property
+    })
+
+
+@require_POST
+@login_required
+def delete_property(request, id):
+    """Allow the seller to delete their property"""
+    property = get_object_or_404(Property, id=id, seller=request.user)
+    property.delete()
+    messages.success(request, "Property deleted!")
+    return redirect('my_properties')

@@ -1,5 +1,10 @@
+from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
+from offer.models import PurchaseOffer
+
+
 def index(request):
     return HttpResponse(f"Response from {request.path}")
 
@@ -130,9 +135,26 @@ def review_view(request, offer_id):
     })
 
 
+
 def confirmation_view(request, offer_id):
     contact_info = request.session.get('contact_info', {})
     payment_info = request.session.get('payment_data', {})
+
+    offer = get_object_or_404(PurchaseOffer, id=offer_id)
+
+    # Ensure only the buyer of the offer can finalize it
+    if offer.buyer != request.user:
+        messages.error(request, "You are not authorized to finalize this offer.")
+        return redirect("my-offers")
+
+    # Ensure the offer is accepted OR contingent
+    if offer.status not in ['accepted', 'contingent']:
+        messages.error(request, "Only accepted or contingent offers can be finalized.")
+        return redirect("my-offers")
+
+    if offer.property.status != 'sold':
+        offer.property.status = 'sold'
+        offer.property.save()
 
     return render(request, 'finalization/confirmation.html', {
         'offer_id': offer_id,

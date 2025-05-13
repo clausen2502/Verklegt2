@@ -75,3 +75,64 @@ document.addEventListener('DOMContentLoaded', function () {
   typeField.addEventListener('change', toggleCustomType);
 });
 
+/* Show Delete Offer Modal  ----------------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', function () {
+  const deleteModal = document.getElementById('globalDeleteOfferModal');
+  deleteModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const offerId = button.getAttribute('data-offer-id');
+    const propertyName = button.getAttribute('data-property-name');
+    const urlTemplate = button.getAttribute('data-url-template');
+
+    // Update property name in the modal
+    document.getElementById('propertyNamePlaceholder').textContent = propertyName;
+
+    // Replace 0 in template with actual offerId
+    const actionUrl = urlTemplate.replace('0', offerId);
+
+    // Set form action
+    document.getElementById('deleteOfferForm').action = actionUrl;
+  });
+});
+
+/* Show Delete Property Modal and Gallery Navigation ---------------------------------------------- */
+document.addEventListener('DOMContentLoaded', function () {
+    // Get photos from JSON script
+    const photos = JSON.parse(document.getElementById('gallery-photos').textContent);
+    let currentImageIndex = 0;
+
+    // Select elements
+    const mainImage = document.getElementById('mainImage');
+    const prevBtn = document.getElementById('prevMainImageBtn');
+    const nextBtn = document.getElementById('nextMainImageBtn');
+
+    // Function to update main image
+    const updateMainImage = () => {
+        if (photos.length > 0) {
+            mainImage.src = photos[currentImageIndex].image;
+        }
+    };
+
+    // Next image
+    nextBtn.addEventListener('click', function () {
+        currentImageIndex = (currentImageIndex + 1) % photos.length;
+        updateMainImage();
+    });
+
+    // Previous image
+    prevBtn.addEventListener('click', function () {
+        currentImageIndex = (currentImageIndex - 1 + photos.length) % photos.length;
+        updateMainImage();
+    });
+
+    // Optional: Update main image if someone clicks a sidebar thumbnail
+    document.querySelectorAll('.property-sidebar-thumb img').forEach((thumb, index) => {
+        thumb.addEventListener('click', function () {
+            currentImageIndex = (index + 1) % photos.length;  // +1 because first is already shown
+            updateMainImage();
+        });
+    });
+});
+
+
+

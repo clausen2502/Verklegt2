@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static formatting %}
 
 {% block content %}
 <div class="container my-5">
-    <h2 class="mb-4 text-center fw-bold">My Properties</h2>
+    <h2 class="mb-4 text-center fw-bold">My Properties For Sale</h2>
 
     {% if properties %}
         <div class="row g-4">
@@ -18,8 +18,14 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ property.street_name }} {{ property.house_number }}</h5>
                             <p class="card-text">{{ property.city }}, {{ property.postal_code }}</p>
-                            <p class="fw-bold">{{ property.price|floatformat:0 }} kr.</p>
-                            <p>Status: <span class="badge bg-secondary">{{ property.get_status_display }}</span></p>
+                            <p class="fw-bold">{{ property.price|intdot }} kr.</p>
+                            <p>Status:
+                                {% if property.status == "available" %}
+                                    <span class="badge bg-success">{{ property.get_status_display }}</span>
+                                {% elif property.status == "sold" %}
+                                    <span class="badge bg-danger">{{ property.get_status_display }}</span>
+                                {% endif %}
+                            </p>
                             <a href="{% url 'property-detail' property.id %}" class="btn btn-primary btn-sm">View Details</a>
                         </div>
                     </div>

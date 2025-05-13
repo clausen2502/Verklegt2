@@ -557,6 +557,15 @@ button {
   width: 24px;
 }
 
+.btn-arrow {
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    width: auto;
+    height: auto;
+    line-height: 1;
+    z-index: 2;
+}
+
 /* Content Layout */
 .property-content-layout {
   display: flex;

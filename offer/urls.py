@@ -8,4 +8,5 @@ urlpatterns = [
     path('offers/<int:offer_id>/resubmit/', views.resubmit_offer, name='resubmit-offer'),
     path('offers/<int:offer_id>/delete/', views.delete_offer, name='delete-offer'),
     path('received/', views.received_offers, name='received_offers'),
+    path('offer/<int:offer_id>/update/<str:new_status>/', views.update_offer_status, name='update-offer-status'),
 ]
