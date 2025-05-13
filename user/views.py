@@ -132,3 +132,6 @@ def get_seller_by_id(request, id):
         'seller': seller,
         'properties': properties
     })
+
+def about_view(request):
+    return render(request, 'user/about_us.html')
