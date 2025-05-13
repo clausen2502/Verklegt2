@@ -50,7 +50,7 @@ def resubmit_offer(request, offer_id):
             updated_offer.status = 'pending'
             updated_offer.save()
             messages.success(request, 'Your offer has been resubmitted!')
-            return redirect('property-by-id', id=property_obj.id)
+            return redirect('property-detail', id=property_obj.id)
     else:
         form = PurchaseOfferForm(instance=offer)
 
