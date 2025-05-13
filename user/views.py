@@ -135,3 +135,6 @@ def get_seller_by_id(request, id):
 
 def about_view(request):
     return render(request, 'user/about_us.html')
+
+def calculator_view(request):
+    return render(request, 'user/calculator.html')

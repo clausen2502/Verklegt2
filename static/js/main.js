@@ -135,4 +135,29 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// mortage calculator
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("loan-form");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const amount = parseFloat(document.getElementById("loan-amount").value);
+      const years = parseFloat(document.getElementById("loan-years").value);
+      const interest = parseFloat(document.getElementById("loan-interest").value) / 100;
+
+      const months = years * 12;
+      const monthlyRate = interest / 12;
+
+      const monthly = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -months));
+      const total = monthly * months;
+
+      document.getElementById("monthly-payment").innerText = monthly.toLocaleString();
+      document.getElementById("total-payment").innerText = total.toLocaleString();
+      document.getElementById("loan-results").classList.remove("d-none");
+    });
+  }
+});
+
 
