@@ -1,13 +1,9 @@
-from django.contrib.auth import logout
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404, redirect
+from user.models import Favorite
 from property.models import Property
-from user.forms import UserProfileForm, CustomUserCreationForm, UserEditForm
-from user.models import SellerUser
-
+from django.contrib.auth.models import User
+from django.shortcuts import render
 
 def is_seller(user: User) -> bool:
     return SellerUser.objects.filter(user=user).exists()
@@ -138,3 +134,18 @@ def about_view(request):
 
 def calculator_view(request):
     return render(request, 'user/calculator.html')
+
+@login_required
+def toggle_favorite(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+    favorite, created = Favorite.objects.get_or_create(user=request.user, property=property_obj)
+
+    if not created:
+        favorite.delete()
+
+    return redirect(request.META.get('HTTP_REFERER', 'property-index'))
+
+@login_required
+def favourites_list(request):
+    favourites = Favorite.objects.filter(user=request.user).select_related('property')
+    return render(request, 'user/favourites.html', {'favourites': favourites})
