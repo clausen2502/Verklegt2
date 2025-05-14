@@ -161,3 +161,29 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const declineBtn = document.getElementById('cookie-decline');
+
+  const hasConsented = localStorage.getItem('cookieConsent');
+
+  // Birta ef engin samþykkt
+  if (!hasConsented) {
+    banner.style.display = 'flex';
+  }
+
+  // Samþykkt
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    banner.style.display = 'none';
+  });
+
+  // Hafnað
+  declineBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'declined');
+    banner.style.display = 'none';
+  });
+});
+
+localStorage.getItem("cookieConsent");

@@ -4,6 +4,7 @@ from user.models import Favorite
 from property.models import Property
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.contrib.auth import logout
 
 def is_seller(user: User) -> bool:
     return SellerUser.objects.filter(user=user).exists()
