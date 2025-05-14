@@ -16,6 +16,7 @@ def test_page(request):
 
 def index(request):
     properties = Property.objects.prefetch_related('photos').all()
+    most_viewed = Property.objects.order_by('-view_count')[:3]
 
     locations = request.GET.getlist("location")
     bathrooms = request.GET.get("bathrooms")
@@ -49,6 +50,7 @@ def index(request):
     return render(request, "property/properties.html", {
         'properties': properties,
         'property_count': properties.count(),
+        'most_viewed': most_viewed,
         'bathroom_filter': bathrooms,
         'locations': locations,
         'search_query': query,
@@ -63,6 +65,10 @@ def index(request):
 def get_property_by_id(request, id):
     property = Property.objects.prefetch_related('photos').get(id=id)
 
+    # Aukum fjölda heimsókna um 1
+    property.view_count += 1
+    property.save(update_fields=['view_count'])
+
     user_offer = None
     if request.user.is_authenticated:
         user_offer = (
@@ -75,6 +81,7 @@ def get_property_by_id(request, id):
         "property": property,
         "user_offer": user_offer
     })
+
 
 def is_seller(user: User) -> bool:
     return SellerUser.objects.filter(user=user).exists()

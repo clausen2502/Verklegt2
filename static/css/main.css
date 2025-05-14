@@ -496,6 +496,46 @@ button {
     position: relative;
 }
 
+.popular-properties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.property-card.small {
+  max-width: 280px;       /* Minnkar kassana */
+  flex: 1 1 280px;
+}
+
+
+.section-divider {
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-top: 2px solid #444;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  color: #0a0f63;
+  margin-bottom: 0.2rem;
+}
+
+.section-subtext {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
 
 /*Single Property CSS ---------------------------------------------------------------------------------------------------------------*/
 

@@ -61,6 +61,56 @@
         {% endfor %}
     </div>
 
+    <hr class="section-divider">
+    <h2 class="section-heading">Most Popular Properties</h2>
+    <p class="section-subtext">These listings are getting the most attention from users.</p>
+
+    <div class="popular-properties mt-4 mb-5">
+
+        {% for property in most_viewed %}
+            <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
+                <div class="property-card small">
+                    <div class="image-container">
+                        <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
+                        {% if property.status == "available" %}
+                            <span class="status-box available">Available</span>
+                        {% elif property.status == "sold" %}
+                            <span class="status-box sold">Sold</span>
+                        {% endif %}
+                    </div>
+                    <div class="property-info">
+                        <h4>{{ property.street_name }} {{ property.house_number }}</h4>
+                    </div>
+                    <div class="property-info">
+                        <p>{{ property.city }}, {{ property.postal_code }}</p>
+                    </div>
+                    <div class="property-price">
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
+                            {{ property.price|intdot }} kr.
+                        </div>
+                    </div>
+                    <div class="property-details-icons">
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
+                            {{ property.bedrooms }}
+                        </div>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/bathroom.svg' %}" alt="Bathrooms" class="icon">
+                            {{ property.bathrooms }}
+                        </div>
+                        <div class="icon-detail">
+                            <img src="{% static 'icons/size4.png' %}" alt="Size" class="icon">
+                            {{ property.square_meters }} m²
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    <hr class="section-divider">
+
+
     <!-- Smaller Remaining -->
     <div class="property-grid">
         {% for property in properties|slice:"2:" %}

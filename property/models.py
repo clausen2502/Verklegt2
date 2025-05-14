@@ -28,6 +28,7 @@ class Property(models.Model):
     listing_date = models.DateField(auto_now_add=True)
     bedrooms = models.IntegerField(default=1)
     bathrooms = models.IntegerField(default=1)
+    view_count = models.PositiveIntegerField(default=0)
 
     def get_type_display_name(self):
         if self.type == 'other' and self.custom_type:
