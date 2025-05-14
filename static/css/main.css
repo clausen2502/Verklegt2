@@ -127,7 +127,6 @@ body{
     background-color: #e2e8f0;
 }
 
-/* new filters CSS */
 .filter-icon {
   width: 20px;
   height: 20px;
@@ -815,5 +814,92 @@ button {
 
 .btn-danger:hover {
   background-color: #b91c1c;
+}
+
+/*About Us CSS ---------------------------------------------------------------------------------------------------------------*/
+.team-card {
+  background-color: #ffffff;
+  border-left: 5px solid #ff45b3; /* pink */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    max-width: 300px;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  background-color: #eaf9ff; /* very light blue on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-left-color: #0a0f63; /* navy on hover */
+}
+
+.team-card.ceo {
+  max-width: 300px;
+  margin: 0 auto;
+  position: relative; /* nauðsynlegt fyrir ::after */
+  z-index: 3; /* tryggir að boxið sé ofar */
+}
+
+/* Root of tree (Emily) */
+.org-tree-root > li {
+    list-style: none;
+    position: relative;
+}
+
+.team-card.ceo::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; /* niður úr boxinu */
+  left: 50%;
+  width: 2px;
+  height: 30px;
+  background-color: #000;
+  z-index: 1; /* lægra en boxið, hærra en bakgrunnur */
+}
+
+/* LÁRÉTTA LÍNAN OFAN BARNABOXA */
+.org-tree-children::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #000;
+  z-index: 1;
+}
+
+/* CHILDREN – HÓPURINN UNDIR EMILY */
+.org-tree-children {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 60px;
+  position: relative;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/* INDIVIDUAL BARNABOX OG LÍNA UPP */
+.org-tree-children > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.org-tree-children > li::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 30px;
+  background-color: #000;
+  z-index: 2;
 }
 
