@@ -27,6 +27,7 @@ def index(request):
     price_to = request.GET.get("price_to")
     types = request.GET.getlist("type")
     query = request.GET.get("q")
+    sort_by = request.GET.get("sort_by")
 
     if query:
         properties = properties.filter(Q(street_name__icontains=query))
@@ -47,6 +48,16 @@ def index(request):
     if price_to:
         properties = properties.filter(price__lte=price_to)
 
+    # Sorting logic
+    if sort_by == "price_asc":
+        properties = properties.order_by("price")
+    elif sort_by == "price_desc":
+        properties = properties.order_by("-price")
+    elif sort_by == "name_asc":
+        properties = properties.order_by("street_name")
+    elif sort_by == "name_desc":
+        properties = properties.order_by("-street_name")
+
     return render(request, "property/properties.html", {
         'properties': properties,
         'property_count': properties.count(),
@@ -60,6 +71,7 @@ def index(request):
         'price_to': price_to,
         'size_from': size_from,
         'size_to': size_to,
+        'sort_by': sort_by,
     })
 
 def get_property_by_id(request, id):

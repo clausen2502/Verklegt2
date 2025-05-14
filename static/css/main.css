@@ -510,6 +510,9 @@ button {
   flex: 1 1 280px;
 }
 
+.sort-form {
+  margin-bottom: 2rem; /* eða 32px */
+}
 
 .section-divider {
   margin-top: 4rem;
