@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 
 
+
 def offer_list(request):
     if not request.user.is_authenticated:
         # Show a limited view or message to guest users
@@ -76,6 +77,7 @@ def received_offers(request):
     offers = PurchaseOffer.objects.filter(property__seller=request.user)
     return render(request, 'offer/offers_received.html', {'offers': offers})
 
+
 @login_required
 def update_offer_status(request, offer_id, new_status):
     offer = get_object_or_404(PurchaseOffer, id=offer_id)
@@ -91,7 +93,6 @@ def update_offer_status(request, offer_id, new_status):
 
     offer.status = new_status
 
-    # If contingent, save the seller's contingent message
     if new_status == 'contingent':
         contingent_message = request.POST.get('contingent_message', '').strip()
         offer.contingent_message = contingent_message

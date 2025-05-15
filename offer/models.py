@@ -8,6 +8,7 @@ class PurchaseOffer(models.Model):
         ('accepted', 'Accepted'),
         ('declined', 'Declined'),
         ('contingent', 'Contingent'),
+        ('finalized', 'Finalized'),
     ]
 
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='offers')

@@ -154,6 +154,10 @@ def confirmation_view(request, offer_id):
         offer.property.status = 'sold'
         offer.property.save()
 
+    offer.status = 'finalized'
+    offer.save()
+
+
     return render(request, 'finalization/confirmation.html', {
         'offer_id': offer_id,
         'contact_info': contact_info,
