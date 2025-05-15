@@ -48,11 +48,6 @@
           <img src="{% static 'icons/user-icon.jpeg' %}" alt="Profile" width="35" height="35" class="rounded-circle">
         </a>
 
-        <div class="ms-3">
-          <a href="{% url 'favourites-list' %}" class="nav-link">
-            <i class="bi bi-heart-fill text-danger fs-5"></i>
-          </a>
-        </div>
       {% else %}
         <a href="{% url 'login' %}" class="nav-profile-link">
           <span class="semi-bold m-0">Login</span>

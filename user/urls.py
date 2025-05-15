@@ -14,8 +14,5 @@ urlpatterns = [
     path("become-seller/", user_views.become_seller, name="become-seller"),
     path('about/', views.about_view, name='about'),
     path('calculator/', views.calculator_view, name='calculator'),
-    path('favourites/', views.favourites_list, name='favourites-list'),
-    path('favourites/toggle/<int:property_id>/', views.toggle_favorite, name='toggle-favorite'),
-
 
 ]

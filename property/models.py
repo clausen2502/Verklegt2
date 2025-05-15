@@ -46,3 +46,9 @@ class PropertyPhoto(models.Model):
 
     def __str__(self):
         return f"Photo for {self.property}"
+
+
+
+
+
+
