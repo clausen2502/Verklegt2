@@ -1,6 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-
 from offer.models import PurchaseOffer
 from property.models import Property, PropertyPhoto
 from property.property_create_form import PropertyCreateForm
@@ -8,7 +6,6 @@ from django.contrib import messages
 from user.models import SellerUser
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 
 def test_page(request):
     return render(request, 'property/test.html')
