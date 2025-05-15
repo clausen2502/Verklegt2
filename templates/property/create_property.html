@@ -1,56 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="container my-5">
-  <div class="row justify-content-center">
-    <div class="col-md-10 col-lg-8">
-      <div class="bg-white shadow p-5 rounded-4">
-
-        {% if not user_is_seller %}
-          <h2 class="fw-bold mb-3 text-center text-blue">Become a Seller</h2>
-          <p class="text-center mb-4">To create a property listing, you need to register as a seller first.</p>
-          <div class="text-center">
-            <a href="{% url 'become-seller' %}" class="btn btn-success fw-semibold px-4 rounded-pill">
-              Become a Seller
-            </a>
-          </div>
-
-        {% else %}
-          <h2 class="fw-bold mb-4 text-center text-blue">Create New Property</h2>
-
-          <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
-
-            {% for field in form %}
-              <div class="mb-3"{% if field.name == "custom_type" %} id="custom-type-wrapper"{% endif %}>
-                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                {{ field }}
-                {% if field.help_text %}
-                  <small class="form-text text-muted">{{ field.help_text }}</small>
-                {% endif %}
-                {% for error in field.errors %}
-                  <div class="text-danger small">{{ error }}</div>
-                {% endfor %}
-              </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="bg-white shadow p-5 rounded-4">
+                {% if not user_is_seller %}
+                <h2 class="fw-bold mb-3 text-center text-blue">Become a Seller</h2>
+                <p class="text-center mb-4">To create a property listing, you need to register as a seller first.</p>
+                <div class="text-center">
+                    <a href="{% url 'become-seller' %}" class="btn btn-success fw-semibold px-4 rounded-pill">
+                    Become a Seller
+                    </a>
+                </div>
+                {% else %}
+                <h2 class="fw-bold mb-4 text-center text-blue">Create New Property</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {% for field in form %}
+                    <div class="mb-3"{% if field.name == "custom_type" %} id="custom-type-wrapper"{% endif %}>
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+            </div>
             {% endfor %}
-
             <div class="mb-3">
-              <label for="property-images" class="form-label">Upload Property Images</label>
-              <input type="file" name="images" id="property-images" class="form-control" multiple>
+            <label for="property-images" class="form-label">Upload Property Images</label>
+            <input type="file" name="images" id="property-images" class="form-control" multiple>
             </div>
-
             <div class="text-center mt-4">
-              <button type="submit" class="btn btn-primary px-4 fw-semibold rounded-pill">
-                Submit Property
-              </button>
+            <button type="submit" class="btn btn-primary px-4 fw-semibold rounded-pill">
+            Submit Property
+            </button>
             </div>
-          </form>
-        {% endif %}
-
-      </div>
+            </form>
+            {% endif %}
+        </div>
     </div>
-  </div>
+</div>
 </div>
 {% endblock %}

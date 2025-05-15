@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load formatting %}
-
 {% block content %}
 <div class="property-catalogue-container">
-
     <!-- Total Count -->
     <h2 class="results-count">{{ property_count }} properties found</h2>
-
-
     <!-- SORT BY DROPDOWN -->
     <form method="get" class="sort-form">
         <label for="sort_by">Sort by:</label>
@@ -19,170 +15,152 @@
             <option value="name_asc" {% if sort_by == 'name_asc' %}selected{% endif %}>Street: A-Z</option>
             <option value="name_desc" {% if sort_by == 'name_desc' %}selected{% endif %}>Street: Z-A</option>
         </select>
-
         <!-- Preserve other filters (optional) -->
         {% for key, value in request.GET.items %}
-            {% if key != "sort_by" %}
-                <input type="hidden" name="{{ key }}" value="{{ value }}">
-            {% endif %}
+        {% if key != "sort_by" %}
+        <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endif %}
         {% endfor %}
     </form>
-
     <!-- Large First Two -->
     <div class="featured-properties">
         {% for property in properties|slice:":2" %}
-            <a href="{% url 'property-detail' property.id %}" class="property-card-link-featured">
-                <div class="property-card featured">
-                    <div class="image-container">
-                        <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
-
-                        {% if property.status == "available" %}
-                            <span class="status-box available">Available</span>
-                        {% elif property.status == "sold" %}
-                            <span class="status-box sold">Sold</span>
-                        {% endif %}
-                    </div>
-
-                    <!-- LAYER 1: Name -->
-                    <div class="property-info">
-                        <h3>{{ property.street_name }} {{ property.house_number }}</h3>
-                    </div>
-
-                    <!-- LAYER 2: City + Postal Code -->
-                    <div class="property-info">
-                        <p>{{ property.city }}, {{ property.postal_code }}</p>
-                    </div>
-
-                    <!-- LAYER 3: Price -->
-                    <div class="property-price">
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
-                            {{ property.price|intdot }} kr.
-                        </div>
-                    </div>
-
-                    <!-- LAYER 4: Icons -->
-                    <div class="property-details-icons">
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
-                            {{ property.bedrooms }}
-                        </div>
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/bathroom.svg' %}" alt="Bathrooms" class="icon">
-                            {{ property.bathrooms }}
-                        </div>
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/size4.png' %}" alt="Size" class="icon">
-                            {{ property.square_meters }} m²
-                        </div>
+        <a href="{% url 'property-detail' property.id %}" class="property-card-link-featured">
+            <div class="property-card featured">
+                <div class="image-container">
+                    <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
+                    {% if property.status == "available" %}
+                    <span class="status-box available">Available</span>
+                    {% elif property.status == "sold" %}
+                    <span class="status-box sold">Sold</span>
+                    {% endif %}
+                </div>
+                <!-- LAYER 1: Name -->
+                <div class="property-info">
+                    <h3>{{ property.street_name }} {{ property.house_number }}</h3>
+                </div>
+                <!-- LAYER 2: City + Postal Code -->
+                <div class="property-info">
+                    <p>{{ property.city }}, {{ property.postal_code }}</p>
+                </div>
+                <!-- LAYER 3: Price -->
+                <div class="property-price">
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
+                        {{ property.price|intdot }} kr.
                     </div>
                 </div>
-            </a>
+                <!-- LAYER 4: Icons -->
+                <div class="property-details-icons">
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
+                        {{ property.bedrooms }}
+                    </div>
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/bathroom.svg' %}" alt="Bathrooms" class="icon">
+                        {{ property.bathrooms }}
+                    </div>
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/size4.png' %}" alt="Size" class="icon">
+                        {{ property.square_meters }} m²
+                    </div>
+                </div>
+            </div>
+        </a>
         {% endfor %}
     </div>
-
     <hr class="section-divider">
     <h2 class="section-heading">Most Popular Properties</h2>
     <p class="section-subtext">These listings are getting the most attention from users.</p>
-
     <div class="popular-properties mt-4 mb-5">
-
         {% for property in most_viewed %}
-            <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
-                <div class="property-card small">
-                    <div class="image-container">
-                        <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
-                        {% if property.status == "available" %}
-                            <span class="status-box available">Available</span>
-                        {% elif property.status == "sold" %}
-                            <span class="status-box sold">Sold</span>
-                        {% endif %}
-                    </div>
-                    <div class="property-info">
-                        <h4>{{ property.street_name }} {{ property.house_number }}</h4>
-                    </div>
-                    <div class="property-info">
-                        <p>{{ property.city }}, {{ property.postal_code }}</p>
-                    </div>
-                    <div class="property-price">
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
-                            {{ property.price|intdot }} kr.
-                        </div>
-                    </div>
-                    <div class="property-details-icons">
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
-                            {{ property.bedrooms }}
-                        </div>
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/bathroom.svg' %}" alt="Bathrooms" class="icon">
-                            {{ property.bathrooms }}
-                        </div>
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/size4.png' %}" alt="Size" class="icon">
-                            {{ property.square_meters }} m²
-                        </div>
+        <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
+            <div class="property-card small">
+                <div class="image-container">
+                    <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
+                    {% if property.status == "available" %}
+                    <span class="status-box available">Available</span>
+                    {% elif property.status == "sold" %}
+                    <span class="status-box sold">Sold</span>
+                    {% endif %}
+                </div>
+                <div class="property-info">
+                    <h4>{{ property.street_name }} {{ property.house_number }}</h4>
+                </div>
+                <div class="property-info">
+                    <p>{{ property.city }}, {{ property.postal_code }}</p>
+                </div>
+                <div class="property-price">
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
+                        {{ property.price|intdot }} kr.
                     </div>
                 </div>
-            </a>
+                <div class="property-details-icons">
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
+                        {{ property.bedrooms }}
+                    </div>
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/bathroom.svg' %}" alt="Bathrooms" class="icon">
+                        {{ property.bathrooms }}
+                    </div>
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/size4.png' %}" alt="Size" class="icon">
+                        {{ property.square_meters }} m²
+                    </div>
+                </div>
+            </div>
+        </a>
         {% endfor %}
     </div>
     <hr class="section-divider">
-
-
     <!-- Smaller Remaining -->
     <div class="property-grid">
         {% for property in properties|slice:"2:" %}
-            <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
-                <div class="property-card small">
-                    <div class="image-container">
-                        <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
-
-                        {% if property.status == "available" %}
-                            <span class="status-box available">Available</span>
-                        {% elif property.status == "sold" %}
-                            <span class="status-box sold">Sold</span>
-                        {% endif %}
-                    </div>
-
-                    <!-- LAYER 1: Name -->
-                    <div class="property-info">
-                        <h4>{{ property.street_name }} {{ property.house_number }}</h4>
-                    </div>
-
-                    <!-- LAYER 2: City + Postal Code -->
-                    <div class="property-info">
-                        <p>{{ property.city }}, {{ property.postal_code }}</p>
-                    </div>
-
-                    <!-- LAYER 3: Price -->
-                    <div class="property-price">
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
-                            {{ property.price|intdot }} kr.
-                        </div>
-                    </div>
-
-                    <!-- LAYER 4: Icons -->
-                    <div class="property-details-icons">
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
-                            {{ property.bedrooms }}
-                        </div>
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/bathroom.svg' %}" alt="Bathrooms" class="icon">
-                            {{ property.bathrooms }}
-                        </div>
-                        <div class="icon-detail">
-                            <img src="{% static 'icons/size4.png' %}" alt="Size" class="icon">
-                            {{ property.square_meters }} m²
-                        </div>
+        <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
+            <div class="property-card small">
+                <div class="image-container">
+                    <img src="{{ property.photos.first.image.url }}" alt="Image of {{ property.street_name }}">
+                    {% if property.status == "available" %}
+                    <span class="status-box available">Available</span>
+                    {% elif property.status == "sold" %}
+                    <span class="status-box sold">Sold</span>
+                    {% endif %}
+                </div>
+                <!-- LAYER 1: Name -->
+                <div class="property-info">
+                    <h4>{{ property.street_name }} {{ property.house_number }}</h4>
+                </div>
+                <!-- LAYER 2: City + Postal Code -->
+                <div class="property-info">
+                    <p>{{ property.city }}, {{ property.postal_code }}</p>
+                </div>
+                <!-- LAYER 3: Price -->
+                <div class="property-price">
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
+                        {{ property.price|intdot }} kr.
                     </div>
                 </div>
-            </a>
+                <!-- LAYER 4: Icons -->
+                <div class="property-details-icons">
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
+                        {{ property.bedrooms }}
+                    </div>
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/bathroom.svg' %}" alt="Bathrooms" class="icon">
+                        {{ property.bathrooms }}
+                    </div>
+                    <div class="icon-detail">
+                        <img src="{% static 'icons/size4.png' %}" alt="Size" class="icon">
+                        {{ property.square_meters }} m²
+                    </div>
+                </div>
+            </div>
+        </a>
         {% endfor %}
     </div>
-
 </div>
 {% endblock %}
