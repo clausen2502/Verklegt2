@@ -33,7 +33,7 @@
         <ul>
           <li><strong>Cardholder Name:</strong> {{ payment_info.cardholder_name }}</li>
           <li><strong>Card Number:</strong> **** **** **** {{ payment_info.card_number|slice:"-4:" }}</li>
-          <li><strong>Expiry:</strong> {{ payment_info.expiry }}</li>
+          <li><strong>Expiry:</strong> {{ payment_info.expiry_date }}</li>
         </ul>
       {% endif %}
     </section>

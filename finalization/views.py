@@ -68,9 +68,6 @@ def finalize_payment_view(request, offer_id):
             return redirect("bank-transfer-form", offer_id=offer_id)
         elif method == "mortgage":
             return redirect("mortgage-form", offer_id=offer_id)
-        else:
-            # fallback eða error message
-            return redirect("payment")
 
     return render(request, "finalization/payment.html", {
         "offer_id": offer_id,
@@ -81,16 +78,16 @@ def credit_card_form(request, offer_id):
     if request.method == 'POST':
         form = CreditCardForm(request.POST)
         if form.is_valid():
-            # Vistaðu gögn í session eða annað
-            request.session['card_info'] = form.cleaned_data
+            data = form.cleaned_data
+            data['method'] = 'card'
+            request.session['payment_data'] = data
             return redirect('review-page', offer_id=offer_id)
     else:
         form = CreditCardForm()
-
     return render(request, 'finalization/credit_card.html', {
         'form': form,
         'offer_id': offer_id,
-        'current_step': 'card'
+        'current_step': 'payment'
     })
 
 def bank_transfer_form(request, offer_id):

@@ -76,12 +76,6 @@ def received_offers(request):
     offers = PurchaseOffer.objects.filter(property__seller=request.user)
     return render(request, 'offer/offers_received.html', {'offers': offers})
 
-
-
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from .models import PurchaseOffer, Property
 @login_required
 def update_offer_status(request, offer_id, new_status):
     offer = get_object_or_404(PurchaseOffer, id=offer_id)
