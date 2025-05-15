@@ -29,7 +29,8 @@ def submit_offer(request, property_id):
             offer.buyer = request.user
             offer.property = property_obj
             offer.save()
-            return redirect("offer-confirmation")
+            messages.success(request, 'Your offer has been submitted!')
+            return redirect("my-offers")
     else:
         form = PurchaseOfferForm()
 
