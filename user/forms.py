@@ -33,14 +33,15 @@ class UserEditForm(forms.ModelForm):
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get('first_name')
-        if not re.match(r'^[A-Za-zÁÉÍÓÚÝÞÆÖáéíóúýþæö\- ]+$', first_name):
-            raise forms.ValidationError("First name can only contain letters, hyphens, and spaces.")
+        if not re.fullmatch(r'[A-Za-zÁÉÍÓÚÝÞÆÖáéíóúýþæö]+', first_name):
+            raise forms.ValidationError("First name can only contain letters.")
         return first_name
 
     def clean_last_name(self):
         last_name = self.cleaned_data.get('last_name')
-        if not re.match(r'^[A-Za-zÁÉÍÓÚÝÞÆÖáéíóúýþæö\- ]+$', last_name):
-            raise forms.ValidationError("Last name can only contain letters, hyphens, and spaces.")
+        if not re.fullmatch(r'[A-Za-zÁÉÍÓÚÝÞÆÖáéíóúýþæö]+', last_name):
+            raise forms.ValidationError("Last name can only contain letters.")
         return last_name
+
 
 
