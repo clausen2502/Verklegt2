@@ -187,3 +187,16 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 localStorage.getItem("cookieConsent");
+
+
+// Sort-by dropdown triggers form submit
+document.addEventListener("DOMContentLoaded", function () {
+  const sortSelect = document.getElementById("sortSelect");
+  const filterForm = document.getElementById("filterForm");
+
+  if (sortSelect && filterForm) {
+    sortSelect.addEventListener("change", function () {
+      filterForm.submit();
+    });
+  }
+});
