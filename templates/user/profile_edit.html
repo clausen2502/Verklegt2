@@ -2,56 +2,67 @@
 {% load static %}
 {% block content %}
 
-<div class="container my-5">
+<section class="container my-5">
     <div class="shadow rounded-4 overflow-hidden">
         <div class="row g-0">
-            <div class="col-md-4 d-flex flex-column justify-content-center align-items-center custom-bg text-white p-4">
-                <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="profile-image mb-3">
-                <h4 class="fw-bold">{{ user.username }}</h4>
-                <h5 class="fw-semibold">{{ user.first_name }} {{ user.last_name }}</h5>
-                {% if seller.seller_type == "seller" %}
-                <p class="mb-0">Seller</p>
-                {% else %}
-                <p class="mb-0">Buyer</p>
-                {% endif %}
-            </div>
-            <div class="col-md-8">
+            <!-- Profile Sidebar -->
+            <aside class="col-md-4 d-flex flex-column justify-content-center align-items-center custom-bg text-white p-4">
+                <figure class="text-center">
+                    <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="profile-image mb-3">
+                    <figcaption>
+                        <h4 class="fw-bold">{{ user.username }}</h4>
+                        <h5 class="fw-semibold">{{ user.first_name }} {{ user.last_name }}</h5>
+                        {% if seller.seller_type == "seller" %}
+                            <p class="mb-0">Seller</p>
+                        {% else %}
+                            <p class="mb-0">Buyer</p>
+                        {% endif %}
+                    </figcaption>
+                </figure>
+            </aside>
+
+            <!-- Profile Form -->
+            <section class="col-md-8">
                 <div class="profile-content p-4">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="mb-3">
                             <label for="username" class="form-label fw-semibold">Username</label>
                             <input type="text" name="username" id="username"
-                                value="{{ user_form.username.value|default:user.username }}"
-                                class="form-control {% if user_form.username.errors %}is-invalid{% endif %}" required>
+                                   value="{{ user_form.username.value|default:user.username }}"
+                                   class="form-control {% if user_form.username.errors %}is-invalid{% endif %}" required>
                             {% if user_form.username.errors %}
-                            <div class="invalid-feedback">
-                                {{ user_form.username.errors.0 }}
-                            </div>
+                                <div class="invalid-feedback">
+                                    {{ user_form.username.errors.0 }}
+                                </div>
                             {% endif %}
                         </div>
+
                         <div class="mb-3">
                             <label for="profile_image" class="form-label fw-semibold">Profile Photo</label>
                             <input type="file" name="profile_image" id="profile_image" class="form-control">
                         </div>
+
                         <div class="mb-3">
                             <label for="first_name" class="form-label fw-semibold">First Name</label>
                             <input type="text" name="first_name" id="first_name"
-                                value="{{ user_form.first_name.value|default:user.first_name }}"
-                                class="form-control">
+                                   value="{{ user_form.first_name.value|default:user.first_name }}"
+                                   class="form-control">
                         </div>
+
                         <div class="mb-3">
                             <label for="last_name" class="form-label fw-semibold">Last Name</label>
                             <input type="text" name="last_name" id="last_name"
-                                value="{{ user_form.last_name.value|default:user.last_name }}"
-                                class="form-control">
+                                   value="{{ user_form.last_name.value|default:user.last_name }}"
+                                   class="form-control">
                         </div>
+
                         <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill fw-semibold">Update Profile</button>
                     </form>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

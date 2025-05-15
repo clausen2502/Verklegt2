@@ -2,22 +2,29 @@
 {% load static %}
 {% block content %}
 
-<div class="container my-5">
+<section class="container my-5">
     <div class="shadow rounded-4 overflow-hidden">
         <div class="row g-0 align-items-stretch">
-            <div class="col-md-4 d-flex flex-column justify-content-center align-items-center custom-bg text-white p-4">
-                <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="profile-image mb-3">
-                <h4 class="fw-bold mb-1">{{ user.username }}</h4>
-                <h class="fw-semibold">{{ user.first_name }} {{ user.last_name }}</h>
-                {% if user.selleruser %}
-                <p class="mb-0">Seller</p>
-                {% elif user.manager %}
-                <p class="mb-0">Manager</p>
-                {% else %}
-                <p class="mb-0">Buyer</p>
-                {% endif %}
-            </div>
-            <div class="col-md-8 d-flex">
+            <!-- Profile Sidebar -->
+            <aside class="col-md-4 d-flex flex-column justify-content-center align-items-center custom-bg text-white p-4">
+                <figure class="text-center">
+                    <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="profile-image mb-3">
+                    <figcaption>
+                        <h4 class="fw-bold mb-1">{{ user.username }}</h4>
+                        <p class="fw-semibold mb-1">{{ user.first_name }} {{ user.last_name }}</p>
+                        {% if user.selleruser %}
+                            <p class="mb-0">Seller</p>
+                        {% elif user.manager %}
+                            <p class="mb-0">Manager</p>
+                        {% else %}
+                            <p class="mb-0">Buyer</p>
+                        {% endif %}
+                    </figcaption>
+                </figure>
+            </aside>
+
+            <!-- Profile Details -->
+            <article class="col-md-8 d-flex">
                 <div class="p-4 profile-content w-100 d-flex flex-column justify-content-center">
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Username</label>
@@ -36,9 +43,9 @@
                         <a href="{% url 'profile_edit' %}" class="btn btn-primary px-4 py-2 rounded-pill fw-semibold ms-5">Edit Profile</a>
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

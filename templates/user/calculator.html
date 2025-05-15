@@ -2,9 +2,9 @@
 {% block title %}Mortgage Calculator{% endblock %}
 {% block content %}
 
-<section id="loan-calculator" class="container py-5">
+<div class="container py-5">
     <h2 class="mb-4">Mortgage Calculator</h2>
-    <form id="loan-form" class="row gy-3">
+    <form id="loan-form" class="row gy-3" aria-label="Mortgage calculator">
         <div class="col-md-3">
             <label for="loan-amount" class="form-label">Loan Amount (ISK)</label>
             <input type="number" id="loan-amount" class="form-control" value="35000000" required>
@@ -21,10 +21,11 @@
             <button type="submit" class="btn btn-primary w-100">Calculate</button>
         </div>
     </form>
+
     <div id="loan-results" class="mt-4 d-none">
         <p><strong>Monthly Payment:</strong> <span id="monthly-payment"></span> ISK</p>
         <p><strong>Total Repayment:</strong> <span id="total-payment"></span> ISK</p>
     </div>
-</section>
+</div>
 
 {% endblock %}

@@ -3,13 +3,17 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<div class="container my-5">
+<section class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <div class="login-box shadow rounded-4 p-5">
-                <h2 class="fw-bold mb-4 text-center text-primary">Create Account</h2>
+            <section class="shadow rounded-4 p-5 bg-white">
+                <header>
+                    <h2 class="fw-bold mb-4 text-center text-primary">Create Account</h2>
+                </header>
+
                 <form method="post" action="{% url 'register' %}">
                     {% csrf_token %}
+
                     <div class="mb-3">
                         <label for="id_username" class="form-label fw-semibold">Username</label>
                         {{ form.username|add_class:"form-control" }}
@@ -17,14 +21,17 @@
                         <div class="text-danger small">{{ form.username.errors.0 }}</div>
                         {% endif %}
                     </div>
+
                     <div class="mb-3">
                         <label for="id_first_name" class="form-label fw-semibold">First Name</label>
                         {{ form.first_name|add_class:"form-control" }}
                     </div>
+
                     <div class="mb-3">
                         <label for="id_last_name" class="form-label fw-semibold">Last Name</label>
                         {{ form.last_name|add_class:"form-control" }}
                     </div>
+
                     <div class="mb-3">
                         <label for="id_password1" class="form-label fw-semibold">Password</label>
                         {{ form.password1|add_class:"form-control" }}
@@ -32,6 +39,7 @@
                         <div class="text-danger small">{{ form.password1.errors.0 }}</div>
                         {% endif %}
                     </div>
+
                     <div class="mb-4">
                         <label for="id_password2" class="form-label fw-semibold">Confirm Password</label>
                         {{ form.password2|add_class:"form-control" }}
@@ -39,16 +47,20 @@
                         <div class="text-danger small">{{ form.password2.errors.0 }}</div>
                         {% endif %}
                     </div>
+
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary rounded-pill fw-semibold py-2">Register</button>
                     </div>
                 </form>
-                <p class="text-center mt-4 text-muted">
-                    Already have an account? <a href="{% url 'login' %}" class="text-primary fw-semibold">Log in</a>
-                </p>
-            </div>
+
+                <footer>
+                    <p class="text-center mt-4 text-muted">
+                        Already have an account? <a href="{% url 'login' %}" class="text-primary fw-semibold">Log in</a>
+                    </p>
+                </footer>
+            </section>
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}
