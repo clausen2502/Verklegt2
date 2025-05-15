@@ -54,7 +54,8 @@
                     <!-- Clean buyer offer status actions/messages -->
                     <div class="text-center mt-3">
                         {% if offer.status == 'accepted' or offer.status == 'contingent' %}
-                        <div class="alert alert-success fw-bold">Offer Accepted!</div>
+                        <div class="alert alert-success fw-bold">Offer Finalized!</div>
+                        <a href="{% url 'finalize-offer' offer.id %}" class="btn btn-blue w-100">
                         {% elif offer.status == 'rejected' or offer.status == 'declined' or offer.status == 'pending' %}
                         <a href="{% url 'resubmit-offer' offer.id %}" class="btn btn-warning w-100">
                         Resubmit Offer
