@@ -42,7 +42,9 @@
       {% csrf_token %}
 
       <a href="{% url 'mortgage-form' offer_id %}" class="btn btn-outline-secondary">← back</a>
-      <button type="submit" class="confirm-btn">Confirm</button>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="confirm-btn w-auto px-5">Confirm</button>
+      </div>
     </form>
   </main>
 {% endblock %}
