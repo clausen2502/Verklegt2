@@ -23,7 +23,13 @@
 
         <div class="form-group">
           <label for="card_number">Card Number:</label>
-          <input type="text" id="card_number" name="card_number" value="{{ form.card_number.value|default_if_none:'' }}" required>
+          <input type="text"
+                 id="card_number"
+                 name="card_number"
+                 value="{{ form.card_number.value|default_if_none:'' }}"
+                 placeholder="13–19 digits, no symbols"
+                 pattern="\d{13,19}"
+                 required>
           {% if form.card_number.errors %}
             <div class="text-danger">{{ form.card_number.errors.0 }}</div>
           {% endif %}
@@ -39,9 +45,15 @@
 
         <div class="form-group">
           <label for="cvc">CVC:</label>
-          <input type="text" id="cvc" name="cvc" value="{{ form.cvc.value|default_if_none:'' }}" required>
-          {% if form.cvc.errors %}
-            <div class="text-danger">{{ form.cvc.errors.0 }}</div>
+          <input type="text"
+                 id="cvc"
+                 name="cvc"
+                 value="{{ form.cvc.value|default_if_none:'' }}"
+                 placeholder="3 or 4 digits"
+                 pattern="\d{3,4}"
+                 required>
+            {% if form.cvc.errors %}
+                <div class="text-danger">{{ form.cvc.errors.0 }}</div>
           {% endif %}
         </div>
       </fieldset>
