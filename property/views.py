@@ -8,10 +8,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-def test_page(request):
-    return render(request, 'property/test.html')
-
-
 def index(request):
     properties = Property.objects.prefetch_related('photos').all()
     most_viewed = Property.objects.order_by('-view_count')[:3]
