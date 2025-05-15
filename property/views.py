@@ -6,6 +6,7 @@ from django.contrib import messages
 from user.models import SellerUser
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 def test_page(request):
     return render(request, 'property/test.html')
