@@ -1,32 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load formatting %}
+
 {% block content %}
 <div class="property-catalogue-container">
-    <!-- Total Count -->
     <h2 class="results-count">{{ property_count }} properties found</h2>
     <!-- SORT BY DROPDOWN -->
     {% if property_count > 0 %}
-      <form method="get" id="filterForm" class="sort-form">
+    <form method="get" id="filterForm" class="sort-form">
         <label for="sortSelect">Sort by:</label>
         <select name="sort_by" id="sortSelect">
-          <option value="">Default</option>
-          <option value="price_asc" {% if sort_by == "price_asc" %}selected{% endif %}>Price (Low to High)</option>
-          <option value="price_desc" {% if sort_by == "price_desc" %}selected{% endif %}>Price (High to Low)</option>
-          <option value="name_asc" {% if sort_by == "name_asc" %}selected{% endif %}>Street (A-Z)</option>
-          <option value="name_desc" {% if sort_by == "name_desc" %}selected{% endif %}>Street (Z-A)</option>
+            <option value="">Default</option>
+            <option value="price_asc" {% if sort_by == "price_asc" %}selected{% endif %}>Price (Low to High)</option>
+            <option value="price_desc" {% if sort_by == "price_desc" %}selected{% endif %}>Price (High to Low)</option>
+            <option value="name_asc" {% if sort_by == "name_asc" %}selected{% endif %}>Street (A-Z)</option>
+            <option value="name_desc" {% if sort_by == "name_desc" %}selected{% endif %}>Street (Z-A)</option>
         </select>
-      </form>
+    </form>
     {% endif %}
-
-
-        <!-- Preserve other filters (optional) -->
-        {% for key, value in request.GET.items %}
-        {% if key != "sort_by" %}
-        <input type="hidden" name="{{ key }}" value="{{ value }}">
-        {% endif %}
-        {% endfor %}
-
+    {% for key, value in request.GET.items %}
+    {% if key != "sort_by" %}
+    <input type="hidden" name="{{ key }}" value="{{ value }}">
+    {% endif %}
+    {% endfor %}
     <!-- Large First Two -->
     <div class="featured-properties">
         {% for property in properties|slice:":2" %}
@@ -44,7 +40,6 @@
                 <div class="property-info">
                     <h3>{{ property.street_name }} {{ property.house_number }}</h3>
                 </div>
-
                 <!-- LAYER 2: City + Postal Code -->
                 <div class="property-info">
                     <p>{{ property.city }}, {{ property.postal_code }}</p>
@@ -169,4 +164,5 @@
         {% endfor %}
     </div>
 </div>
+
 {% endblock %}
