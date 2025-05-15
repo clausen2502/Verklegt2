@@ -7,6 +7,13 @@ from user.models import SellerUser
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.db.models import Q
+from django.db.models.functions import Concat
+from django.db.models import Value
+
+
+
 
 def index(request):
     properties = Property.objects.prefetch_related('photos').all()
@@ -23,8 +30,17 @@ def index(request):
     query = request.GET.get("q")
     sort_by = request.GET.get("sort_by")
 
+    properties = properties.annotate(
+        full_address=Concat('street_name', Value(' '), 'house_number')
+    )
+
     if query:
-        properties = properties.filter(Q(street_name__icontains=query))
+        properties = properties.filter(
+            Q(street_name__icontains=query) |
+            Q(house_number__icontains=query) |
+            Q(full_address__icontains=query)
+        )
+
     if bedrooms:
         properties = properties.filter(bedrooms__gte=bedrooms)
     if bathrooms:
