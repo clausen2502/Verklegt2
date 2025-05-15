@@ -1,84 +1,79 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
+
 <div class="container my-5">
     <h2 class="mb-4 text-center fw-bold">Offers Received</h2>
-
     {% if offers %}
-        <div class="row g-4">
-            {% for offer in offers %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm position-relative">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary fw-bold">
-                                {{ offer.property.street_name }} {{ offer.property.house_number }}
-                            </h5>
-                            <p><strong>Amount:</strong> {{ offer.amount }} kr.</p>
-                            <p>
-                                <strong>Status:</strong>
-                                <span class="badge
-                                    {% if offer.status == 'accepted' %} bg-success
-                                    {% elif offer.status == 'rejected' %} bg-danger
-                                    {% elif offer.status == 'contingent' %} bg-warning text-dark
-                                    {% else %} bg-secondary
-                                    {% endif %}
-                                ">
-                                    {{ offer.status|capfirst }}
-                                </span>
-                            </p>
-                            <p><strong>Submitted:</strong> {{ offer.date_submitted|date:"Y-m-d" }}</p>
-                            <p><strong>Expires:</strong> {{ offer.expiration_date|date:"Y-m-d" }}</p>
-
-                            {% if offer.message %}
-                                <div class="mt-3 p-2 bg-light border rounded">
-                                    <strong>Buyer's Message:</strong>
-                                    <p>{{ offer.message }}</p>
-                                </div>
+    <div class="row g-4">
+        {% for offer in offers %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm position-relative">
+                <div class="card-body">
+                    <h5 class="card-title text-primary fw-bold">
+                        {{ offer.property.street_name }} {{ offer.property.house_number }}
+                    </h5>
+                    <p><strong>Amount:</strong> {{ offer.amount }} kr.</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="badge
+                            {% if offer.status == 'accepted' %} bg-success
+                            {% elif offer.status == 'rejected' %} bg-danger
+                            {% elif offer.status == 'contingent' %} bg-warning text-dark
+                            {% else %} bg-secondary
                             {% endif %}
-
-                            {% if offer.status == 'contingent' and offer.contingent_message %}
-                                <div class="mt-3 p-2 bg-warning border rounded">
-                                    <strong>Contingent Message:</strong>
-                                    <p>{{ offer.contingent_message }}</p>
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="card-footer d-flex flex-column gap-2">
-                            <a href="{% url 'property-detail' offer.property.id %}" class="btn btn-outline-primary btn-sm w-100">View Property</a>
-
-                            {% if request.user == offer.property.seller %}
-                                {% if offer.status == 'pending' %}
-                                    <form action="{% url 'update-offer-status' offer.id 'accepted' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-success btn-sm w-100">Accept Offer</button>
-                                    </form>
-
-                                    <form action="{% url 'update-offer-status' offer.id 'rejected' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-danger btn-sm w-100">Reject Offer</button>
-                                    </form>
-
-                                    <form action="{% url 'update-offer-status' offer.id 'contingent' %}" method="post">
-                                        {% csrf_token %}
-                                        <textarea name="contingent_message" class="form-control mb-2" rows="2" placeholder="Add contingent note..."></textarea>
-                                        <button class="btn btn-warning btn-sm w-100">Accept as Contingent</button>
-                                    </form>
-                                {% else %}
-                                    <div class="alert alert-info text-center">
-                                        This offer has already been {{ offer.status|capfirst }}.
-                                    </div>
-                                {% endif %}
-                            {% endif %}
-                        </div>
+                            ">
+                        {{ offer.status|capfirst }}
+                        </span>
+                    </p>
+                    <p><strong>Submitted:</strong> {{ offer.date_submitted|date:"Y-m-d" }}</p>
+                    <p><strong>Expires:</strong> {{ offer.expiration_date|date:"Y-m-d" }}</p>
+                    {% if offer.message %}
+                    <div class="mt-3 p-2 bg-light border rounded">
+                        <strong>Buyer's Message:</strong>
+                        <p>{{ offer.message }}</p>
                     </div>
+                    {% endif %}
+                    {% if offer.status == 'contingent' and offer.contingent_message %}
+                    <div class="mt-3 p-2 bg-warning border rounded">
+                        <strong>Contingent Message:</strong>
+                        <p>{{ offer.contingent_message }}</p>
+                    </div>
+                    {% endif %}
                 </div>
-            {% endfor %}
+                <div class="card-footer d-flex flex-column gap-2">
+                    <a href="{% url 'property-detail' offer.property.id %}" class="btn btn-outline-primary btn-sm w-100">View Property</a>
+                    {% if request.user == offer.property.seller %}
+                    {% if offer.status == 'pending' %}
+                    <form action="{% url 'update-offer-status' offer.id 'accepted' %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-success btn-sm w-100">Accept Offer</button>
+                    </form>
+                    <form action="{% url 'update-offer-status' offer.id 'rejected' %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-sm w-100">Reject Offer</button>
+                    </form>
+                    <form action="{% url 'update-offer-status' offer.id 'contingent' %}" method="post">
+                        {% csrf_token %}
+                        <textarea name="contingent_message" class="form-control mb-2" rows="2" placeholder="Add contingent note..."></textarea>
+                        <button class="btn btn-warning btn-sm w-100">Accept as Contingent</button>
+                    </form>
+                    {% else %}
+                    <div class="alert alert-info text-center">
+                        This offer has already been {{ offer.status|capfirst }}.
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
         </div>
+        {% endfor %}
+    </div>
     {% else %}
-        <div class="alert alert-info text-center">
-            You have not received any offers yet.
-        </div>
+    <div class="alert alert-info text-center">
+        You have not received any offers yet.
+    </div>
     {% endif %}
 </div>
+
 {% endblock %}
