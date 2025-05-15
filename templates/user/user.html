@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static formatting %}
 {% block content %}
+
 <div class="container my-5 p-4 rounded shadow bg-white border">
     <form method="GET" action="{% url 'property-index' %}">
         <div class="row g-4">
@@ -79,7 +80,6 @@
                                     <label class="form-check-label" for="loc-162">162 - Kjalarnes</label>
                                 </div>
                             </details>
-
                             <!-- Kópavogur -->
                             <details class="ms-2 mt-3">
                                 <summary class="fw-semibold">Kópavogur</summary>
@@ -161,7 +161,6 @@
                                 </div>
                             </details>
                         </details>
-
                         <!-- Suðurnes -->
                         <details class="mt-3">
                             <summary class="fw-bold">Suðurnes</summary>
@@ -218,7 +217,6 @@
                                 <label class="form-check-label" for="loc-191">191 - Vogar</label>
                             </div>
                         </details>
-
                         <!-- Norðurland -->
                         <details class="mt-3">
                             <summary class="fw-bold">Norðurland</summary>
@@ -351,7 +349,6 @@
                                 <label class="form-check-label" for="loc-685">685 - Bakkafjörður</label>
                             </div>
                         </details>
-
                         <!-- Vestfirðir -->
                         <details class="mt-3">
                             <summary class="fw-bold">Vestfirðir</summary>
@@ -412,7 +409,6 @@
                                 <label class="form-check-label" for="loc-500">500 - Staður</label>
                             </div>
                         </details>
-
                         <!-- Vesturland -->
                         <details class="mt-3">
                             <summary class="fw-bold">Vesturland</summary>
@@ -473,7 +469,6 @@
                                 <label class="form-check-label" for="loc-380">380 - Reykhólar</label>
                             </div>
                         </details>
-
                         <!-- Austurland -->
                         <details class="mt-3">
                             <summary class="fw-bold">Austurland</summary>
@@ -526,7 +521,6 @@
                                 <label class="form-check-label" for="loc-765">765 - Djúpivogur</label>
                             </div>
                         </details>
-
                         <!-- Suðurland -->
                         <details class="mt-3">
                             <summary class="fw-bold">Suðurland</summary>
@@ -606,7 +600,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Type -->
             <div class="col-md-6">
                 <label class="form-label fw-bold">Type</label>
@@ -635,7 +628,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Size -->
             <div class="col-md-3">
                 <label class="form-label fw-bold">Size (m²)</label>
@@ -676,7 +668,6 @@
                     </select>
                 </div>
             </div>
-
             <!-- Bedrooms -->
             <div class="col-md-3">
                 <label class="form-label fw-bold">Bedrooms</label>
@@ -701,7 +692,6 @@
                     <option value="4">4+</option>
                 </select>
             </div>
-
             <!-- Price -->
             <div class="col-md-3">
                 <label class="form-label fw-bold">Price (ISK)</label>
@@ -736,13 +726,11 @@
                     </select>
                 </div>
             </div>
-
             <!-- Street name -->
             <div class="col-md-12">
                 <label class="form-label fw-bold">Street name</label>
                 <input type="text" name="q" class="form-control" placeholder="e.g. Laugavegur">
             </div>
-
             <!-- Submit -->
             <div class="col-md-12 text-end">
                 <button type="submit" class="btn btn-primary px-4">Search</button>
@@ -750,4 +738,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}
