@@ -7,35 +7,48 @@
 
     <section class="finalize-box">
       <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="offer_id" value="{{ offer_id }}">
+      {% csrf_token %}
+      <input type="hidden" name="offer_id" value="{{ offer_id }}">
 
-        <fieldset>
-          <legend>Card Details</legend>
+      <fieldset>
+        <legend>Card Details</legend>
 
-          <div class="form-group">
-            <label for="cardholder_name">Cardholder Name:</label>
-            <input type="text" id="cardholder_name" name="cardholder_name" required>
-          </div>
+        <div class="form-group">
+          <label for="cardholder_name">Cardholder Name:</label>
+          <input type="text" id="cardholder_name" name="cardholder_name" value="{{ form.cardholder_name.value|default_if_none:'' }}" required>
+          {% if form.cardholder_name.errors %}
+            <div class="text-danger">{{ form.cardholder_name.errors.0 }}</div>
+          {% endif %}
+        </div>
 
-          <div class="form-group">
-            <label for="card_number">Card Number:</label>
-            <input type="text" id="card_number" name="card_number" required>
-          </div>
+        <div class="form-group">
+          <label for="card_number">Card Number:</label>
+          <input type="text" id="card_number" name="card_number" value="{{ form.card_number.value|default_if_none:'' }}" required>
+          {% if form.card_number.errors %}
+            <div class="text-danger">{{ form.card_number.errors.0 }}</div>
+          {% endif %}
+        </div>
 
-          <div class="form-group">
-            <label for="expiry_date">Expiry Date (MM/YY):</label>
-            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" pattern="\d{2}/\d{2}" required>
-          </div>
+        <div class="form-group">
+          <label for="expiry_date">Expiry Date (MM/YY):</label>
+          <input type="text" id="expiry_date" name="expiry_date" value="{{ form.expiry_date.value|default_if_none:'' }}" placeholder="MM/YY" required>
+          {% if form.expiry_date.errors %}
+            <div class="text-danger">{{ form.expiry_date.errors.0 }}</div>
+          {% endif %}
+        </div>
 
-          <div class="form-group">
-            <label for="cvc">CVC:</label>
-            <input type="text" id="cvc" name="cvc" required>
-          </div>
-        </fieldset>
-        <a href="{% url 'finalize-payment' offer_id %}" class="btn btn-outline-secondary">← back</a>
-        <button type="submit">Continue</button>
-      </form>
+        <div class="form-group">
+          <label for="cvc">CVC:</label>
+          <input type="text" id="cvc" name="cvc" value="{{ form.cvc.value|default_if_none:'' }}" required>
+          {% if form.cvc.errors %}
+            <div class="text-danger">{{ form.cvc.errors.0 }}</div>
+          {% endif %}
+        </div>
+      </fieldset>
+
+      <a href="{% url 'finalize-payment' offer_id %}" class="btn btn-outline-secondary">← back</a>
+      <button type="submit">Continue</button>
+    </form>
     </section>
   </main>
 {% endblock %}

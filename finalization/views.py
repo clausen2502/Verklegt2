@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactInfoForm
 from offer.models import PurchaseOffer
+from .forms import CreditCardForm
+from .forms import BankTransferForm
 
 
 def index(request):
@@ -42,16 +44,16 @@ def finalize_contact_view(request, offer_id):
     if request.method == 'POST':
         form = ContactInfoForm(request.POST)
         if form.is_valid():
-            # Vista í session
             request.session['contact_info'] = form.cleaned_data
+            request.session['contact_info']['offer_id'] = offer_id
             return redirect('finalize-payment', offer_id=offer_id)
     else:
         form = ContactInfoForm()
 
     return render(request, 'finalization/contact_info.html', {
+        'form': form,
         'offer_id': offer_id,
         'countries': countries,
-        'form': form,
         'current_step': 'contact'
     })
 
@@ -77,36 +79,36 @@ def finalize_payment_view(request, offer_id):
 
 def credit_card_form(request, offer_id):
     if request.method == 'POST':
-        request.session['payment_data'] = {
-            'method': 'card',
-            'cardholder_name': request.POST.get('cardholder_name'),
-            'card_number': request.POST.get('card_number'),
-            'expiry': request.POST.get('expiry_date'),
-            'cvc': request.POST.get('cvc'),
-        }
-        return redirect('review-page', offer_id=offer_id)
-    return render(request, "finalization/credit_card.html", {
-        "offer_id": offer_id,
-        "current_step": "payment"
+        form = CreditCardForm(request.POST)
+        if form.is_valid():
+            # Vistaðu gögn í session eða annað
+            request.session['card_info'] = form.cleaned_data
+            return redirect('review-page', offer_id=offer_id)
+    else:
+        form = CreditCardForm()
+
+    return render(request, 'finalization/credit_card.html', {
+        'form': form,
+        'offer_id': offer_id,
+        'current_step': 'card'
     })
 
 def bank_transfer_form(request, offer_id):
     if request.method == 'POST':
-        request.session['payment_data'] = {
-            'method': 'bank',
-            'recipient_name': request.POST.get('recipient_name'),
-            'account_number': request.POST.get('account_number'),
-            'kennitala': request.POST.get('kennitala'),
-            'bank_number': request.POST.get('bank_number'),
-            'payment_info': request.POST.get('payment_info'),
-            'amount': request.POST.get('amount'),
-            'currency': request.POST.get('currency'),
-            'transfer_date': request.POST.get('transfer_date'),
-        }
-        return redirect('review-page', offer_id=offer_id)
-    return render(request, "finalization/bank_transfer.html", {
-        "offer_id": offer_id,
-        "current_step": "payment"
+        form = BankTransferForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data.copy()
+            data['amount'] = str(data['amount'])              # Decimal fix
+            data['transfer_date'] = str(data['transfer_date'])  # Date fix
+            request.session['bank_data'] = data
+            return redirect('review-page', offer_id=offer_id)
+    else:
+        form = BankTransferForm()
+
+    return render(request, 'finalization/bank_transfer.html', {
+        'form': form,
+        'offer_id': offer_id,
+        'current_step': 'bank'
     })
 
 def mortgage_form(request, offer_id):
@@ -161,3 +163,8 @@ def confirmation_view(request, offer_id):
         'payment_info': payment_info,
         'current_step': 'confirmation'
     })
+
+
+
+
+
