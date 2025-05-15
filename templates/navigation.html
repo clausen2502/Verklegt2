@@ -9,12 +9,10 @@
         <div class="nav-center mx-auto">
             <ul class="navbar-nav d-flex flex-row gap-4 justify-content-center">
                 {% if user.is_authenticated and user.manager %}
-                <!-- Manager sees only this -->
                 <li class="nav-item">
                     <a class="nav-link fw-bold text-uppercase text-danger" href="{% url 'admin-dashboard' %}">Admin Dashboard</a>
                 </li>
                 {% else %}
-                <!-- Everyone else (non-managers) -->
                 <li class="nav-item">
                     <a class="nav-link fw-bold text-uppercase" href="{% url 'property-index' %}">Property Catalogue</a>
                 </li>

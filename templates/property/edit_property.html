@@ -23,10 +23,9 @@
         </ul>
     </div>
     {% endif %}
-    <div class="card shadow p-4 mx-auto" style="max-width: 800px;">
+    <div class="card shadow p-4 mx-auto">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <!-- Use Django form rendering -->
             {% for field in form %}
             <div class="mb-3">
                 <label class="form-label">{{ field.label }}</label>
@@ -40,12 +39,10 @@
                 {% endif %}
             </div>
             {% endfor %}
-            <!-- Upload Images -->
             <div class="mb-3">
                 <label class="form-label">Upload Images (optional)</label>
                 <input type="file" name="images" multiple class="form-control">
             </div>
-            <!-- Buttons Grid -->
             <div class="d-grid gap-3">
                 <button type="submit" class="btn btn-success btn-lg w-100">Save Changes</button>
                 <a href="{% url 'property-detail' property.id %}" class="btn btn-secondary btn-lg w-100">Cancel</a>

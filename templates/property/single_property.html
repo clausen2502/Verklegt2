@@ -2,7 +2,6 @@
 {% load static formatting %}
 {% block content %}
 <div class="single-property-container">
-    <!-- Image Layout with arrows -->
     <div class="property-image-layout position-relative">
         <div class="property-main-image position-relative">
             <img id="mainImage" src="{{ property.photos.first.image.url }}" alt="Main image">
@@ -23,7 +22,6 @@
             </button>
         </div>
     </div>
-    <!-- Content Layout -->
     <div class="property-content-layout">
         <div class="property-left">
             <div class="property-info-box">
@@ -76,7 +74,6 @@
             {% endif %}
         </div>
     </div>
-    <!-- Gallery Modal (unchanged) -->
     <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content bg-dark text-white">
@@ -92,7 +89,6 @@
             </div>
         </div>
     </div>
-    <!-- Delete Property Modal -->
     <div class="modal fade" id="deletePropertyModal" tabindex="-1" aria-labelledby="deletePropertyModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

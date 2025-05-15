@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Mortgage Calculator{% endblock %}
 {% block content %}
-
 <div class="container py-5">
     <h2 class="mb-4">Mortgage Calculator</h2>
     <form id="loan-form" class="row gy-3" aria-label="Mortgage calculator">
@@ -21,11 +20,9 @@
             <button type="submit" class="btn btn-primary w-100">Calculate</button>
         </div>
     </form>
-
     <div id="loan-results" class="mt-4 d-none">
         <p><strong>Monthly Payment:</strong> <span id="monthly-payment"></span> ISK</p>
         <p><strong>Total Repayment:</strong> <span id="total-payment"></span> ISK</p>
     </div>
 </div>
-
 {% endblock %}
