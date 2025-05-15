@@ -1,11 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
 from property.models import Property
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth import logout
-
-from user.forms import UserEditForm, UserProfileForm, CustomUserCreationForm
 from user.models import SellerUser
 from django.contrib import messages
 

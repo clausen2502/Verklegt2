@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-
+from .forms import ContactInfoForm
 from offer.models import PurchaseOffer
 
 
@@ -11,17 +11,6 @@ def index(request):
 
 
 def finalize_contact_view(request, offer_id):
-    if request.method == 'POST':
-        request.session['contact_info'] = {
-            'offer_id': offer_id,
-            'street_name': request.POST['street_name'],
-            'city': request.POST['city'],
-            'postal_code': request.POST['postal_code'],
-            'country': request.POST['country'],
-            'kennitala': request.POST['kennitala']
-        }
-        return redirect('finalize-payment', offer_id=offer_id)
-
     countries = [
         "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina",
         "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
@@ -50,9 +39,19 @@ def finalize_contact_view(request, offer_id):
         "Yemen", "Zambia", "Zimbabwe"
     ]
 
+    if request.method == 'POST':
+        form = ContactInfoForm(request.POST)
+        if form.is_valid():
+            # Vista í session
+            request.session['contact_info'] = form.cleaned_data
+            return redirect('finalize-payment', offer_id=offer_id)
+    else:
+        form = ContactInfoForm()
+
     return render(request, 'finalization/contact_info.html', {
         'offer_id': offer_id,
         'countries': countries,
+        'form': form,
         'current_step': 'contact'
     })
 
