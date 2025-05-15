@@ -26,6 +26,18 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['profile_image']
 
+    def clean_profile_image(self):
+        image = self.cleaned_data.get('profile_image')
+
+        if image:
+            if image.content_type not in ['image/jpeg', 'image/pjpeg']:
+                raise forms.ValidationError("Only JPEG images are allowed.")
+
+            if not image.name.lower().endswith(('.jpg', '.jpeg')):
+                raise forms.ValidationError("File must end with .jpg or .jpeg.")
+
+        return image
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
