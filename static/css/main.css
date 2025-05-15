@@ -443,6 +443,10 @@ button {
     transform: translateY(-4px);
 }
 
+.edit-property-card {
+  max-width: 800px;
+}
+
 /* Icon + text layout */
 .property-details-icons {
     margin: 10px;
