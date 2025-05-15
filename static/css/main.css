@@ -935,3 +935,8 @@ button {
     background-color: #000;
     z-index: 2;
 }
+
+/* Hide cookie banner via class */
+.cookie-hidden {
+  display: none !important;
+}
