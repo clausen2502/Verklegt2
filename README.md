@@ -43,6 +43,8 @@ Eftirfarandi eru aukakröfur verkefnisins:
 "A section titled “Most Popular Properties” shall be displayed at in a designated area of the property catalogue page."
 "The popularity list shall update dynamically based on view counts."
 "A user with the seller role shall be able to  edit and delete only the properties they have personally submitted to the system."
+"A user with the seller role shall be prompted with a modal saying "are you sure you want to delete this property?" "
+"A user shall be able to delete a newly submitted offer that he just created."
 "The system has officially launched, and the platform is live and publicly accessible."
 "The system has a custom domain, which can be accessed by anyone."
 
