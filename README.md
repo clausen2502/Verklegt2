@@ -4,9 +4,10 @@
 # Vefsíðan var launched á netið og notað azure blob container til þess að geyma myndirnar.
 # Einnig settum við upp custom domain, en vorum í DNS veseni þar sem það var of lengi að updateast.
 # Custom domainið virkaði ekki á HR netinu hjá okkur né ef við vorum á hotspot hjá NOVA, en virkaði
-# á öðrum stöðum. Mögulega virkar custom domainið við yfirfærslu verkefnisins, ekki á HR netinu.
-# 'castleapartments-etdbguf9gsfnafft.canadacentral-01.azurewebsites.net'
-# 'castleapartments.space'
+# á öðrum stöðum. Þess vegna í myndbandinu er custom domainið ekki alltaf notað.
+# Custom domainið ætti að virka við yfirfærslu verkefnisins. 
+# NORMAL-DOMAIN: 'castleapartments-etdbguf9gsfnafft.canadacentral-01.azurewebsites.net'
+# CUSTOM-DOMAIN: 'castleapartments.space'
 
 #Notkun
 Notendur + password aðganga sem til eru: 
@@ -40,6 +41,7 @@ Eftirfarandi eru aukakröfur verkefnisins:
 "The popularity list shall update dynamically based on view counts."
 "A user with the seller role shall be able to  edit and delete only the properties they have personally submitted to the system."
 "The system has officially launched, and the platform is live and publicly accessible."
+"The system has a custom domain, which can be accessed by anyone."
 
 #Cookies
 Vefsíðan inniheldur cookies sem hægt er að samþykkja eða hafna. Ef cookies-glugginn kemur ekki upp á skjánum við notkun vefsíðunnar er hægt að setja eftirfarandi skipun í vafra-console (F12 → Console flipi) til að endurstilla valið: localStorage.removeItem('cookieConsent'); Þá mun glugginn birtast aftur næst þegar síðan er endurhlaðin.
