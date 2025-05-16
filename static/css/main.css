@@ -19,20 +19,17 @@ body {
     justify-content: space-between;
 }
 
-/* Logo on the left */
 .logo-link img {
     height: 40px;
     width: auto;
 }
 
-/* Center navigation links */
 .nav-center ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/* Profile icon right */
 .nav-profile img {
     height: 35px;
     width: 35px;
@@ -369,7 +366,6 @@ button:hover {
     margin-bottom: 30px;
 }
 
-/* Featured (large) properties */
 .featured-properties {
     display: flex;
     gap: 20px;
@@ -813,7 +809,6 @@ button:hover {
     border: 2px solid #ccc; /* Optional: adds a border around the logo */
 }
 
-
 /* User Profile CSS---------------------------------------------------------------------------------------------------------------*/
 
 .profile-image {
@@ -849,6 +844,7 @@ button:hover {
 
 
 /* Admin dashboard CSS ---------------------------------------------------------------------------------------------------------*/
+
 .dashboard-section {
     background-color: white;
     border-radius: 1rem;
@@ -951,7 +947,6 @@ button:hover {
     z-index: 2;
 }
 
-/* Hide cookie banner via class */
 .cookie-hidden {
   display: none !important;
 }

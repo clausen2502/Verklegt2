@@ -86,8 +86,6 @@ def index(request):
 
 def get_property_by_id(request, id):
     property = Property.objects.prefetch_related('photos').get(id=id)
-
-    # Aukum fjölda heimsókna um 1
     property.view_count += 1
     property.save(update_fields=['view_count'])
 
