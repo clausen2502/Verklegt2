@@ -48,7 +48,7 @@
                     <td>{{ property.street_name }} {{ property.house_number }}, {{ property.city }}</td>
                     <td>{{ property.seller.username }}</td>
                     <td>
-                        <a href="{% url 'delete-property' property.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <a href="{% url 'manager-delete-property' property.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
