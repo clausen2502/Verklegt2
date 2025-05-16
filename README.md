@@ -1,7 +1,12 @@
 # Hopur18Verklegt2
 # Castle Apartments
 
-#Setja link hér
+# Vefsíðan var launched á netið og notað azure blob container til þess að geyma myndirnar.
+# Einnig settum við upp custom domain, en vorum í DNS veseni þar sem það var of lengi að updateast.
+# Custom domainið virkaði ekki á HR netinu hjá okkur né ef við vorum á hotspot hjá NOVA, en virkaði
+# á öðrum stöðum. Mögulega virkar custom domainið við yfirfærslu verkefnisins, ekki á HR netinu.
+# 'castleapartments-etdbguf9gsfnafft.canadacentral-01.azurewebsites.net'
+# 'castleapartments.space'
 
 #Notkun
 Notendur + password aðganga sem til eru: 
