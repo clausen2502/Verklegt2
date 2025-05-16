@@ -19,11 +19,12 @@ Seller/Real estate agency: username: lindfasteignasala psw: Fasteignir123
 
 #Aukakröfur
 Eftirfarandi eru aukakröfur verkefnisins:
-"As a user/ buyer i want to be able to sign in as a seller."
+"As a user/buyer I want to be able to sign in as a seller."
+"As a buyer I want to be able to delete a offer that I created"
 "As a seller, I want to create a new property listings with details and images."
 "As a seller, I want to se my properties in the navigation bar."
-"As a seller, I want to see the offers i have received in the navigation bar."
-"As a seller, I want to put status on an offer i received (accepted, rejected or contingent)."
+"As a seller, I want to see the offers I have received in the navigation bar."
+"As a seller, I want to put status on an offer I received (accepted, rejected or contingent)."
 "As a user I want to read about the company in “about us” located in the footer."
 "As a user I want to calculate a mortage in the “mortage calculator” in the footer."
 "The system shall display a cookie notice on the user's first visit, informing them about the use of cookies, their purpose, and allowing the user to accept or reject them."
@@ -35,7 +36,7 @@ Eftirfarandi eru aukakröfur verkefnisins:
 "The admin dashboard shall display a list of all registered users."
 "The dashboard shall also display a list of all properties in the system."
 "When the admin clicks delete on a user or property, the system shall: Prompt for confirmation."
-"Admins shall be able to delete any user or propertt  by clicking a Delete button next to their entry."
+"Admins shall be able to delete any user or property  by clicking a Delete button next to their entry."
 "Each time a user clicks or views a property, the system shall increment a view count for that property."
 "A section titled “Most Popular Properties” shall be displayed at in a designated area of the property catalogue page."
 "The popularity list shall update dynamically based on view counts."
