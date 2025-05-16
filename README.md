@@ -8,7 +8,7 @@ Notendur + password aðganga sem til eru:
 Seller - username: orrihrafn psw: 6636190iP
 Admin - username: manager psw: 6636190iP
 Buyer (ekki búinn að skrá sig sem seller) username: johannainga psw: 6636190iP
-Einnig er einfalt að búa til aðgang frá grunni með 'Register'
+Einnig er einfalt að búa til aðgang frá grunni með 'Register'.
 Seller/Real estate agency: username: lindfasteignasala psw: Fasteignir123
 
 #Aukakröfur
