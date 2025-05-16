@@ -5,7 +5,6 @@
 
 <div class="property-catalogue-container">
     <h2 class="results-count">{{ property_count }} properties found</h2>
-    <!-- SORT BY DROPDOWN -->
     {% if property_count > 0 %}
     <form method="get" id="filterForm" class="sort-form">
         <label for="sortSelect">Sort by:</label>
@@ -16,6 +15,11 @@
             <option value="name_asc" {% if sort_by == "name_asc" %}selected{% endif %}>Street (A-Z)</option>
             <option value="name_desc" {% if sort_by == "name_desc" %}selected{% endif %}>Street (Z-A)</option>
         </select>
+        {% for key, value in request.GET.items %}
+            {% if key != "sort_by" %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endif %}
+        {% endfor %}
     </form>
     {% endif %}
     {% for key, value in request.GET.items %}
@@ -23,7 +27,6 @@
     <input type="hidden" name="{{ key }}" value="{{ value }}">
     {% endif %}
     {% endfor %}
-    <!-- Large First Two -->
     <div class="featured-properties">
         {% for property in properties|slice:":2" %}
         <a href="{% url 'property-detail' property.id %}" class="property-card-link-featured">
@@ -36,22 +39,18 @@
                     <span class="status-box sold">Sold</span>
                     {% endif %}
                 </div>
-                <!-- LAYER 1: Name -->
                 <div class="property-info">
                     <h3>{{ property.street_name }} {{ property.house_number }}</h3>
                 </div>
-                <!-- LAYER 2: City + Postal Code -->
                 <div class="property-info">
                     <p>{{ property.city }}, {{ property.postal_code }}</p>
                 </div>
-                <!-- LAYER 3: Price -->
                 <div class="property-price">
                     <div class="icon-detail">
                         <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
                         {{ property.price|intdot }} kr.
                     </div>
                 </div>
-                <!-- LAYER 4: Icons -->
                 <div class="property-details-icons">
                     <div class="icon-detail">
                         <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
@@ -116,7 +115,6 @@
         {% endfor %}
     </div>
     <hr class="section-divider">
-    <!-- Smaller Remaining -->
     <div class="property-grid">
         {% for property in properties|slice:"2:" %}
         <a href="{% url 'property-detail' property.id %}" class="property-card-link-small">
@@ -129,22 +127,18 @@
                     <span class="status-box sold">Sold</span>
                     {% endif %}
                 </div>
-                <!-- LAYER 1: Name -->
                 <div class="property-info">
                     <h4>{{ property.street_name }} {{ property.house_number }}</h4>
                 </div>
-                <!-- LAYER 2: City + Postal Code -->
                 <div class="property-info">
                     <p>{{ property.city }}, {{ property.postal_code }}</p>
                 </div>
-                <!-- LAYER 3: Price -->
                 <div class="property-price">
                     <div class="icon-detail">
                         <img src="{% static 'icons/price.png' %}" alt="Price" class="icon">
                         {{ property.price|intdot }} kr.
                     </div>
                 </div>
-                <!-- LAYER 4: Icons -->
                 <div class="property-details-icons">
                     <div class="icon-detail">
                         <img src="{% static 'icons/rooms.png' %}" alt="Rooms" class="icon">
