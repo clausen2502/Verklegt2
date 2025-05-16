@@ -53,20 +53,20 @@
             {% if property.seller != user %}
             <div class="purchase-box">
                 {% if property.status == "available" %}
-                <p class="status available">Status: Available</p>
+                    <p class="status available">Status: Available</p>
                 {% else %}
-                <p class="status sold">Status: Sold</p>
+                    <p class="status sold">Status: Sold</p>
                 {% endif %}
                 {% if user.is_authenticated and property.status == "available" %}
-                {% if user_offer %}
-                {% if user_offer.status == 'rejected' or user_offer.status == 'pending' %}
-                <a href="{% url 'resubmit-offer' user_offer.id %}" class="btn btn-warning mt-2">Resubmit Offer</a>
-                {% elif user_offer.status == 'accepted' or user_offer.status == 'contingent' %}
-                <a href="{% url 'finalize-offer' user_offer.id %}" class="btn btn-success mt-2">Finalize Offer</a>
-                {% endif %}
-                {% else %}
-                <a href="{% url 'submit-offer' property.id %}" class="btn btn-primary mt-2">Submit a Purchase Offer</a>
-                {% endif %}
+                    {% if user_offer %}
+                        {% if user_offer.status == 'rejected' or user_offer.status == 'pending' %}
+                            <a href="{% url 'resubmit-offer' user_offer.id %}" class="btn btn-warning mt-2">Resubmit Offer</a>
+                        {% elif user_offer.status == 'accepted' or user_offer.status == 'contingent' %}
+                            <a href="{% url 'finalize-offer' user_offer.id %}" class="btn btn-success mt-2">Finalize Offer</a>
+                        {% endif %}
+                        {% else %}
+                            <a href="{% url 'submit-offer' property.id %}" class="btn btn-primary mt-2">Submit a Purchase Offer</a>
+                    {% endif %}
                 {% endif %}
             </div>
             {% else %}
