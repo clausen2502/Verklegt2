@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load formatting %}
 {% block content %}
 
 <div class="container my-5">
@@ -13,7 +14,7 @@
                     <h5 class="card-title text-primary fw-bold">
                         {{ offer.property.street_name }} {{ offer.property.house_number }}
                     </h5>
-                    <p><strong>Amount:</strong> {{ offer.amount }} kr.</p>
+                    <p><strong>Amount:</strong> {{ offer.amount|intdot }} kr.</p>
                     <p>
                         <strong>Status:</strong>
                         <span class="badge
@@ -26,7 +27,7 @@
                         {{ offer.status|capfirst }}
                         </span>
                     </p>
-                    <p><strong>Submitted:</strong> {{ offer.date_submitted|date:"Y-m-d" }}</p>
+                    <p><strong>Submitted:</strong> {{ offer.offer_date|date:"Y-m-d" }}</p>
                     <p><strong>Expires:</strong> {{ offer.expiration_date|date:"Y-m-d" }}</p>
                     {% if offer.message %}
                     <div class="mt-3 p-2 bg-light border rounded">
