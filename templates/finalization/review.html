@@ -35,7 +35,7 @@
     </section>
     <form method="post" action="{% url 'confirmation-page' offer_id=offer_id %}" class="confirm-form">
         {% csrf_token %}
-        <a href="{% url 'mortgage-form' offer_id %}" class="btn btn-outline-secondary">← back</a>
+        <a href="{% url  back_url offer_id %}" class="btn btn-outline-secondary">← back</a>
         <div class="d-flex justify-content-center">
             <button type="submit" class="confirm-btn w-auto px-5">Confirm</button>
         </div>

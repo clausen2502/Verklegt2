@@ -6,6 +6,13 @@
         <div class="col-md-6">
             <main class="login-box shadow rounded-4 p-5 bg-white">
                 <h2 class="fw-bold mb-4 text-center text-primary">Login</h2>
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 <form method="post" action="{% url 'login' %}">
                     {% csrf_token %}
                     <div class="mb-3">

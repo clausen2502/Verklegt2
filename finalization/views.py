@@ -48,7 +48,8 @@ def finalize_contact_view(request, offer_id):
             request.session['contact_info']['offer_id'] = offer_id
             return redirect('finalize-payment', offer_id=offer_id)
     else:
-        form = ContactInfoForm()
+        initial_data = request.session.get('contact_info', {})
+        form = ContactInfoForm(initial=initial_data)
 
     return render(request, 'finalization/contact_info.html', {
         'form': form,
@@ -83,7 +84,11 @@ def credit_card_form(request, offer_id):
             request.session['payment_data'] = data
             return redirect('review-page', offer_id=offer_id)
     else:
-        form = CreditCardForm()
+        initial_data = request.session.get('payment_data', {})
+        if initial_data.get('method') == 'card':
+            form = CreditCardForm(initial=initial_data)
+        else:
+            form = CreditCardForm()
     return render(request, 'finalization/credit_card.html', {
         'form': form,
         'offer_id': offer_id,
@@ -95,12 +100,13 @@ def bank_transfer_form(request, offer_id):
         form = BankTransferForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data.copy()
-            data['amount'] = str(data['amount'])              # Decimal fix
-            data['transfer_date'] = str(data['transfer_date'])  # Date fix
+            data['amount'] = str(data['amount'])
+            data['transfer_date'] = str(data['transfer_date'])
             request.session['bank_data'] = data
             return redirect('review-page', offer_id=offer_id)
     else:
-        form = BankTransferForm()
+        initial_data = request.session.get('bank_data', {})
+        form = BankTransferForm(initial=initial_data)
 
     return render(request, 'finalization/bank_transfer.html', {
         'form': form,
@@ -125,14 +131,22 @@ def review_view(request, offer_id):
     contact_info = request.session.get('contact_info', {})
     payment_info = request.session.get('payment_data', {})
 
+    if payment_info.get('method') == 'card':
+        back_url = 'credit-card-form'
+    elif payment_info.get('method') == 'bank':
+        back_url = 'bank-transfer-form'
+    elif payment_info.get('method') == 'mortgage':
+        back_url = 'mortgage-form'
+    else:
+        back_url = 'finalize-payment'
+
     return render(request, 'finalization/review.html', {
         'offer_id': offer_id,
         'contact_info': contact_info,
         'payment_info': payment_info,
+        'back_url': back_url,
         'current_step': 'review'
     })
-
-
 
 def confirmation_view(request, offer_id):
     contact_info = request.session.get('contact_info', {})
