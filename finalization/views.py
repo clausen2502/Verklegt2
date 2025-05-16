@@ -131,14 +131,22 @@ def review_view(request, offer_id):
     contact_info = request.session.get('contact_info', {})
     payment_info = request.session.get('payment_data', {})
 
+    if payment_info.get('method') == 'card':
+        back_url = 'credit-card-form'
+    elif payment_info.get('method') == 'bank':
+        back_url = 'bank-transfer-form'
+    elif payment_info.get('method') == 'mortgage':
+        back_url = 'mortgage-form'
+    else:
+        back_url = 'finalize-payment'
+
     return render(request, 'finalization/review.html', {
         'offer_id': offer_id,
         'contact_info': contact_info,
         'payment_info': payment_info,
+        'back_url': back_url,
         'current_step': 'review'
     })
-
-
 
 def confirmation_view(request, offer_id):
     contact_info = request.session.get('contact_info', {})
