@@ -57,7 +57,7 @@
                 {% else %}
                 <p class="status sold">Status: Sold</p>
                 {% endif %}
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and property.status == "available" %}
                 {% if user_offer %}
                 {% if user_offer.status == 'rejected' or user_offer.status == 'pending' %}
                 <a href="{% url 'resubmit-offer' user_offer.id %}" class="btn btn-warning mt-2">Resubmit Offer</a>
