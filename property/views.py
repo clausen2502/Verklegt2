@@ -11,11 +11,22 @@ from django.shortcuts import redirect
 from django.db.models import Q
 from django.db.models.functions import Concat
 from django.db.models import Value
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 
 
 
 
-def index(request):
+
+def index(request: HttpRequest) -> HttpResponse:
+    """
+    Displays a list of properties with filter and sorting options.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered property listing page.
+    """
     properties = Property.objects.prefetch_related('photos').all()
     most_viewed = Property.objects.order_by('-view_count')[:3]
 
@@ -84,7 +95,17 @@ def index(request):
         'sort_by': sort_by,
     })
 
-def get_property_by_id(request, id):
+def get_property_by_id(request: HttpRequest, id: int) -> HttpResponse:
+    """
+    Displays details of a single property and increases its view count.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        id (int): The ID of the property.
+
+    Returns:
+        HttpResponse: Rendered property detail page.
+    """
     property = Property.objects.prefetch_related('photos').get(id=id)
     property.view_count += 1
     property.save(update_fields=['view_count'])
@@ -104,9 +125,27 @@ def get_property_by_id(request, id):
 
 
 def is_seller(user: User) -> bool:
+    """
+    Checks if a user is registered as a seller.
+
+    Args:
+        user (User): The Django User object.
+
+    Returns:
+        bool: True if user is a seller, False otherwise.
+    """
     return SellerUser.objects.filter(user=user).exists()
 
-def create_property(request):
+def create_property(request: HttpRequest) -> HttpResponse:
+    """
+    Allows a seller to create a new property listing.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered property creation page or redirect on success.
+    """
     if not request.user.is_authenticated:
         return redirect('/offers/my-offers/')
 
@@ -139,14 +178,32 @@ def create_property(request):
     })
 
 @login_required
-def my_properties(request):
+def my_properties(request: HttpRequest) -> HttpResponse:
+    """
+    Displays properties owned by the logged-in seller.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered my properties page.
+    """
     """Display properties owned by the logged-in seller."""
     properties = Property.objects.filter(seller=request.user)
     return render(request, 'property/my_properties.html', {'properties': properties})
 
 @login_required
-def edit_property(request, id):
-    """Allow the seller to edit their property."""
+def edit_property(request: HttpRequest, id: int) -> HttpResponse:
+    """
+    Allows the seller to edit one of their properties.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        id (int): The ID of the property to edit.
+
+    Returns:
+        HttpResponse: Rendered property edit page or redirect on success.
+    """
     property = Property.objects.filter(id=id, seller=request.user).first()
 
     if not property:
@@ -175,8 +232,17 @@ def edit_property(request, id):
 
 @require_POST
 @login_required
-def delete_property(request, id):
-    """Allow the seller to delete their property"""
+def delete_property(request: HttpRequest, id: int) -> HttpResponseRedirect:
+    """
+    Deletes a property owned by the logged-in seller.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        id (int): The ID of the property to delete.
+
+    Returns:
+        HttpResponseRedirect: Redirects to my properties page after deletion.
+    """
     property = get_object_or_404(Property, id=id, seller=request.user)
     property.delete()
     messages.success(request, "Property deleted!")

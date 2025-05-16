@@ -1,18 +1,17 @@
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactInfoForm
 from offer.models import PurchaseOffer
 from .forms import CreditCardForm
 from .forms import BankTransferForm
 
-
-def index(request):
+def index(request: HttpRequest) -> HttpResponse:
+    """Index view returning the request path."""
     return HttpResponse(f"Response from {request.path}")
 
-
-
-def finalize_contact_view(request, offer_id):
+def finalize_contact_view(request: HttpRequest, offer_id: int) -> HttpResponse:
+    """Handles contact info submission and session storage."""
     countries = [
         "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina",
         "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
@@ -40,7 +39,6 @@ def finalize_contact_view(request, offer_id):
         "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
         "Yemen", "Zambia", "Zimbabwe"
     ]
-
     if request.method == 'POST':
         form = ContactInfoForm(request.POST)
         if form.is_valid():
@@ -50,7 +48,6 @@ def finalize_contact_view(request, offer_id):
     else:
         initial_data = request.session.get('contact_info', {})
         form = ContactInfoForm(initial=initial_data)
-
     return render(request, 'finalization/contact_info.html', {
         'form': form,
         'offer_id': offer_id,
@@ -58,8 +55,8 @@ def finalize_contact_view(request, offer_id):
         'current_step': 'contact'
     })
 
-
-def finalize_payment_view(request, offer_id):
+def finalize_payment_view(request: HttpRequest, offer_id: int) -> HttpResponse:
+    """Handles payment method selection."""
     if request.method == "POST":
         method = request.POST.get("payment_method")
 
@@ -69,13 +66,13 @@ def finalize_payment_view(request, offer_id):
             return redirect("bank-transfer-form", offer_id=offer_id)
         elif method == "mortgage":
             return redirect("mortgage-form", offer_id=offer_id)
-
     return render(request, "finalization/payment.html", {
         "offer_id": offer_id,
         'current_step': 'payment'
     })
 
-def credit_card_form(request, offer_id):
+def credit_card_form(request: HttpRequest, offer_id: int) -> HttpResponse:
+    """Handles credit card form submission and session storage."""
     if request.method == 'POST':
         form = CreditCardForm(request.POST)
         if form.is_valid():
@@ -95,7 +92,8 @@ def credit_card_form(request, offer_id):
         'current_step': 'payment'
     })
 
-def bank_transfer_form(request, offer_id):
+def bank_transfer_form(request: HttpRequest, offer_id: int) -> HttpResponse:
+    """Handles bank transfer form submission and session storage."""
     if request.method == 'POST':
         form = BankTransferForm(request.POST)
         if form.is_valid():
@@ -107,14 +105,14 @@ def bank_transfer_form(request, offer_id):
     else:
         initial_data = request.session.get('bank_data', {})
         form = BankTransferForm(initial=initial_data)
-
     return render(request, 'finalization/bank_transfer.html', {
         'form': form,
         'offer_id': offer_id,
         'current_step': 'bank'
     })
 
-def mortgage_form(request, offer_id):
+def mortgage_form(request: HttpRequest, offer_id: int) -> HttpResponse:
+    """Handles mortgage form submission and session storage."""
     if request.method == 'POST':
         request.session['payment_data'] = {
             'method': 'mortgage',
@@ -126,8 +124,8 @@ def mortgage_form(request, offer_id):
         "current_step": "payment"
     })
 
-
-def review_view(request, offer_id):
+def review_view(request: HttpRequest, offer_id: int) -> HttpResponse:
+    """Displays review page with collected contact and payment info."""
     contact_info = request.session.get('contact_info', {})
     payment_info = request.session.get('payment_data', {})
 
@@ -139,7 +137,6 @@ def review_view(request, offer_id):
         back_url = 'mortgage-form'
     else:
         back_url = 'finalize-payment'
-
     return render(request, 'finalization/review.html', {
         'offer_id': offer_id,
         'contact_info': contact_info,
@@ -148,30 +145,23 @@ def review_view(request, offer_id):
         'current_step': 'review'
     })
 
-def confirmation_view(request, offer_id):
+def confirmation_view(request: HttpRequest, offer_id: int) -> HttpResponse:
+    """Finalizes offer and displays confirmation."""
     contact_info = request.session.get('contact_info', {})
     payment_info = request.session.get('payment_data', {})
 
     offer = get_object_or_404(PurchaseOffer, id=offer_id)
-
-    # Ensure only the buyer of the offer can finalize it
     if offer.buyer != request.user:
         messages.error(request, "You are not authorized to finalize this offer.")
         return redirect("my-offers")
-
-    # Ensure the offer is accepted OR contingent
     if offer.status not in ['accepted', 'contingent']:
         messages.error(request, "Only accepted or contingent offers can be finalized.")
         return redirect("my-offers")
-
     if offer.property.status != 'sold':
         offer.property.status = 'sold'
         offer.property.save()
-
     offer.status = 'finalized'
     offer.save()
-
-
     return render(request, 'finalization/confirmation.html', {
         'offer_id': offer_id,
         'contact_info': contact_info,

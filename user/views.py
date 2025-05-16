@@ -6,21 +6,58 @@ from django.contrib.auth import logout
 from user.models import SellerUser
 from django.contrib import messages
 from django.shortcuts import redirect
-
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from user.forms import UserEditForm, UserProfileForm, CustomUserCreationForm
 
 
 def is_seller(user: User) -> bool:
+    """
+    Checks if the user is registered as a seller.
+
+    Args:
+        user (User): The Django User object.
+
+    Returns:
+        bool: True if user is a seller, False otherwise.
+    """
     return SellerUser.objects.filter(user=user).exists()
 
 def is_manager(user: User) -> bool:
+    """
+    Checks if the user has a manager role.
+
+    Args:
+        user (User): The Django User object.
+
+    Returns:
+        bool: True if user has 'manager' attribute, False otherwise.
+    """
     return hasattr(user, 'manager')
 
-def homepage(request):
+def homepage(request: HttpRequest) -> HttpResponse:
+    """
+    Renders the user homepage.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered homepage.
+    """
     return render(request, 'user/user.html')
 
 
-def get_user_by_id(request, id):
+def get_user_by_id(request: HttpRequest, id: int) -> HttpResponse:
+    """
+    Displays a seller's profile and their properties.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        id (int): The user ID.
+
+    Returns:
+        HttpResponse: Rendered seller profile page.
+    """
     seller = SellerUser.objects.select_related('user').get(user__id=id)
     properties = Property.objects.prefetch_related('photos').filter(seller=seller.user)
 
@@ -30,7 +67,16 @@ def get_user_by_id(request, id):
     })
 
 
-def register(request):
+def register(request: HttpRequest) -> HttpResponse:
+    """
+    Handles user registration.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered registration page or redirect on success.
+    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -46,7 +92,16 @@ def register(request):
 
 
 @login_required
-def profile_display(request):
+def profile_display(request: HttpRequest) -> HttpResponse:
+    """
+    Displays the logged-in user's profile.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered profile display page.
+    """
     profile = request.user.userprofile
     return render(request, 'user/profile_display.html', {
         'profile': profile,
@@ -55,7 +110,16 @@ def profile_display(request):
 
 
 @login_required
-def profile_edit(request):
+def profile_edit(request: HttpRequest) -> HttpResponse:
+    """
+    Allows the user to edit their profile information.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered profile edit page or redirect on success.
+    """
     user = request.user
     profile = user.userprofile
 
@@ -79,13 +143,31 @@ def profile_edit(request):
     })
 
 
-def logout_view(request):
+def logout_view(request: HttpRequest) -> HttpResponseRedirect:
+    """
+    Logs out the current user.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponseRedirect: Redirects to the homepage.
+    """
     logout(request)
     return redirect('user-homepage')
 
 
 @login_required
-def become_seller(request):
+def become_seller(request: HttpRequest) -> HttpResponse:
+    """
+    Allows a user to register as a seller.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered become seller page or redirect on success.
+    """
     if is_manager(request.user):
         messages.error(request, "Admins cannot become sellers.")
         return redirect("profile")
@@ -121,7 +203,17 @@ def become_seller(request):
 
 
 
-def get_seller_by_id(request, id):
+def get_seller_by_id(request: HttpRequest, id: int) -> HttpResponse:
+    """
+    Displays a seller's profile by their ID.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        id (int): The seller ID.
+
+    Returns:
+        HttpResponse: Rendered seller profile page or redirect if not found.
+    """
     try:
         seller = SellerUser.objects.select_related('user').get(id=id)
     except SellerUser.DoesNotExist:
@@ -134,10 +226,29 @@ def get_seller_by_id(request, id):
         'properties': properties
     })
 
-def about_view(request):
+
+def about_view(request: HttpRequest) -> HttpResponse:
+    """
+    Displays the 'About Us' page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered about us page.
+    """
     return render(request, 'user/about_us.html')
 
-def calculator_view(request):
+def calculator_view(request: HttpRequest) -> HttpResponse:
+    """
+    Displays the mortgage calculator page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered calculator page.
+    """
     return render(request, 'user/calculator.html')
 
 
