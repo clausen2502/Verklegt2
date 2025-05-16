@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static formatting %}
 {% block content %}
+
 <div class="container my-5 p-4 rounded shadow bg-white border">
     <form method="GET" action="{% url 'property-index' %}">
         <div class="row g-4">
@@ -717,5 +718,4 @@
         </div>
     </form>
 </div>
-
 {% endblock %}

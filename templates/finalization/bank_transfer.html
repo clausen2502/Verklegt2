@@ -1,98 +1,82 @@
 {% extends "base.html" %}
 {% block title %}Bank Transfer Details{% endblock %}
-
 {% block content %}
-  {% include 'finalization/stepper.html' %}
+{% include 'finalization/stepper.html' %}
 
-  <main>
+<main>
     <h1 class="finalize-title">Bank transfer information</h1>
-
     <section class="finalize-box">
-      <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="offer_id" value="{{ offer_id|default_if_none:'' }}">
-
-        {% if form.non_field_errors %}
-          <div class="alert alert-danger">{{ form.non_field_errors.0 }}</div>
-        {% endif %}
-
-        <fieldset>
-          <legend>Recipient Information</legend>
-
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ form.name.value|default_if_none:'' }}" required>
-            {% if form.name.errors %}
-              <div class="text-danger">{{ form.name.errors.0 }}</div>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="offer_id" value="{{ offer_id|default_if_none:'' }}">
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{ form.non_field_errors.0 }}</div>
             {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="account_number">Account number:</label>
-            <input type="text" id="account_number" name="account_number"
-                   value="{{ form.account_number.value|default_if_none:'' }}"
-                   placeholder="10 digits, no symbols" required>
-            {% if form.account_number.errors %}
-                <div class="text-danger">{{ form.account_number.errors.0 }}</div>
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="kennitala">National ID:</label>
-            <input type="text" id="kennitala" name="kennitala"
-                   value="{{ form.national_id.value|default_if_none:'' }}"
-                   placeholder="10 digits" required>
-            {% if form.national_id.errors %}
-                <div class="text-danger">{{ form.national_id.errors.0 }}</div>
-            {% endif %}
-          </div>
-        </fieldset>
-
-
-        <fieldset>
-          <legend>Payment Details</legend>
-
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" name="description">{{ form.description.value|default_if_none:'' }}</textarea>
-            {% if form.description.errors %}
-              <div class="text-danger">{{ form.description.errors.0 }}</div>
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="amount">Amount:</label>
-            <input type="number" step="0.01" id="amount" name="amount" value="{{ form.amount.value|default_if_none:'' }}" required>
-            {% if form.amount.errors %}
-              <div class="text-danger">{{ form.amount.errors.0 }}</div>
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="currency">Currency:</label>
-            <select id="currency" name="currency" required>
-              <option value="">Choose</option>
-              <option value="ISK" {% if form.currency.value == "ISK" %}selected{% endif %}>ISK</option>
-              <option value="EUR" {% if form.currency.value == "EUR" %}selected{% endif %}>EUR</option>
-              <option value="USD" {% if form.currency.value == "USD" %}selected{% endif %}>USD</option>
-              <option value="GBP" {% if form.currency.value == "GBP" %}selected{% endif %}>GBP</option>
-            </select>
-            {% if form.currency.errors %}
-              <div class="text-danger">{{ form.currency.errors.0 }}</div>
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="transfer_date">Transfer date:</label>
-            <input type="date" id="transfer_date" name="transfer_date" value="{{ form.transfer_date.value|default_if_none:'' }}">
-          </div>
-        </fieldset>
-
-        <a href="{% url 'credit-card-form' offer_id %}" class="btn btn-outline-secondary">← Back</a>
-        <button type="submit" class="btn btn-primary">Continue</button>
-      </form>
+            <fieldset>
+                <legend>Recipient Information</legend>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ form.name.value|default_if_none:'' }}" required>
+                    {% if form.name.errors %}
+                    <div class="text-danger">{{ form.name.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="account_number">Account number:</label>
+                    <input type="text" id="account_number" name="account_number"
+                        value="{{ form.account_number.value|default_if_none:'' }}"
+                        placeholder="10 digits, no symbols" required>
+                    {% if form.account_number.errors %}
+                    <div class="text-danger">{{ form.account_number.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="kennitala">National ID:</label>
+                    <input type="text" id="kennitala" name="kennitala"
+                        value="{{ form.national_id.value|default_if_none:'' }}"
+                        placeholder="10 digits" required>
+                    {% if form.national_id.errors %}
+                    <div class="text-danger">{{ form.national_id.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Payment Details</legend>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description">{{ form.description.value|default_if_none:'' }}</textarea>
+                    {% if form.description.errors %}
+                    <div class="text-danger">{{ form.description.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="number" step="0.01" id="amount" name="amount" value="{{ form.amount.value|default_if_none:'' }}" required>
+                    {% if form.amount.errors %}
+                    <div class="text-danger">{{ form.amount.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="currency">Currency:</label>
+                    <select id="currency" name="currency" required>
+                        <option value="">Choose</option>
+                        <option value="ISK" {% if form.currency.value == "ISK" %}selected{% endif %}>ISK</option>
+                        <option value="EUR" {% if form.currency.value == "EUR" %}selected{% endif %}>EUR</option>
+                        <option value="USD" {% if form.currency.value == "USD" %}selected{% endif %}>USD</option>
+                        <option value="GBP" {% if form.currency.value == "GBP" %}selected{% endif %}>GBP</option>
+                    </select>
+                    {% if form.currency.errors %}
+                    <div class="text-danger">{{ form.currency.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="transfer_date">Transfer date:</label>
+                    <input type="date" id="transfer_date" name="transfer_date" value="{{ form.transfer_date.value|default_if_none:'' }}">
+                </div>
+            </fieldset>
+            <a href="{% url 'credit-card-form' offer_id %}" class="btn btn-outline-secondary">← Back</a>
+            <button type="submit" class="btn btn-primary">Continue</button>
+        </form>
     </section>
-  </main>
+</main>
 {% endblock %}
-
-

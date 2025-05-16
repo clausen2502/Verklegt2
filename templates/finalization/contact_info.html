@@ -1,78 +1,67 @@
 {% extends "base.html" %}
 {% block title %}Finalize Purchase Offer - Contact Info{% endblock %}
-
 {% block content %}
-  {% include 'finalization/stepper.html' %}
+{% include 'finalization/stepper.html' %}
 
-  <main>
+<main>
     <h1 class="finalize-title">Finalize Purchase Offer</h1>
-
     <section class="finalize-box">
-      <h2>Contact Information</h2>
-      <form method="post" novalidate>
-        {% csrf_token %}
-        <input type="hidden" name="offer_id" value="{{ offer_id|default_if_none:'' }}">
-
-        <fieldset>
-          <legend>Address</legend>
-
-          <div class="form-group">
-            <label for="street_name">Street name:</label>
-            <input type="text" id="street_name" name="street_name" value="{{ form.street_name.value|default_if_none:'' }}" required>
-            {% if form.street_name.errors %}
-              <div class="text-danger">{{ form.street_name.errors.0 }}</div>
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city" value="{{ form.city.value|default_if_none:'' }}" required>
-            {% if form.city.errors %}
-              <div class="text-danger">{{ form.city.errors.0 }}</div>
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="postal_code">Postal Code:</label>
-            <input type="text" id="postal_code" name="postal_code"
-                   value="{{ form.postal_code.value|default_if_none:'' }}"
-                   placeholder="3 digits" required>
-            {% if form.postal_code.errors %}
-              <div class="text-danger">{{ form.postal_code.errors.0 }}</div>
-            {% endif %}
-          </div>
-
-          <div class="form-group">
-            <label for="country">Country:</label>
-            <select id="country" name="country" required>
-              <option value="">-- Select a Country --</option>
-              {% for country in countries %}
-                <option value="{{ country }}" {% if country == form.country.value %}selected{% endif %}>{{ country }}</option>
-              {% endfor %}
-            </select>
-            {% if form.country.errors %}
-              <div class="text-danger">{{ form.country.errors.0 }}</div>
-            {% endif %}
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Identification</legend>
-          <div class="form-group">
-            <label for="kennitala">National ID:</label>
-            <input type="text" id="kennitala" name="kennitala"
-                   value="{{ form.kennitala.value|default_if_none:'' }}"
-                   placeholder="10 digits" required>
-            {% if form.kennitala.errors %}
-             <div class="text-danger">{{ form.kennitala.errors.0 }}</div>
-            {% endif %}
-          </div>
-        </fieldset>
-
-        <button type="submit">Next: Payment</button>
-      </form>
+        <h2>Contact Information</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="offer_id" value="{{ offer_id|default_if_none:'' }}">
+            <fieldset>
+                <legend>Address</legend>
+                <div class="form-group">
+                    <label for="street_name">Street name:</label>
+                    <input type="text" id="street_name" name="street_name" value="{{ form.street_name.value|default_if_none:'' }}" required>
+                    {% if form.street_name.errors %}
+                    <div class="text-danger">{{ form.street_name.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" value="{{ form.city.value|default_if_none:'' }}" required>
+                    {% if form.city.errors %}
+                    <div class="text-danger">{{ form.city.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="postal_code">Postal Code:</label>
+                    <input type="text" id="postal_code" name="postal_code"
+                        value="{{ form.postal_code.value|default_if_none:'' }}"
+                        placeholder="3 digits" required>
+                    {% if form.postal_code.errors %}
+                    <div class="text-danger">{{ form.postal_code.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <select id="country" name="country" required>
+                        <option value="">-- Select a Country --</option>
+                        {% for country in countries %}
+                        <option value="{{ country }}" {% if country == form.country.value %}selected{% endif %}>{{ country }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.country.errors %}
+                    <div class="text-danger">{{ form.country.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Identification</legend>
+                <div class="form-group">
+                    <label for="kennitala">National ID:</label>
+                    <input type="text" id="kennitala" name="kennitala"
+                        value="{{ form.kennitala.value|default_if_none:'' }}"
+                        placeholder="10 digits" required>
+                    {% if form.kennitala.errors %}
+                    <div class="text-danger">{{ form.kennitala.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <button type="submit">Next: Payment</button>
+        </form>
     </section>
-  </main>
+</main>
 {% endblock %}
-
-

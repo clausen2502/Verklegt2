@@ -1,35 +1,29 @@
 {% extends "base.html" %}
-
 {% block title %}Finalize Purchase Offer - Payment{% endblock %}
-
 {% block content %}
-  {% include 'finalization/stepper.html' %}
+{% include 'finalization/stepper.html' %}
 
-  <main>
+<main>
     <h1 class="finalize-title">Payment Method</h1>
-
     <section class="finalize-box">
-      <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="offer_id" value="{{ offer_id }}">
-
-        <fieldset>
-          <legend>Choose how you want to pay</legend>
-
-          <div class="form-group">
-            <label for="payment_method">Payment Method:</label>
-            <select name="payment_method" id="payment_method" required>
-              <option value="">Select payment option</option>
-              <option value="card">Credit Card</option>
-              <option value="bank">Bank Transfer</option>
-              <option value="mortgage">Mortgage</option>
-            </select>
-          </div>
-        </fieldset>
-        <a href="{% url 'finalize-offer' offer_id %}" class="btn btn-outline-secondary">← back</a>
-        <button type="submit">Continue</button>
-      </form>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="offer_id" value="{{ offer_id }}">
+            <fieldset>
+                <legend>Choose how you want to pay</legend>
+                <div class="form-group">
+                    <label for="payment_method">Payment Method:</label>
+                    <select name="payment_method" id="payment_method" required>
+                        <option value="">Select payment option</option>
+                        <option value="card">Credit Card</option>
+                        <option value="bank">Bank Transfer</option>
+                        <option value="mortgage">Mortgage</option>
+                    </select>
+                </div>
+            </fieldset>
+            <a href="{% url 'finalize-offer' offer_id %}" class="btn btn-outline-secondary">← back</a>
+            <button type="submit">Continue</button>
+        </form>
     </section>
-  </main>
+</main>
 {% endblock %}
-

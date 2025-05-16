@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-10 col-lg-8">
@@ -29,7 +30,7 @@
                     <div class="text-danger small">{{ error }}</div>
                     {% endfor %}
             </div>
-                {% endfor %}
+            {% endfor %}
             <div class="mb-3">
             <label for="property-images" class="form-label">Upload Property Images</label>
             <input type="file" name="images" id="property-images" class="form-control" multiple>

@@ -1,33 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Mortgage Information{% endblock %}
-
 {% block content %}
-  {% include 'finalization/stepper.html' %}
+{% include 'finalization/stepper.html' %}
 
-  <main>
+<main>
     <h1 class="finalize-title">Mortgage Details</h1>
-
     <section class="finalize-box">
-      <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="offer_id" value="{{ offer_id }}">
-
-        <fieldset>
-          <legend>Provider</legend>
-
-          <div class="form-group">
-            <label for="mortgage_provider">Choose Mortgage Provider:</label>
-            <select name="mortgage_provider" id="mortgage_provider" required>
-              <option value="">Select a bank</option>
-              <option value="Arion banki">Arion banki</option>
-              <option value="Landsbankinn">Landsbankinn</option>
-              <option value="Íslandsbanki">Íslandsbanki</option>
-            </select>
-          </div>
-        </fieldset>
-        <a href="{% url 'bank-transfer-form' offer_id %}" class="btn btn-outline-secondary">← back</a>
-        <button type="submit">Continue</button>
-      </form>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="offer_id" value="{{ offer_id }}">
+            <fieldset>
+                <legend>Provider</legend>
+                <div class="form-group">
+                    <label for="mortgage_provider">Choose Mortgage Provider:</label>
+                    <select name="mortgage_provider" id="mortgage_provider" required>
+                        <option value="">Select a bank</option>
+                        <option value="Arion banki">Arion banki</option>
+                        <option value="Landsbankinn">Landsbankinn</option>
+                        <option value="Íslandsbanki">Íslandsbanki</option>
+                    </select>
+                </div>
+            </fieldset>
+            <a href="{% url 'bank-transfer-form' offer_id %}" class="btn btn-outline-secondary">← back</a>
+            <button type="submit">Continue</button>
+        </form>
     </section>
-  </main>
+</main>
 {% endblock %}
