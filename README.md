@@ -2,12 +2,7 @@
 # Castle Apartments
 
 # Vefsíðan var launched á netið og notað azure blob container til þess að geyma myndirnar.
-# Einnig settum við upp custom domain, en vorum í DNS veseni þar sem það var of lengi að updateast.
-# Custom domainið virkaði ekki á HR netinu hjá okkur né ef við vorum á hotspot hjá NOVA, en virkaði
-# á öðrum stöðum. Þess vegna í myndbandinu er custom domainið ekki alltaf notað. Við skilum kóðanum til að keyra
-# kóðann á local domain, en custom og normal domain er launchað á öðru branchi á github sem er bara með öðruvísi
-# settings.py og stillingar til þess að launcha serverinn.
-# Custom domainið ætti að virka við yfirfærslu verkefnisins. 
+
 # NORMAL-DOMAIN: 'castleapartments-etdbguf9gsfnafft.canadacentral-01.azurewebsites.net'
 # CUSTOM-DOMAIN: 'castleapartments.space'
 
